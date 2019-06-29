@@ -1,7 +1,7 @@
 <div class="container">
   <ul class="navbar-nav">
     <li *ngFor="let musica of musicas" class="nav-item">
-      <a>{{musica}}</a>
+      <a title="">{{musica.nome}}</a>
     </li>
   </ul>
     <input [(ngModel)]="novaMusica" #ctrl="ngModel" type="text"/><span class="btn btn-primary" (click)="adiciona()">add</span>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { MusicaService } from './musica.service';
+import { Musica } from './musica';
 
 @Component({
   selector: 'app-setlist',
@@ -10,29 +9,34 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SetlistComponent implements OnInit {
   musicas: string[];
+  musica: Musica;
   novaMusica: string;
   usuarios: any[];
   
-  constructor(private http: HttpClient) { }
+  constructor(private musicaService: MusicaService) { }
 
   ngOnInit() {
     console.log('vou buscar');
-    this.buscar().subscribe(
+    this.musicaService.listar().subscribe(
       (response) => {
         this.musicas = response;
-        console.log('recebi');
+        console.log('listado com sucesso');
       }
     );
-
   }
 
   adiciona(){
-    this.musicas.push(this.novaMusica );
-    this.novaMusica = '';
-  }
+    this.musica = new Musica();
+    this.musica.nome = this.novaMusica;
+    this.musica.link = this.novaMusica;
 
-  public buscar(): Observable<any> {
-    return this.http.get<any[]>(`musicas`);
+    this.musicaService.salvar(this.musica).subscribe(
+      (response) => {
+        this.novaMusica = '';
+        console.log('Salvo com sucesso');
+        this.ngOnInit();
+      }
+    );
   }
 
 }
