@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./setlist.component.css']
 })
 export class SetlistComponent implements OnInit {
-  musicas: string[] = ["Winds of change", "Fast car", "Mr Brightside"];
+  musicas: string[];
   novaMusica: string;
   usuarios: any[];
   
@@ -19,7 +19,7 @@ export class SetlistComponent implements OnInit {
     console.log('vou buscar');
     this.buscar().subscribe(
       (response) => {
-        this.usuarios = response;
+        this.musicas = response;
         console.log('recebi');
       }
     );
@@ -32,7 +32,7 @@ export class SetlistComponent implements OnInit {
   }
 
   public buscar(): Observable<any> {
-    return this.http.get<any[]>(`https://jsonplaceholder.typicode.com/todos/`);
+    return this.http.get<any[]>(`musicas`);
   }
 
 }

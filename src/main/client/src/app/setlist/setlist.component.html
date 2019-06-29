@@ -6,10 +6,3 @@
   </ul>
     <input [(ngModel)]="novaMusica" #ctrl="ngModel" type="text"/><span class="btn btn-primary" (click)="adiciona()">add</span>
 </div>
-<div class="container">
-    <ul class="navbar-nav">
-        <li *ngFor="let user of usuarios" class="nav-item">
-          <a>{{user.id}} - {{user.title}} - {{user.completed}}</a><br>
-        </li>
-      </ul>
-</div>
