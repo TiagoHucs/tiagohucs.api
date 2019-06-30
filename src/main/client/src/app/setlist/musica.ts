@@ -1,9 +1,6 @@
 export class Musica{
 
-    constructor(){
-        // this.nome = nome;
-        // this.link = link;
-    }
+    id: string;
     nome: string;
     link: string;
 

@@ -9,13 +9,13 @@ import { Musica } from './musica';
 })
 export class SetlistComponent implements OnInit {
   musicas: string[];
-  musica: Musica;
-  novaMusica: string;
+  novaMusica: Musica;
   usuarios: any[];
   
   constructor(private musicaService: MusicaService) { }
 
   ngOnInit() {
+    this.novaMusica = new Musica();
     console.log('vou buscar');
     this.musicaService.listar().subscribe(
       (response) => {
@@ -26,14 +26,20 @@ export class SetlistComponent implements OnInit {
   }
 
   adiciona(){
-    this.musica = new Musica();
-    this.musica.nome = this.novaMusica;
-    this.musica.link = this.novaMusica;
-
-    this.musicaService.salvar(this.musica).subscribe(
+    this.musicaService.salvar(this.novaMusica).subscribe(
       (response) => {
-        this.novaMusica = '';
+        this.novaMusica = new Musica();
         console.log('Salvo com sucesso');
+        this.ngOnInit();
+      }
+    );
+  }
+
+  excluir(id: any){
+    this.musicaService.excluir(id).subscribe(
+      (response) => {
+        this.novaMusica = new Musica();
+        console.log('Excluido com sucesso');
         this.ngOnInit();
       }
     );
