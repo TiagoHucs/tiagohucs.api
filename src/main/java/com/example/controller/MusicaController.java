@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/musicas")
 public class MusicaController {
 
@@ -57,9 +57,9 @@ public class MusicaController {
 
         try {
             musicaService.delete(id);
-            return (ResponseEntity<Void>) ResponseEntity.status(HttpStatus.OK);
+            return ResponseEntity.status(HttpStatus.OK).build();
         } catch (Exception e) {
-            return (ResponseEntity<Void>) ResponseEntity.status(HttpStatus.BAD_REQUEST);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
     }
