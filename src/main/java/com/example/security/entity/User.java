@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
-@Entity
+@Entity(name = "user_entity")
 @Getter
 @Setter
 @EqualsAndHashCode
