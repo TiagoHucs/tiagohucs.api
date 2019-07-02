@@ -21,6 +21,7 @@ public class User {
 	@Column
 	private Long id;
 
+
 	@NotBlank(message = "Email required")
 	@Email(message = "Email invalid")
 	@Column
