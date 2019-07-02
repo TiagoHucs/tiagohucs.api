@@ -1,6 +1,7 @@
 package com.example.security.entity;
 
 import com.example.security.enums.ProfileEnum;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Email;
@@ -12,6 +13,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Getter
 @Setter
+@EqualsAndHashCode
 public class User {
 
 	@Id
