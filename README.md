@@ -1,2 +1,2 @@
-# Archetipe Web Hucs
+# Arquetipo Web Hucs
 aplicação pessoal
