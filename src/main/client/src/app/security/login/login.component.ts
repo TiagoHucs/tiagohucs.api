@@ -4,6 +4,7 @@ import { UserService } from '../../service/user/user.service';
 import { User } from '../../model/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   message : string;
 
   constructor(private userService: UserService,
-              private router: Router) { 
+              private router: Router,
+              private cookieService: CookieService) { 
     this.shared = SharedService.getInstance();
   }
 
@@ -28,6 +30,7 @@ export class LoginComponent implements OnInit {
   login(){
     this.message = '';
     this.userService.login(this.user).subscribe((userAuthentication:CurrentUser) => {
+        this.cookieService.set('token',userAuthentication.token)
         this.shared.token = userAuthentication.token;
         this.shared.user = userAuthentication.user;
         this.shared.user.profile = this.shared.user.profile.substring(5);
@@ -42,6 +45,7 @@ export class LoginComponent implements OnInit {
   }
 
   cancelLogin(){
+    this.cookieService.delete('token');
     this.message = '';
     this.user = new User('', '','','');
     window.location.href = '/login';

@@ -14,6 +14,7 @@ import { AuthGuard } from './security/auth.guard';
 import { SharedService } from './service/shared.service';
 import { AuthInterceptor } from './security/auth.interceptor';
 import { LoginComponent } from './security/login/login.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { LoginComponent } from './security/login/login.component';
     UserService, 
     AuthGuard, 
     SharedService,
+    CookieService,
     { provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
