@@ -5,10 +5,11 @@
                 <div class="col-sm-6 offset-sm-3 text-center">
                     <h6 class="display-4">Login</h6>
                     <div class="info-form">
-                        <form action="" class="form-inlin justify-content-center" #form="ngForm" (ngSubmit)="login()" novalidate>
-                          <div class="alert alert-error" role="alert" *ngIf="message">
-                            <strong>Invalid email or password</strong>
-                          </div>  
+                        <form action="login()" class="form-inlin justify-content-center" #form="ngForm" (ngSubmit)="login()" novalidate>
+                          <div class="alert alert-danger alert-dismissible fade show" *ngIf="message">
+                              <button type="button" class="close" data-dismiss="alert">&times;</button>
+                              <strong>Erro!</strong>  Email ou password inválido!
+                            </div>
                           <div [ngClass]="getFormGroupClass(email.invalid,email.dirty)">
                             <label for="inputEmail" class="col-sm-2 control-label">Email</label>
                             <div class="col">
@@ -37,7 +38,9 @@
                               <span class="help-block" *ngIf="password.invalid && password.dirty">Password is required</span>
                             </div>
                           </div>
-                          <button (click)="login()" [disabled]="!form.valid" class="btn btn-info pull-right">Login</button>                    
+                          <button type="submit" [disabled]="!form.valid" class="btn btn-primary">
+                              <i class="fa fa-user"></i> Login
+                          </button>                    
                         </form>
                     </div>
                 </div>
@@ -45,5 +48,3 @@
         </div>
     </div>
 </section>
-
-
