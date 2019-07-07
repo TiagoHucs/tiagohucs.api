@@ -16,6 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>  {
+        console.log('interceptado');
         let authRequest : any;
         let token = this.cookieService.get('token');
         if(token){
@@ -28,8 +29,9 @@ export class AuthInterceptor implements HttpInterceptor {
             return next.handle(authRequest)
                 .pipe(tap(
                     (response: HttpEvent<any>) => {
-                    console.log(response); // this runs always 
                     console.log('peguei o response');// not the same as "next?" parameter of .subscribe
+                    console.log(response); // this runs always 
+                    
                     },
                     (error: HttpErrorResponse) => {
                     console.log('peguei o erro: '+error.status);

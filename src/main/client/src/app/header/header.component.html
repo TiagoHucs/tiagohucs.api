@@ -3,23 +3,24 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link">Sobre</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" >Projetos</a>
-      </li>
       <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-        <a class="nav-link" [routerLink]="['/links']">Links</a>
-      </li>
-      <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-          <a class="nav-link">user@email.com {{ shared.user.email }} - {{ shared.user.profile }}</a>
-      </li>
-      <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-          <a class="nav-link" (click)="signOut()">Sair</a>
+        <a class="nav-link" [routerLink]="['/setlist']">Musicas</a>
       </li>
     </ul>
   </div>
+
+  <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a class="nav-link" title="{{shared.user.profile}}"><i class="fa fa-user"></i> {{ shared.user.email }}</a>
+      </li>
+      <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <button class="btn btn-primary" (click)="signOut()">Sair</button>
+      </li>
+    </ul>
+  </div>
+
 </nav>

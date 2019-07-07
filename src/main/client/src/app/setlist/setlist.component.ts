@@ -11,21 +11,25 @@ export class SetlistComponent implements OnInit {
   musicas: string[];
   novaMusica: Musica;
   usuarios: any[];
+  loading: boolean;
   
   constructor(private musicaService: MusicaService) { }
 
   ngOnInit() {
+    this.loading = true;
     this.novaMusica = new Musica();
-    console.log('vou buscar');
     this.musicaService.listar().subscribe(
       (response) => {
         this.musicas = response;
-        console.log('listado com sucesso');
+        this.loading = false;
       }
     );
   }
 
   adiciona(){
+    if(this.novaMusica.link == null || this.novaMusica.link == undefined || this.novaMusica.link == ''){
+      this.novaMusica.link = 'https://www.cifraclub.com.br/?q='+this.novaMusica.nome;
+    }
     this.musicaService.salvar(this.novaMusica).subscribe(
       (response) => {
         this.novaMusica = new Musica();
@@ -33,6 +37,14 @@ export class SetlistComponent implements OnInit {
         this.ngOnInit();
       }
     );
+  }
+
+  editar(musica: Musica){
+    this.novaMusica = musica;
+  }
+
+  newMusica(){
+    this.novaMusica = new Musica();
   }
 
   excluir(id: any){
