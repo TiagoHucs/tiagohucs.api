@@ -17,7 +17,8 @@ import { AuthService } from './security/auth.service';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
 import { RoleGuardService } from './security/role.guard.service';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -37,6 +38,8 @@ export function tokenGetter() {
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
