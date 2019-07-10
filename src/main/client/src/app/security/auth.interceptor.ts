@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { SharedService } from './../service/shared.service';
 import { HttpInterceptor, HttpHandler, HttpEvent, HttpRequest, HttpResponse, HttpErrorResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";

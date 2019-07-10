@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SharedService } from './service/shared.service';
 import { UserService } from './service/user/user.service';
+import { AuthService } from './security/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,20 +9,11 @@ import { UserService } from './service/user/user.service';
 })
 export class AppComponent {
   showTemplate: boolean = false;
-  public shared: SharedService;
   
-  constructor(private userService: UserService){
-    this.shared = SharedService.getInstance();
+  constructor(private authService: AuthService){
   }
 
   ngOnInit(){
-    this.shared.showTemplate.subscribe(
-      show => this.showTemplate = show
-    );
-  }
-
-  showContentWrapper(){
-    return  this.shared.isLoggedIn()
   }
 
 }

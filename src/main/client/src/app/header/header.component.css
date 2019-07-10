@@ -11,7 +11,7 @@
 
 @media screen and (min-width:692px){
   img.logotipo{
-    width: 300px;
+    width: 200px;
     transition-duration: 500ms;
   }
 }

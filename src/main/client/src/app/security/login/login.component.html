@@ -40,9 +40,19 @@
                           </div>
                           <button type="submit" [disabled]="!form.valid" class="btn btn-primary">
                               <i class="fa fa-user"></i> Login
-                          </button> <br><br>
-                          <a [routerLink]="['/cadastro']">Cadastrar</a>                  
+                          </button>
+                          <button [routerLink]="['/cadastro']" [disabled]="true" class="btn btn-primary">
+                            <i class="fa fa-user-plus" ></i> Cadastrar
+                        </button> <br><br>
+                   
                         </form>
+                    </div>
+                    <div>
+                      usuarios para teste:<br><br>
+                      ADMIN:<br>
+                      login: admin@system.com<br>senha: 123456<br><br>
+                      USUARIO:<br>
+                      login: usuario@system.com<br>senha: 112233
                     </div>
                 </div>
             </div>

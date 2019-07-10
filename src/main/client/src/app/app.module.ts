@@ -10,11 +10,18 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { UserService } from './service/user/user.service';
 import { AuthGuard } from './security/auth.guard';
-import { SharedService } from './service/shared.service';
 import { AuthInterceptor } from './security/auth.interceptor';
 import { LoginComponent } from './security/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
-import { CadastrarComponent } from './cadastrar/cadastrar.component';
+import { AuthService } from './security/auth.service';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
+import { RoleGuardService } from './security/role.guard.service';
+
+
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -23,19 +30,28 @@ import { CadastrarComponent } from './cadastrar/cadastrar.component';
     HomeComponent,
     SetlistComponent,
     LoginComponent,
-    CadastrarComponent
+    ConfiguracoesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['example.com'],
+        blacklistedRoutes: ['example.com/examplebadroute/']
+      }
+    })
 
   ],
   providers: [
     UserService, 
     AuthGuard, 
-    SharedService,
+    RoleGuardService,
+    AuthService,
+    JwtHelperService,
     CookieService,
     { provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

@@ -37,13 +37,23 @@ public class Main {
 
   private void initUsers(UserRepository userRepository, PasswordEncoder passwordEncoder) {
     User admin = new User();
-    admin.setEmail("admin@helpdesk.com");
+    admin.setEmail("admin@system.com");
     admin.setPassword(passwordEncoder.encode("123456"));
     admin.setProfile(ProfileEnum.ROLE_ADMIN);
 
-    User find = userRepository.findByEmail("admin@helpdesk.com");
+    User find = userRepository.findByEmail("admin@system.com");
     if (find == null) {
       userRepository.save(admin);
+    }
+
+    User usuario = new User();
+    usuario.setEmail("usuario@system.com");
+    usuario.setPassword(passwordEncoder.encode("112233"));
+    usuario.setProfile(ProfileEnum.ROLE_CUSTOMER);
+
+    User find2 = userRepository.findByEmail("usuario@system.com");
+    if (find2 == null) {
+      userRepository.save(usuario);
     }
   }
 

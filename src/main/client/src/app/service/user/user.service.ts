@@ -13,6 +13,10 @@ export class UserService {
     return this.http.post(`${APP_API}api/auth`,user);
   }
 
+  refresh(user: User){
+    return this.http.post(`${APP_API}api/refresh`,user);
+  }
+
   createOrUpdate(user: User){
     if(user.id != null && user.id != ''){
       return this.http.put(`${APP_API}api/user`,user);

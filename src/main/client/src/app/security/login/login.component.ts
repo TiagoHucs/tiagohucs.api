@@ -1,5 +1,4 @@
 import { CurrentUser } from '../../model/currentUser';
-import { SharedService } from '../../service/shared.service';
 import { UserService } from '../../service/user/user.service';
 import { User } from '../../model/user';
 import { Component, OnInit } from '@angular/core';
@@ -14,16 +13,21 @@ import { CookieService } from 'ngx-cookie-service';
 export class LoginComponent implements OnInit {
 
   user = new User('','','','');
-  shared : SharedService;
   message : string;
 
   constructor(private userService: UserService,
               private router: Router,
               private cookieService: CookieService) { 
-    this.shared = SharedService.getInstance();
   }
 
   ngOnInit() {
+    let token = this.cookieService.get('token');
+    if(token){
+      this.userService.refresh(this.user).subscribe((userAuthentication:CurrentUser) => {
+        this.cookieService.set('token',userAuthentication.token)
+        this.router.navigate(['/']);
+    });
+    }
   }
   
 
@@ -31,15 +35,8 @@ export class LoginComponent implements OnInit {
     this.message = '';
     this.userService.login(this.user).subscribe((userAuthentication:CurrentUser) => {
         this.cookieService.set('token',userAuthentication.token)
-        this.shared.token = userAuthentication.token;
-        this.shared.user = userAuthentication.user;
-        this.shared.user.profile = this.shared.user.profile.substring(5);
-        this.shared.showTemplate.emit(true);
         this.router.navigate(['/']);
     } , err => {
-      this.shared.token = null;
-      this.shared.user = null;
-      this.shared.showTemplate.emit(false);
       this.message = 'Erro ';
     });
   }
