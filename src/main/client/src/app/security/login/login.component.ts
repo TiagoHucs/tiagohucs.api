@@ -30,7 +30,10 @@ export class LoginComponent implements OnInit {
     }
   }
   
-
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!');
+  }
+  
   login(){
     this.message = '';
     this.userService.login(this.user).subscribe((userAuthentication:CurrentUser) => {
