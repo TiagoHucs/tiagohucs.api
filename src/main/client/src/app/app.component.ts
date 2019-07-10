@@ -10,7 +10,7 @@ import { AuthService } from './security/auth.service';
 export class AppComponent {
   showTemplate: boolean = false;
   
-  constructor(private authService: AuthService){
+  constructor(public authService: AuthService){
   }
 
   ngOnInit(){
