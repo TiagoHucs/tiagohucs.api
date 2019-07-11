@@ -30,10 +30,6 @@ export class LoginComponent implements OnInit {
     }
   }
   
-  showSuccess() {
-    this.toastr.success('Hello world!', 'Toastr fun!');
-  }
-  
   login(){
     this.message = '';
     this.userService.login(this.user).subscribe((userAuthentication:CurrentUser) => {
@@ -58,6 +54,16 @@ export class LoginComponent implements OnInit {
       'has-error' : isInvalid  && isDirty,
       'has-success' : !isInvalid  && isDirty
     };
+  }
+
+  formLikeUser(){
+    this.user.email = 'usuario@system.com';
+    this.user.password = '112233';
+  }
+
+  formLikeAdmin(){
+    this.user.email = 'admin@system.com';
+    this.user.password = '123456';
   }
 
 }

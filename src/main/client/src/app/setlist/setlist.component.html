@@ -5,13 +5,13 @@
     <thead>
       <tr>
         <th>Nome</th>
-        <th>Ações</th>
+        <th *ngIf="userService.getRole() == 'ROLE_ADMIN'">Ações</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let musica of musicas">
         <td><a target="_blank" href="{{musica.link}}">{{musica.nome}}</a></td>
-        <td>
+        <td *ngIf="userService.getRole() == 'ROLE_ADMIN'">
           <button title="Editar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" (click)="editar(musica)">
             <i class="fa fa-pencil"></i>
           </button>

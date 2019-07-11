@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MusicaService } from './musica.service';
 import { Musica } from './musica';
+import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../service/user/user.service';
 
 @Component({
   selector: 'app-setlist',
@@ -13,7 +15,11 @@ export class SetlistComponent implements OnInit {
   usuarios: any[];
   loading: boolean;
   
-  constructor(private musicaService: MusicaService) { }
+  constructor(
+    private musicaService: MusicaService,
+    private toastService: ToastrService,
+    public userService: UserService){
+  }
 
   ngOnInit() {
     this.loading = true;
@@ -32,6 +38,7 @@ export class SetlistComponent implements OnInit {
     }
     this.musicaService.salvar(this.novaMusica).subscribe(
       (response) => {
+        this.toastService.success('Musica salva com sucesso','Concluído');
         this.novaMusica = new Musica();
         console.log('Salvo com sucesso');
         this.ngOnInit();
@@ -50,6 +57,7 @@ export class SetlistComponent implements OnInit {
   excluir(id: any){
     this.musicaService.excluir(id).subscribe(
       (response) => {
+        this.toastService.success('Musica excluida com sucesso','Concluído');
         this.novaMusica = new Musica();
         console.log('Excluido com sucesso');
         this.ngOnInit();

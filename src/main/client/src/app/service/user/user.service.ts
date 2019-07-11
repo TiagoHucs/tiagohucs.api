@@ -2,12 +2,28 @@ import { User } from '../../model/user';
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { APP_API } from '../../service/app.api'
+import decode from 'jwt-decode';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class UserService {
 
+  constructor(
+    private http: HttpClient,
+    private cookieService: CookieService){
+    }
 
-  constructor(private http: HttpClient) {}
+  getRole(){
+    const token = this.cookieService.get('token');
+    const tokenPayload = decode(token);
+    return tokenPayload.role;
+  }
+
+  getUsername(){
+    const token = this.cookieService.get('token');
+    const tokenPayload = decode(token);
+    return tokenPayload.sub;
+  }
 
   login(user: User){
     return this.http.post(`${APP_API}api/auth`,user);

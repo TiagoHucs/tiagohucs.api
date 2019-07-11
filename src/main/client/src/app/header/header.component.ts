@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../model/user';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../security/auth.service';
+import decode from 'jwt-decode';
 
 @Component({
   selector: 'app-header',
@@ -11,13 +12,19 @@ import { AuthService } from '../security/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  username: string;
 
   constructor(private authService: AuthService,
               private router: Router,
-              private cookieService: CookieService){
+              private cookieService: CookieService,
+              public userService: UserService){
   }
 
   ngOnInit(){
+    const token = this.cookieService.get('token');
+    const tokenPayload = decode(token);
+    console.log(tokenPayload)
+    this.username = tokenPayload.sub;
   }
 
   signOut() : void {
@@ -25,5 +32,6 @@ export class HeaderComponent implements OnInit {
     window.location.href = '/login';
     window.location.reload();
   }
+
 
 }

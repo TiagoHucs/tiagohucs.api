@@ -1,5 +1,5 @@
 
-<video autoplay muted loop id="myVideo">
+<video muted autoplay muted loop id="myVideo">
   <source src="assets/rain.mp4" type="video/mp4">
   Your browser does not support HTML5 video.
 </video>
@@ -55,28 +55,16 @@
                     </div>
                     <div>
                       usuarios para teste:<br><br>
+                      <span (click)="formLikeAdmin()">
                       ADMIN:<br>
-                      login: admin@system.com<br>senha: 123456<br><br>
+                      login: admin@system.com<br>senha: 123456<br><br></span>
+                      <span (click)="formLikeUser()">
                       USUARIO:<br>
-                      login: usuario@system.com<br>senha: 112233
+                      login: usuario@system.com<br>senha: 112233</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<script>
-var video = document.getElementById("myVideo");
-var btn = document.getElementById("myBtn");
-
-function myFunction() {
-  if (video.paused) {
-    video.play();
-    btn.innerHTML = "Pause";
-  } else {
-    video.pause();
-    btn.innerHTML = "Play";
-  }
-}
-</script>
 </div>
