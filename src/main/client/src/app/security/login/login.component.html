@@ -9,7 +9,7 @@
         <div id="container" class="container">
             <div class="row text-white boxlogin">
                 <div class="col-sm-6 offset-sm-3 text-center">
-                    <h6 class="display-4">Login</h6>
+                    <img src="assets/logotipo.png" width="300px"/>
                     <div class="info-form">
                         <form action="login()" class="form-inlin justify-content-center" #form="ngForm" (ngSubmit)="login()" novalidate>
                           <div class="alert alert-danger alert-dismissible fade show" *ngIf="message">
@@ -65,4 +65,18 @@
         </div>
     </div>
 </section>
+<script>
+var video = document.getElementById("myVideo");
+var btn = document.getElementById("myBtn");
+
+function myFunction() {
+  if (video.paused) {
+    video.play();
+    btn.innerHTML = "Pause";
+  } else {
+    video.pause();
+    btn.innerHTML = "Play";
+  }
+}
+</script>
 </div>
