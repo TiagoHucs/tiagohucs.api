@@ -1,7 +1,7 @@
 import { User } from '../../model/user';
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { APP_API } from '../../service/app.api'
+import { API_URL } from '../../app.url.dev'
 import decode from 'jwt-decode';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -26,33 +26,33 @@ export class UserService {
   }
 
   login(user: User){
-    return this.http.post(`${APP_API}api/auth`,user);
+    return this.http.post(`${API_URL}api/auth`,user);
   }
 
   refresh(user: User){
-    return this.http.post(`${APP_API}api/refresh`,user);
+    return this.http.post(`${API_URL}api/refresh`,user);
   }
 
   createOrUpdate(user: User){
     if(user.id != null && user.id != ''){
       console.log('user com id vou chamar endpoint de atualizaçaõ')
-      return this.http.put(`${APP_API}user/update`,user);
+      return this.http.put(`${API_URL}user/update`,user);
     } else {
       user.id = null;
       console.log('user sem id vou chamar endpoint de criação')
-      return this.http.post(`${APP_API}user/cadastrar `, user);
+      return this.http.post(`${API_URL}user/cadastrar `, user);
     }
   }
 
   findAll(page:number,count:number){
-    return this.http.get(`${APP_API}api/user/${page}/${count}`);
+    return this.http.get(`${API_URL}api/user/${page}/${count}`);
   }
 
   findById(id:string){
-    return this.http.get(`${APP_API}api/user/${id}`);
+    return this.http.get(`${API_URL}api/user/${id}`);
   }
 
   delete(id:string){
-    return this.http.delete(`${APP_API}api/user/${id}`);
+    return this.http.delete(`${API_URL}api/user/${id}`);
   }
 }
