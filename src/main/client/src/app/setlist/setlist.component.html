@@ -1,17 +1,17 @@
 <div class="container" style="margin-top: 20px;">
   <div *ngIf="loading">Buscando...</div>
   <div *ngIf="!loading && musicas.length == 0;">Nenhuma musica cadastrada.</div>
-  <table *ngIf="musicas && musicas.length > 0" class="table table-dark table-hover text-center">
+  <table *ngIf="musicas && musicas.length > 0" class="table table-hover text-center">
     <thead>
       <tr>
         <th>Nome</th>
-        <th *ngIf="userService.getRole() == 'ROLE_ADMIN'">Ações</th>
+        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let musica of musicas">
         <td><a target="_blank" href="{{musica.link}}">{{musica.nome}}</a></td>
-        <td *ngIf="userService.getRole() == 'ROLE_ADMIN'">
+        <td>
           <button title="Editar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" (click)="editar(musica)">
             <i class="fa fa-pencil"></i>
           </button>

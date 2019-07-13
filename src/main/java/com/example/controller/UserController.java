@@ -21,11 +21,11 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ResponseEntity<Void> save(@RequestBody User user) {
+    @RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
+    public ResponseEntity<Void> cadastrar(@RequestBody User user) {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setProfile(ProfileEnum.ROLE_CUSTOMER);
+        user.setProfile(ProfileEnum.ROLE_USUARIO);
 
         try {
             userService.createOrUpdate(user);

@@ -1,70 +1,35 @@
-
-<video muted autoplay muted loop id="myVideo">
-  <source src="assets/rain.mp4" type="video/mp4">
-  Your browser does not support HTML5 video.
-</video>
-<div class="content">
-  <section id="cover">
-    <div id="cover-caption">
-        <div id="container" class="container">
-            <div class="row text-white boxlogin">
-                <div class="col-sm-6 offset-sm-3 text-center">
-                    <img src="assets/logotipo.png" width="300px"/>
-                    <div class="info-form">
-                        <form action="login()" class="form-inlin justify-content-center" #form="ngForm" (ngSubmit)="login()" novalidate>
-                          <div class="alert alert-danger alert-dismissible fade show" *ngIf="message">
-                              <button type="button" class="close" data-dismiss="alert">&times;</button>
-                              <strong>Erro!</strong>  Email ou password inválido!
-                            </div>
-                          <div [ngClass]="getFormGroupClass(email.invalid,email.dirty)">
-                            Email
-                            <div class="col">
-                              <input type="email" 
-                                     [(ngModel)]="user.email"
-                                     name="email"
-                                     class="form-control" 
-                                     id="inputEmail" 
-                                     #email="ngModel"
-                                     placeholder="e-mail"
-                                     email>
-                              <span class="help-block" *ngIf="email.invalid  && email.dirty">Email is invalid </span>
-                            </div>
-                          </div>
-                          <div [ngClass]="getFormGroupClass(password.invalid,password.dirty)">
-                            Password
-                            <div class="col">
-                              <input type="password" 
-                                     [(ngModel)]="user.password"
-                                     name="password" 
-                                     class="form-control" 
-                                     id="inputPassword" 
-                                     placeholder="password"
-                                     #password="ngModel" 
-                                     required>
-                              <span class="help-block" *ngIf="password.invalid && password.dirty">Password is required</span>
-                            </div>
-                          </div>
-                          <button type="submit" [disabled]="!form.valid" class="btn btn-primary">
-                              <i class="fa fa-user"></i> Login
-                          </button>
-                          <button [routerLink]="['/cadastro']" [disabled]="true" class="btn btn-primary">
-                            <i class="fa fa-user-plus" ></i> Cadastrar
-                        </button> <br><br>
-                   
-                        </form>
-                    </div>
-                    <div>
-                      usuarios para teste:<br><br>
-                      <span (click)="formLikeAdmin()">
-                      ADMIN:<br>
-                      login: admin@system.com<br>senha: 123456<br><br></span>
-                      <span (click)="formLikeUser()">
-                      USUARIO:<br>
-                      login: usuario@system.com<br>senha: 112233</span>
-                    </div>
-                </div>
+<div id="container" class="container">
+  <div class="row text-white boxlogin">
+    <div class="col-sm-6 offset-sm-3 text-center">
+        <img class="logotipo" [routerLink]="['/']" src="assets/logotipo.png">
+      <h4>Login</h4>
+      <div class="info-form">
+        <form action="login()" class="form-inlin justify-content-center" #form="ngForm" (ngSubmit)="login()" novalidate>
+          <div [ngClass]="getFormGroupClass(email.invalid,email.dirty)">
+            Email
+            <div class="col">
+              <input type="email" [(ngModel)]="user.email" name="email" class="form-control" id="inputEmail"
+                #email="ngModel" placeholder="e-mail" email>
+              <span class="help-block" *ngIf="email.invalid  && email.dirty">Email is invalid </span>
             </div>
-        </div>
+          </div>
+          <div [ngClass]="getFormGroupClass(password.invalid,password.dirty)">
+            Password
+            <div class="col">
+              <input type="password" [(ngModel)]="user.password" name="password" class="form-control" id="inputPassword"
+                placeholder="password" #password="ngModel" required>
+              <span class="help-block" *ngIf="password.invalid && password.dirty">Password is required</span>
+            </div>
+          </div>
+          <button type="submit" [disabled]="!form.valid" class="btn btn-primary">
+            <i class="fa fa-user"></i> Login
+          </button>
+          <button [routerLink]="['/cadastro']" class="btn btn-primary">
+            <i class="fa fa-user-plus"></i> Cadastrar
+          </button> <br><br>
+
+        </form>
+      </div>
     </div>
-</section>
+  </div>
 </div>

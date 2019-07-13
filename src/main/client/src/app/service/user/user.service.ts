@@ -35,10 +35,12 @@ export class UserService {
 
   createOrUpdate(user: User){
     if(user.id != null && user.id != ''){
-      return this.http.put(`${APP_API}api/user`,user);
+      console.log('user com id vou chamar endpoint de atualizaçaõ')
+      return this.http.put(`${APP_API}user/update`,user);
     } else {
       user.id = null;
-      return this.http.post(`${APP_API}api/user`, user);
+      console.log('user sem id vou chamar endpoint de criação')
+      return this.http.post(`${APP_API}user/cadastrar `, user);
     }
   }
 

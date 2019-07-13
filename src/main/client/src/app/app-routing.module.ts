@@ -6,9 +6,11 @@ import { AuthGuard } from './security/auth.guard';
 import { LoginComponent } from './security/login/login.component';
 import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
 import { RoleGuardService as RoleGuard  } from './security/role.guard.service';
+import { CadastroComponent } from './cadastro/cadastro.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
+  { path: 'cadastro', component: CadastroComponent},
   { path: '', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'setlist', component: SetlistComponent, canActivate: [AuthGuard]},
   { path: 'configuracoes', component: ConfiguracoesComponent, 

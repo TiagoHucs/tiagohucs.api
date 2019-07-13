@@ -19,6 +19,7 @@ import { ConfiguracoesComponent } from './configuracoes/configuracoes.component'
 import { RoleGuardService } from './security/role.guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { CadastroComponent } from './cadastro/cadastro.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -31,7 +32,8 @@ export function tokenGetter() {
     HomeComponent,
     SetlistComponent,
     LoginComponent,
-    ConfiguracoesComponent
+    ConfiguracoesComponent,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,

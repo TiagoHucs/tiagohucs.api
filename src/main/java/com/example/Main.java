@@ -49,7 +49,7 @@ public class Main {
     User usuario = new User();
     usuario.setEmail("usuario@system.com");
     usuario.setPassword(passwordEncoder.encode("112233"));
-    usuario.setProfile(ProfileEnum.ROLE_CUSTOMER);
+    usuario.setProfile(ProfileEnum.ROLE_USUARIO);
 
     User find2 = userRepository.findByEmail("usuario@system.com");
     if (find2 == null) {

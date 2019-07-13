@@ -4,6 +4,7 @@ import { User } from '../../model/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { CookieService } from 'ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: UserService,
               private router: Router,
+              private toastService: ToastrService,
               private cookieService: CookieService) { 
   }
 
@@ -36,7 +38,7 @@ export class LoginComponent implements OnInit {
         this.cookieService.set('token',userAuthentication.token)
         this.router.navigate(['/']);
     } , err => {
-      this.message = 'Erro ';
+      this.toastService.error(err.error.status + ' - ' + err.error.message,'Erro');
     });
   }
 
@@ -55,15 +57,4 @@ export class LoginComponent implements OnInit {
       'has-success' : !isInvalid  && isDirty
     };
   }
-
-  formLikeUser(){
-    this.user.email = 'usuario@system.com';
-    this.user.password = '112233';
-  }
-
-  formLikeAdmin(){
-    this.user.email = 'admin@system.com';
-    this.user.password = '123456';
-  }
-
 }

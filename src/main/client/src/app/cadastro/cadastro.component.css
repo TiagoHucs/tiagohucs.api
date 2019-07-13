@@ -1,17 +1,25 @@
-.bg-dark {
-  background-image: linear-gradient(45deg,#3b5398, #3b4398);
+.boxlogin{
+    padding-top: 10px;
+    left: 50%;
+    top: 50%;    
 }
+
+.btn{
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
 
 @media screen and (max-width:691px){
   img.logotipo {
-    width: 120px;
+    width: 220px;
     transition-duration: 500ms;
   }
 }
 
 @media screen and (min-width:692px){
   img.logotipo{
-    width: 200px;
+    width: 300px;
     transition-duration: 500ms;
   }
 }
