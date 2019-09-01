@@ -46,6 +46,15 @@ export class SetlistComponent implements OnInit {
     );
   }
 
+  dowloadRelatorio(){
+    this.musicaService.baixarRelatorio().subscribe(
+      (response) => {
+        console.log(response);
+        this.toastService.success('Lista baixada','Concluído');
+      }
+    );
+  }
+
   editar(musica: Musica){
     this.novaMusica = musica;
   }

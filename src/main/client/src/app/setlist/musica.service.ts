@@ -24,4 +24,8 @@ export class MusicaService {
     return this.http.delete(`${API_URL}musicas/delete/${id}`);
     //return this.http.delete(`musicas/delete/${id}`);
   }
+
+  public baixarRelatorio(): Observable<any> {
+    return this.http.post(`${API_URL}relatorio/musicas`,null);
+  }
 }
