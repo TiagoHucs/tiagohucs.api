@@ -56,4 +56,22 @@ public class RelatorioService {
         }
         return null;
     }
+    
+    //TODO: usar
+    public byte[] passaRelatorioParaBytes(Workbook wb) {
+
+        ByteArrayOutputStream relatorioBytes = null;
+
+        try {
+            relatorioBytes = new ByteArrayOutputStream();
+            wb.write(relatorioBytes);
+            relatorioBytes.close();
+        } catch (IOException e) {
+            log.error("Erro ao tentar gravar o relatório em bytes.\n {}", e.getMessage(), e);
+        } finally {
+            IOUtils.closeQuietly(relatorioBytes);
+        }
+        return relatorioBytes.toByteArray();
+    }
+    
 }
