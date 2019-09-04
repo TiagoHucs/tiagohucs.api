@@ -2,4 +2,16 @@
 target/
 node_modules/
 dist/
-package-lock-json
+**.package-lock-json
+java-getting-started.iml
+
+
+# ignores all .txt files JUST in the current folder
+*.txt
+
+# ignores all .txt recursive from the current folder
+**.txt
+
+# ignores all .txt in subdirectories recursive from the current
+# folder (does not include the current folder)
+**/*.txt
