@@ -14,6 +14,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class RelatorioService {
     @Autowired
     MusicaRepository musicaRepository;
 
-    public FileOutputStream criaRelatorio() throws IOException {
+    public HSSFWorkbook criaRelatorio() throws IOException {
 
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheetMusicas = workbook.createSheet("Musicas");
@@ -47,7 +48,7 @@ public class RelatorioService {
             workbook.write(out);
             out.close();
             System.out.println("Arquivo Excel criado com sucesso!");
-            return out;
+            return workbook;
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -58,18 +59,20 @@ public class RelatorioService {
         }
         return null;
     }
-    
-    //TODO: usar
-    public byte[] passaRelatorioParaBytes(Workbook wb) {
+
+    public byte[] criarArquivoRelatorio() {
+
 
         ByteArrayOutputStream relatorioBytes = null;
 
         try {
+            HSSFWorkbook workbook = criaRelatorio();
             relatorioBytes = new ByteArrayOutputStream();
-            wb.write(relatorioBytes);
+            workbook.write(relatorioBytes);
             relatorioBytes.close();
         } catch (IOException e) {
-            log.error("Erro ao tentar gravar o relatório em bytes.\n {}", e.getMessage(), e);
+            //log.error("Erro ao tentar gravar o relatório Excel.\n {}", e.getMessage(), e);
+            System.out.println("Erro ao tentar gravar o relatório Excel. "+ e);
         } finally {
             IOUtils.closeQuietly(relatorioBytes);
         }

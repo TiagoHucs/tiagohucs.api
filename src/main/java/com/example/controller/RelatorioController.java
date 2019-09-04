@@ -5,10 +5,7 @@ import com.example.service.RelatorioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.FileOutputStream;
 
@@ -20,14 +17,25 @@ public class RelatorioController {
     @Autowired
     private RelatorioService relatorioService;
 
-    @RequestMapping(value = "/musicas", method = RequestMethod.POST)
-    public ResponseEntity<FileOutputStream> list(){
-        try {
-            FileOutputStream file = relatorioService.criaRelatorio();
-            return ResponseEntity.status(HttpStatus.OK).body(file);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
+/*    @PostMapping(path = "/relatoriolistar")
+    public ResponseEntity<byte[]> exportarCreditosExcel(@RequestBody String[] ids) {
 
+        byte[] relatorio = relatorioService.criarArquivoRelatorio();
+
+        return ResponseEntity
+                .ok()
+                .header("Content-Type", "application/vnd.ms-excel")
+                .body(relatorio);
+    }*/
+
+    @GetMapping (path = "/musicas")
+    public ResponseEntity<byte[]> exportarCreditosExcel() {
+
+        byte[] relatorio = relatorioService.criarArquivoRelatorio();
+
+        return ResponseEntity
+                .ok()
+                .header("Content-Type", "application/vnd.ms-excel")
+                .body(relatorio);
     }
 }
