@@ -46,13 +46,28 @@ export class SetlistComponent implements OnInit {
     );
   }
 
-  dowloadRelatorio(){
-    this.musicaService.baixarRelatorio().subscribe(
-      (response) => {
-        console.log(response);
-        this.toastService.success('Lista baixada','Concluído');
+  dowloadRelatorio() {
+
+    this.musicaService.baixarRelatorio()
+    .subscribe(
+      response => {
+        const url = window.URL.createObjectURL(response);
+        const a = document.createElement('a');
+        const fileName = 'relatorio';
+        a.setAttribute('style', 'display:none;');
+        document.body.appendChild(a);
+        a.href = url;
+        a.download = fileName + '.xlsx';
+        a.click();
+      },
+      error => {
+        console.log(error);
+        if (error.status === 412) {
+          this.toastService.error('Erro ao baixar relatório','Erro');
+        }
       }
     );
+    
   }
 
   editar(musica: Musica){

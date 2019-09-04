@@ -29,7 +29,7 @@ public class RelatorioController {
     }*/
 
     @GetMapping (path = "/musicas")
-    public ResponseEntity<byte[]> exportarCreditosExcel() {
+    public ResponseEntity<byte[]> exportarRelatorioExcel() {
 
         byte[] relatorio = relatorioService.criarArquivoRelatorio();
 

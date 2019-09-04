@@ -12,20 +12,19 @@ export class MusicaService {
 
   public listar(): Observable<any> {
      return this.http.get<any[]>(`${API_URL}musicas/list`);
-     //return this.http.get<any[]>(`musicas/list`);
+
   }
 
   public salvar(musica: any): Observable<any> {
     return this.http.post(`${API_URL}musicas/save`,musica);
-    //return this.http.post(`musicas/save`,musica);
   }
 
   public excluir(id: any): Observable<any> {
     return this.http.delete(`${API_URL}musicas/delete/${id}`);
-    //return this.http.delete(`musicas/delete/${id}`);
   }
 
   public baixarRelatorio(): Observable<any> {
-    return this.http.post(`${API_URL}relatorio/musicas`,null);
+    return this.http.get(`${API_URL}relatorio/musicas`, { responseType: 'blob'}); 
   }
+
 }
