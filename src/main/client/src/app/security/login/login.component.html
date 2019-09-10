@@ -3,7 +3,7 @@
     <div class="col-sm-6 offset-sm-3 text-center">
         <img class="logotipo" [routerLink]="['/']" src="assets/logotipo.png">
       <h4>Login</h4>
-      <h6>v 0.1</h6>
+      <h6>v 0.1.2</h6>
       <div class="info-form">
         <form action="login()" class="form-inlin justify-content-center" #form="ngForm" (ngSubmit)="login()" novalidate>
           <div [ngClass]="getFormGroupClass(email.invalid,email.dirty)">
