@@ -12,9 +12,7 @@ import com.example.model.Musica;
 import com.example.repository.MusicaRepository;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,13 +30,29 @@ public class RelatorioService {
 
         List<Musica> musicaList = musicaRepository.findAll();
 
+        CellStyle styleTitulo = StyleRelatorioBuilder.getStyleTitulo(workbook);
+        CellStyle styleLinha = StyleRelatorioBuilder.getStyleLinha(workbook);
+
         int rownum = 0;
+
+        Row row = sheetMusicas.createRow(rownum++);
+        int cellnum = 0;
+        Cell cellTitleNome = row.createCell(cellnum++);
+        cellTitleNome.setCellValue("Nome");
+        cellTitleNome.setCellStyle(styleTitulo);
+        Cell cellTitleLink = row.createCell(cellnum++);
+        cellTitleNome.setCellStyle(styleTitulo);
+        cellTitleLink.setCellValue("Link");
+
+        rownum = 1;
         for (Musica musica : musicaList) {
-            Row row = sheetMusicas.createRow(rownum++);
-            int cellnum = 0;
+            row = sheetMusicas.createRow(rownum++);
+            cellnum = 0;
             Cell cellNome = row.createCell(cellnum++);
+            cellNome.setCellStyle(styleLinha);
             cellNome.setCellValue(musica.getNome());
             Cell cellLink = row.createCell(cellnum++);
+            cellLink.setCellStyle(styleLinha);
             cellLink.setCellValue(musica.getLink());
         }
 

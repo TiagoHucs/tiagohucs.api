@@ -4,7 +4,7 @@ node_modules/
 dist/
 **.package-lock-json
 java-getting-started.iml
-
+public/
 
 # ignores all .txt files JUST in the current folder
 *.txt
