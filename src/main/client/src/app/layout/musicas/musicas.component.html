@@ -1,4 +1,5 @@
 <div class="container" style="margin-top: 20px;">
+  <h4>Musicas cadastradas</h4>
   <div *ngIf="loading">Buscando...</div>
   <div *ngIf="!loading && musicas.length == 0;">Nenhuma musica cadastrada.</div>
   <table *ngIf="musicas && musicas.length > 0" class="table table-hover text-center">
@@ -12,7 +13,8 @@
       <tr *ngFor="let musica of musicas">
         <td><a target="_blank" href="{{musica.link}}">{{musica.nome}}</a></td>
         <td>
-          <button title="Editar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" (click)="editar(musica)">
+          <button title="Editar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"
+            (click)="editar(musica)">
             <i class="fa fa-pencil"></i>
           </button>
           <button title="Excluir" type="button" class="btn btn-danger btn-sm" (click)="excluir(musica.id)">
@@ -33,26 +35,25 @@
     </button>
   </div>
 
-  <!-- The Modal -->
+
   <div class="modal" id="myModal" style="color: black">
     <div class="modal-dialog">
       <div class="modal-content">
 
-        <!-- Modal Header -->
+
         <div class="modal-header">
           <h4 class="modal-title">Nova musica</h4>
         </div>
 
-        <!-- Modal body -->
         <div class="modal-body">
-          <label>Nome</label><br>
-          <input id="nome" [(ngModel)]="novaMusica.nome" #ctrl="ngModel" type="text" /><br><br>
-          <label>Link cifra</label><br>
-          <input id="link" [(ngModel)]="novaMusica.link" #ctrl="ngModel" type="text" /><br>
+          <label>Nome</label>
+          <input class="form-control" id="nome" [(ngModel)]="novaMusica.nome" #ctrl="ngModel" type="text" />
+          <label>Link cifra</label>
+          <input  class="form-control" id="link" [(ngModel)]="novaMusica.link" #ctrl="ngModel" type="text" />
           <i>Caso não insira o link será um atalho para o cifra club.</i>
         </div>
 
-        <!-- Modal footer -->
+
         <div class="modal-footer">
           <button type="button" class="btn btn-success" data-dismiss="modal" (click)="adiciona()">
             <i class="fa fa-disk"></i>{{ novaMusica.id != null ? 'Alterar' : 'Adicionar' }}

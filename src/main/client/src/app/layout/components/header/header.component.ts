@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../service/user/user.service';
+import { AuthService } from 'src/app/security/auth.service';
 import { Router } from '@angular/router';
-import { User } from '../model/user';
 import { CookieService } from 'ngx-cookie-service';
-import { AuthService } from '../security/auth.service';
+import { UserService } from 'src/app/service/user/user.service';
 import decode from 'jwt-decode';
 
 @Component({

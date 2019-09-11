@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { MusicaService } from './musica.service';
 import { Musica } from './musica';
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from '../service/user/user.service';
+import { UserService } from '../../service/user/user.service';
 
 @Component({
-  selector: 'app-setlist',
-  templateUrl: './setlist.component.html',
-  styleUrls: ['./setlist.component.css']
+  selector: 'app-musicas',
+  templateUrl: './musicas.component.html',
+  styleUrls: ['./musicas.component.css']
 })
-export class SetlistComponent implements OnInit {
+export class MusicasComponent implements OnInit {
   musicas: string[];
   novaMusica: Musica;
   usuarios: any[];

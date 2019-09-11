@@ -1,7 +1,7 @@
 <div id="container" class="container">
-    <div class="row text-white boxlogin">
+    <div class="row boxlogin">
       <div class="col-sm-6 offset-sm-3 text-center">
-          <img class="logotipo" [routerLink]="['/']" src="assets/logotipo.png">
+        <span [routerLink]="['/']"><h1>Meu Sistema</h1></span>
           <h4>Cadastro</h4>
         <div class="info-form">
           <form action="cadastrar()" class="form-inlin justify-content-center" #form="ngForm" (ngSubmit)="cadastrar()" novalidate>

@@ -1,6 +1,6 @@
-import { CurrentUser } from '../../model/currentUser';
-import { UserService } from '../../service/user/user.service';
-import { User } from '../../model/user';
+import { CurrentUser } from '../model/currentUser';
+import { UserService } from '../service/user/user.service';
+import { User } from '../model/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { CookieService } from 'ngx-cookie-service';
