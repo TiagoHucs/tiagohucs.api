@@ -1,1 +1,88 @@
-<p>produtos works!</p>
+<div class="container mt-5">
+    <h4>Produtos cadastrados</h4>
+    <button class="btn btn-sm btn-primary pull-right" title="Novo produto" (click)="novoProduto()" data-toggle="modal"
+        data-target="#myModal"><i class="fa fa-plus"></i> Novo
+        produto</button>
+    <div *ngIf="produtos && produtos.length < 1">Nenhum produto cadastrado</div>
+    <table *ngIf="produtos && produtos.length > 0" class="table table-bordered table-hover table-striped">
+        <thead class="thead-light text-center">
+            <tr>
+                <th>Nome</th>
+                <th>Valor</th>
+                <th>Unidade</th>
+                <th>Menu</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center" *ngFor="let p of produtos; let i = index">
+                <td>{{p.nome}}</td>
+                <td>{{p.valor}}</td>
+                <td>{{p.tipoMedida}}</td>
+                <td>
+                    <button (click)="editaProduto(p)" data-toggle="modal" data-target="#myModal" title="Editar"
+                        type="button" class="btn btn-sm btn-success">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                    <button (click)="excluiProduto(p)" title="Excluir" type="button" class="btn btn-sm btn-danger">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+</div>
+
+
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Produto</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <!-- <div class="modal-body">
+
+                <label>Nome</label>
+                <input class="form-control" id="nome" [(ngModel)]="produto.nome" #ctrl="ngModel" type="text" />
+                <label>Valor</label>
+                <input class="form-control" id="valor" [(ngModel)]="produto.valor" #ctrl="ngModel" type="text" />
+                <label>Medida</label>
+                <select class="form-control" id="valor" [(ngModel)]="produto.tipoMedida" #ctrl="ngModel" type="text">
+                    <option value="0">Unidade</option>
+                    <option value="1">Peso</option>
+                    <option value="2">Tempo</option>
+                </select>
+            </div> -->
+
+            <!-- Modal body FORM -->
+            <div [formGroup]="meuFormulario" class="modal-body">
+
+                <label>Nome</label>
+                <input class="form-control" id="nome" formControlName="nome"  type="text" />
+                <label>Valor</label>
+                <input class="form-control" id="valor"  formControlName="valor" type="text" />
+                <label>Medida</label>
+                <select class="form-control" id="valor"  formControlName="tipoMedida" type="text">
+                    <option value="0">Unidade</option>
+                    <option value="1">Peso</option>
+                    <option value="2">Tempo</option>
+                </select>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal"
+                    (click)="salvaProduto()" [disabled]="!meuFormulario.valid">Salvar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>

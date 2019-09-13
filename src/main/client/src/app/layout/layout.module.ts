@@ -5,7 +5,7 @@ import { ProdutosComponent } from './produtos/produtos.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { MusicasComponent } from './musicas/musicas.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
@@ -19,6 +19,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CommonModule,
     LayoutRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class LayoutModule { }
