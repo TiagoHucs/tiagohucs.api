@@ -36,7 +36,6 @@ export class ProdutosComponent implements OnInit {
     this.service.listar().subscribe(
       response => {
         this.produtos = response;
-        this.contar();
       },
       error => {
         console.log(error);
@@ -44,18 +43,8 @@ export class ProdutosComponent implements OnInit {
     )
   }
 
-  contar(){
-    this.service.count().subscribe(
-      response => {
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-
   novoProduto(){
-    this.produto = new Produto();
+    this.converteProdutoEmForm(new Produto());
   }
 
   salvaProduto(){
@@ -76,7 +65,31 @@ export class ProdutosComponent implements OnInit {
     this.produto.tipoMedida = this.meuFormulario.controls['tipoMedida'].value;
   }
 
+  converteProdutoEmForm(produto: Produto){
+    this.meuFormulario.controls['nome'].setValue(produto.nome);
+    this.meuFormulario.controls['valor'].setValue(produto.valor);
+    this.meuFormulario.controls['tipoMedida'].setValue(this.converteEnumTipoMedida(produto.tipoMedida));
+    console.log(produto.tipoMedida);
+  }
+
+  // TODO: criar um util da aplicacao
+
+  converteEnumTipoMedida(enu: string){
+    if(enu === "UN"){
+      return 0;
+    }else if(enu === "KG"){
+      return 1;
+    }else if(enu === "HR"){
+      return 2;
+    }
+  }
+
   editaProduto(produto: Produto){
+    this.produto = produto;
+    this.converteProdutoEmForm(produto)
+  }
+
+  confirmaEditaProduto(produto: Produto){
     this.service.salvar(produto).subscribe(
       response => {
         this.listarProdutos();
@@ -88,7 +101,11 @@ export class ProdutosComponent implements OnInit {
   }
 
   excluiProduto(produto: Produto){
-    this.service.excluir(produto.id).subscribe(
+    this.produto = produto;
+  }
+
+  confirmaExcluiProduto(){
+    this.service.excluir(this.produto.id).subscribe(
       response => {
         this.listarProdutos();
       },

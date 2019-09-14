@@ -1,0 +1,33 @@
+<div class="container mt-5">
+    <h4>Orçamentos cadastrados</h4>
+    <button class="btn btn-sm btn-primary pull-right" title="Novo produto" (click)="novoProduto()" data-toggle="modal"
+        data-target="#myModal"><i class="fa fa-plus"></i> Novo
+        orçamento</button>
+    <div *ngIf="false">Nenhum orçamento cadastrado</div>
+    <table *ngIf="true" class="table table-bordered table-hover table-striped">
+        <thead class="thead-light text-center">
+            <tr>
+                <th>Numero</th>
+                <th>Cliente</th>
+                <th>Data</th>
+                <th>Menu</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center">
+                <td>324987</td>
+                <td>Cliente fictício</td>
+                <td>12/09/2019</td>
+                <td>
+                    <button title="Editar" type="button" class="btn btn-sm btn-success">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                    <button title="Excluir" type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+</div>
+

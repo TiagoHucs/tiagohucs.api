@@ -7,11 +7,8 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'cadastro', component: CadastroComponent},
-  { path: '', loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule), canActivate: [AuthGuard] },
 ];
 const routesC: Routes = [
-  { path: 'login', component: LoginComponent},
-  { path: 'cadastro', component: CadastroComponent},
   { path: '', loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule), canActivate: [AuthGuard] },
 ];
 

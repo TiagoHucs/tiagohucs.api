@@ -16,15 +16,15 @@
         <tbody>
             <tr class="text-center" *ngFor="let p of produtos; let i = index">
                 <td>{{p.nome}}</td>
-                <td>{{p.valor}}</td>
+                <td>{{p.valor | currency:'BRL':true:'1.2-2'}}</td>
                 <td>{{p.tipoMedida}}</td>
                 <td>
-                    <button (click)="editaProduto(p)" data-toggle="modal" data-target="#myModal" title="Editar"
+                    <button  data-toggle="modal" data-target="#myModal" (click)="editaProduto(p)" title="Editar"
                         type="button" class="btn btn-sm btn-success">
                         <i class="fa fa-pencil"></i>
                     </button>
-                    <button (click)="excluiProduto(p)" title="Excluir" type="button" class="btn btn-sm btn-danger">
-                        <i class="fa fa-trash"></i>
+                    <button title="Excluir" data-toggle="modal" data-target="#modalExclusao" (click)="excluiProduto(p)"
+                    type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>
                     </button>
                 </td>
             </tr>
@@ -46,34 +46,24 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <!-- Modal body -->
-            <!-- <div class="modal-body">
-
-                <label>Nome</label>
-                <input class="form-control" id="nome" [(ngModel)]="produto.nome" #ctrl="ngModel" type="text" />
-                <label>Valor</label>
-                <input class="form-control" id="valor" [(ngModel)]="produto.valor" #ctrl="ngModel" type="text" />
-                <label>Medida</label>
-                <select class="form-control" id="valor" [(ngModel)]="produto.tipoMedida" #ctrl="ngModel" type="text">
-                    <option value="0">Unidade</option>
-                    <option value="1">Peso</option>
-                    <option value="2">Tempo</option>
-                </select>
-            </div> -->
 
             <!-- Modal body FORM -->
             <div [formGroup]="meuFormulario" class="modal-body">
 
                 <label>Nome</label>
                 <input class="form-control" id="nome" formControlName="nome"  type="text" />
+
                 <label>Valor</label>
-                <input class="form-control" id="valor"  formControlName="valor" type="text" />
+                <input class="form-control" id="valor"  formControlName="valor" type="text" 
+                currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" />
+                
                 <label>Medida</label>
                 <select class="form-control" id="valor"  formControlName="tipoMedida" type="text">
                     <option value="0">Unidade</option>
-                    <option value="1">Peso</option>
-                    <option value="2">Tempo</option>
+                    <option value="1">Kilo</option>
+                    <option value="2">Hora</option>
                 </select>
+
             </div>
 
             <!-- Modal footer -->
@@ -86,3 +76,32 @@
         </div>
     </div>
 </div>
+
+<!-- The Modal -->
+<div class="modal" id="modalExclusao">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Excluir Produto</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+             <!-- Modal body FORM -->
+            <div class="modal-body">
+
+                Deseja realmente excluir o produto "{{produto.nome}}"?
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="confirmaExcluiProduto()">Sim</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+

@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
 import { ProdutosComponent } from './produtos/produtos.component';
 import { AuthGuard } from '../security/auth.guard';
-import { MusicasComponent } from './musicas/musicas.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { OrcamentosComponent } from './orcamentos/orcamentos.component';
 
 const routes: Routes = [
     {
@@ -13,7 +13,7 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' },
             { path: 'produtos', component: ProdutosComponent, canActivate: [AuthGuard]},
-            { path: 'musicas', component: MusicasComponent, canActivate: [AuthGuard]},
+            { path: 'orcamentos', component: OrcamentosComponent, canActivate: [AuthGuard]},
             { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
             // { path: 'configuracoes', component: ConfiguracoesComponent,
             //     canActivate: [RoleGuard],data: { 
