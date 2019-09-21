@@ -1,26 +1,28 @@
 package com.example.model;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
-@Builder
-public class Produto {
+public class Orcamento {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column
     private Long id;
     @Column
-    private String nome;
+    private LocalDate dataEmissao;
     @Column
-    private BigDecimal valor;
-    @Column
-    private ETipoMedida tipoMedida;
+    private LocalDate dataValidade;;
+    @ManyToOne
+    private Cliente cliente;
+    @OneToMany
+    private List<Item> itens;
+
 }
