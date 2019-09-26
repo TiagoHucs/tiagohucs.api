@@ -5,6 +5,7 @@ import { ProdutosComponent } from './produtos/produtos.component';
 import { AuthGuard } from '../security/auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { OrcamentosComponent } from './orcamentos/orcamentos.component';
+import { ClientesComponent } from './clientes/clientes.component';
 
 const routes: Routes = [
     {
@@ -15,6 +16,7 @@ const routes: Routes = [
             { path: 'produtos', component: ProdutosComponent, canActivate: [AuthGuard]},
             { path: 'orcamentos', component: OrcamentosComponent, canActivate: [AuthGuard]},
             { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+            { path: 'clientes', component: ClientesComponent, canActivate: [AuthGuard]},
             // { path: 'configuracoes', component: ConfiguracoesComponent,
             //     canActivate: [RoleGuard],data: { 
             //     expectedRole: 'ROLE_ADMIN'

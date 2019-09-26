@@ -30,6 +30,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/']);
     });
     }
+    //DEFAULT PARA TESTE
+    this.user.email = 'admin@system.com';
+    this.user.password = '123456';
   }
   
   login(){

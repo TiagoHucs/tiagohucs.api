@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdutosService } from '../produtos/produtos.service';
+import { DashboardService } from './dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +13,7 @@ export class DashboardComponent implements OnInit {
   orcamentosQtd: number = 0;
   
 
-  constructor(private service: ProdutosService) {
+  constructor(private service: DashboardService) {
   }
 
   ngOnInit() {
@@ -20,7 +21,7 @@ export class DashboardComponent implements OnInit {
   }
 
   contar(){
-    this.service.count().subscribe(
+    this.service.countProdutos().subscribe(
       response => {
         this.produtosQtd = response;
       },
@@ -28,7 +29,7 @@ export class DashboardComponent implements OnInit {
         console.log(error);
       }
     );
-    this.service.countC().subscribe(
+    this.service.countClientes().subscribe(
       response => {
         this.clientesQtd = response;
       },
@@ -36,7 +37,7 @@ export class DashboardComponent implements OnInit {
         console.log(error);
       }
     );
-    this.service.countO().subscribe(
+    this.service.countOrcamentos().subscribe(
       response => {
         this.orcamentosQtd = response;
       },

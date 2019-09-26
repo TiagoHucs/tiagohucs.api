@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Builder
 public class Cliente {
 
     @Id
@@ -21,6 +20,6 @@ public class Cliente {
     @Column
     private String cpfcnpj;
     @Column
-    private ETipoCliente tipocliente;
+    private ETipoCliente tipoCliente;
 
 }

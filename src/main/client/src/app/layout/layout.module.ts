@@ -7,7 +7,8 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxCurrencyModule } from 'ngx-currency';
-import { OrcamentosComponent } from './orcamentos/orcamentos.component'
+import { OrcamentosComponent } from './orcamentos/orcamentos.component';
+import { ClientesComponent } from './clientes/clientes.component'
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { OrcamentosComponent } from './orcamentos/orcamentos.component'
     ProdutosComponent, 
     HeaderComponent,
     DashboardComponent,
-    OrcamentosComponent],
+    OrcamentosComponent,
+    ClientesComponent],
   imports: [
     CommonModule,
     LayoutRoutingModule,

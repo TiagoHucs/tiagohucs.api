@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <a class="navbar-brand" data-toggle="collapse" data-target=".navbar-collapse.show">
-      <h4 [routerLink]="['/']" style="color: white">Novo Sistema</h4>
-    </a>
+  <a class="navbar-brand" data-toggle="collapse" data-target=".navbar-collapse.show">
+    <h4 [routerLink]="['/']" style="color: white">Novo Sistema</h4>
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -9,25 +9,29 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+        <a class="nav-link" [routerLink]="['/clientes']">Clientes</a>
+      </li>
+      <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
         <a class="nav-link" [routerLink]="['/produtos']">Produtos</a>
       </li>
       <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
         <a class="nav-link" [routerLink]="['/orcamentos']">Orçamentos</a>
       </li>
-      <li *ngIf="userService.getRole() == 'ROLE_ADMIN'" class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-          <a class="nav-link" [routerLink]="['/']">Configuracoes</a>
-        </li>
+      <li *ngIf="userService.getRole() == 'ROLE_ADMIN'" class="nav-item" data-toggle="collapse"
+        data-target=".navbar-collapse.show">
+        <a class="nav-link" [routerLink]="['/']">Relatórios</a>
+      </li>
     </ul>
   </div>
 
   <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-          <a class="nav-link" title="email do usuario"><i class="fa fa-user"></i> {{userService.getUsername()}}</a>
+        <a class="nav-link" title="email do usuario"><i class="fa fa-user"></i> {{userService.getUsername()}}</a>
       </li>
       <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-            
-          <a class="nav-link" (click)="signOut()"><i class="fa fa-power-off"></i> Sair</a>
+
+        <a class="nav-link" (click)="signOut()"><i class="fa fa-power-off"></i> Sair</a>
       </li>
     </ul>
   </div>
