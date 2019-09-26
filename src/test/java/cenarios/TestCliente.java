@@ -7,7 +7,7 @@ import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestCliente extends AbstractTest {
-
+/*
     @Test
     public void ct1_cadastratCliente(){
         Cliente sadrak = Cliente.builder().nome("Sadrak").cpfcnpj("01234567890").build();
@@ -26,6 +26,6 @@ public class TestCliente extends AbstractTest {
         Cliente cliente = clienteService.findById(1L);
         clienteService.deleteById(cliente.getId());
     }
-
+*/
 
 }
