@@ -20,14 +20,11 @@ public class Orcamento {
     private LocalDate dataEmissao;
     @Column
     private LocalDate dataValidade;;
-    @ManyToOne
-    private Cliente cliente;
+
     
     //@ManyToOne
     //@JoinColumn(name = "CLIENTE_ID", nullable = false)
     //private Cliente cliente;
-    
-    @OneToMany
-    private List<Item> itens;
+
 
 }

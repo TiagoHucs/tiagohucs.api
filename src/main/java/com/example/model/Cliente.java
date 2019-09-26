@@ -20,5 +20,7 @@ public class Cliente {
     private String nome;
     @Column
     private String cpfcnpj;
+    @Column
+    private ETipoCliente tipocliente;
 
 }

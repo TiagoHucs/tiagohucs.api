@@ -8,6 +8,9 @@ import { ProdutosService } from '../produtos/produtos.service';
 })
 export class DashboardComponent implements OnInit {
   produtosQtd: number = 0;
+  clientesQtd: number = 0;
+  orcamentosQtd: number = 0;
+  
 
   constructor(private service: ProdutosService) {
   }
@@ -20,6 +23,22 @@ export class DashboardComponent implements OnInit {
     this.service.count().subscribe(
       response => {
         this.produtosQtd = response;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    this.service.countC().subscribe(
+      response => {
+        this.clientesQtd = response;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    this.service.countO().subscribe(
+      response => {
+        this.orcamentosQtd = response;
       },
       error => {
         console.log(error);

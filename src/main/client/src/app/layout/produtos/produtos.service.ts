@@ -14,11 +14,11 @@ export class ProdutosService {
   constructor(private http: HttpClient) { }
 
   public listar(): Observable<any> {
-     return this.http.get<any[]>(`${API_URL}${this.PROD_URL}list`);
+    return this.http.get<any[]>(`${API_URL}${this.PROD_URL}list`);
   }
 
   public salvar(produto: any): Observable<any> {
-    return this.http.post(`${API_URL}${this.PROD_URL}save`,produto);
+    return this.http.post(`${API_URL}${this.PROD_URL}save`, produto);
   }
 
   public excluir(id: any): Observable<any> {
@@ -28,10 +28,22 @@ export class ProdutosService {
   public count(): Observable<any> {
     this.http.get<any[]>(`${API_URL}${this.PROD_URL}count`);
     return this.http.get<any[]>(`${API_URL}${this.PROD_URL}count`);
- }
+  }
+
+  //TODO: vai sair daqui
+  public countC(): Observable<any> {
+    this.http.get<any[]>(`${API_URL}clientes/count`);
+    return this.http.get<any[]>(`${API_URL}clientes/count`);
+  }
+
+    //TODO: vai sair daqui
+    public countO(): Observable<any> {
+      this.http.get<any[]>(`${API_URL}orcamentos/count`);
+      return this.http.get<any[]>(`${API_URL}orcamentos/count`);
+    }
 
   public baixarRelatorio(): Observable<any> {
-    return this.http.get(`${API_URL}${this.PROD_URL}relatorio`, { responseType: 'blob'}); 
-  } 
+    return this.http.get(`${API_URL}${this.PROD_URL}relatorio`, { responseType: 'blob' });
+  }
 
 }

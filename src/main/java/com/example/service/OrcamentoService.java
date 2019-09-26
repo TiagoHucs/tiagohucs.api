@@ -1,25 +1,24 @@
 package com.example.service;
 
-import com.example.model.Cliente;
-import com.example.model.Produto;
-import com.example.repository.ClienteRepository;
+import com.example.model.Orcamento;
+import com.example.repository.OrcamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ClienteService {
+public class OrcamentoService {
 
     @Autowired
-    private ClienteRepository repository;
+    private OrcamentoRepository repository;
 
-    public List<Cliente> list(){
+    public List<Orcamento> list(){
         return repository.findAll();
     }
 
-    public void save(Cliente cliente){
-        repository.save(cliente);
+    public void save(Orcamento orcamento){
+        repository.save(orcamento);
     }
 
     public void delete(Long id){
