@@ -1,9 +1,6 @@
 package cenarios;
 
-import com.example.model.ETipoMedida;
-import com.example.model.Item;
-import com.example.model.Orcamento;
-import com.example.model.Produto;
+import com.example.model.*;
 import com.example.service.OrcamentoService;
 import com.example.service.ProdutoService;
 import org.junit.Before;
@@ -11,13 +8,12 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TestOrcamento extends AbstractTest{
 
 
     Produto produto = new Produto();
+    Cliente cliente = new Cliente();
 
     @Autowired
     private ProdutoService produtoService;
@@ -32,6 +28,11 @@ public class TestOrcamento extends AbstractTest{
         produto.setTipoMedida(ETipoMedida.UN);
         produto.setValor(BigDecimal.ONE);
         produtoService.save(produto);
+
+        cliente.setCpfcnpj("123456789");
+        cliente.setNome("Juca");
+        cliente.setTipoCliente(ETipoCliente.PF);
+        clienteService.save(cliente);
     }
 
 
@@ -39,10 +40,9 @@ public class TestOrcamento extends AbstractTest{
     public void testeOrcamento(){
         Orcamento orcamento = new Orcamento();
         Item item = new Item();
-
         item.setProduto(produto);
         item.setQuantidade(50L);
-
+        orcamento.setCliente(cliente);
         orcamento.addItem(item);
         orcamentoService.save(orcamento);
     }

@@ -22,7 +22,10 @@ public class Orcamento {
     private LocalDate dataEmissao;
 
     @Column
-    private LocalDate dataValidade;;
+    private LocalDate dataValidade;
+
+    @ManyToOne
+    private Cliente cliente;
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true, mappedBy = "orcamento")
     private List<Item> itens  = new ArrayList<>();
