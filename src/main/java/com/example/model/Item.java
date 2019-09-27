@@ -12,10 +12,16 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column
+    @Column(name = "item_id")
     private Long id;
-    @OneToOne
+
+    @ManyToOne
     private Produto produto;
+
     @Column
     private Long quantidade;
+
+    @ManyToOne
+    @JoinColumn(name = "id", nullable = false)
+    private Orcamento orcamento;
 }
