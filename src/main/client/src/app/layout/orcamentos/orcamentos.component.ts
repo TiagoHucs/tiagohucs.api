@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Orcamento } from './orcamento';
 import { OrcamentoService } from './orcamento.service';
+import { ClientesService } from '../clientes/clientes.service';
+import { Cliente } from '../clientes/cliente';
 
 @Component({
   selector: 'app-orcamentos',
@@ -11,11 +13,13 @@ import { OrcamentoService } from './orcamento.service';
 export class OrcamentosComponent implements OnInit {
 
   orcamentos: Orcamento[] = [];
+  clientes: Cliente[] = [];
   orcamento: Orcamento = new Orcamento();
   meuFormulario: FormGroup;
 
   constructor(
     private service: OrcamentoService,
+    private clienteService: ClientesService,
     private formBuilder: FormBuilder
     ) {
   }
@@ -28,9 +32,7 @@ export class OrcamentosComponent implements OnInit {
 
   criaFormulario(){
     this.meuFormulario = this.formBuilder.group({
-      nome: ['', [Validators.required, Validators.maxLength(150)]],
-      valor: ['', [Validators.required]],
-      tipoMedida: ['', [Validators.required]],
+      cliente: ['', [Validators.required, Validators.maxLength(150)]]
     });
   }
 
@@ -45,12 +47,20 @@ export class OrcamentosComponent implements OnInit {
     )
   }
 
-  novoProduto(){
+  novoOrcamento(){
+    this.clienteService.listar().subscribe(
+      response => {
+        this.clientes = response;
+      },
+      error => {
+        console.log(error);
+      }
+    );
     this.converteOrcamentoEmForm(new Orcamento());
   }
 
-  salvaProduto(){
-    this.converteFormEmProduto();
+  salvaOrcamento(){
+    this.converteFormEmOrcamento();
     this.service.salvar(this.orcamento).subscribe(
       response => {
         this.listarOrcamentos();
@@ -61,8 +71,10 @@ export class OrcamentosComponent implements OnInit {
     );
   }
 
-  converteFormEmProduto(){
-    // this.orcamento.nome = this.meuFormulario.controls['nome'].value;
+  converteFormEmOrcamento(){
+    console.log('converteFormEmOrcamento');
+    console.log(this.meuFormulario.controls['cliente'].value);
+    this.orcamento.clienteId = this.meuFormulario.controls['cliente'].value;
     // this.orcamento.valor = this.meuFormulario.controls['valor'].value;
     // this.orcamento.tipoMedida = this.meuFormulario.controls['tipoMedida'].value;
   }
@@ -74,12 +86,12 @@ export class OrcamentosComponent implements OnInit {
   }
 
 
-  editaProduto(orcamento: Orcamento){
+  editaOrcamento(orcamento: Orcamento){
     this.orcamento = orcamento;
     this.converteOrcamentoEmForm(orcamento)
   }
 
-  confirmaEditaProduto(orcamento: Orcamento){
+  confirmaEditaOrcamento(orcamento: Orcamento){
     this.service.salvar(orcamento).subscribe(
       response => {
         this.listarOrcamentos();
@@ -90,7 +102,7 @@ export class OrcamentosComponent implements OnInit {
     )
   }
 
-  excluiProduto(orcamento: Orcamento){
+  excluiOrcamento(orcamento: Orcamento){
     this.orcamento = orcamento;
   }
 

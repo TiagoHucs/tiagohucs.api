@@ -4,7 +4,7 @@ import { Produto } from './../produtos/produto'
 export class Orcamento{
     
     id: number;
-    cliente: Cliente;
+    clienteId: number;
     items: Item[];
 
 }
