@@ -21,6 +21,10 @@ public class ClienteService {
         repository.save(cliente);
     }
 
+    public Cliente findById(Long id){
+        return repository.findById(id).get();
+    }
+
     public void delete(Long id){
         repository.deleteById(id);
     }

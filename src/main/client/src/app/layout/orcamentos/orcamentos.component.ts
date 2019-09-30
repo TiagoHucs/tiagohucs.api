@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Orcamento } from './orcamento';
+import { OrcamentoVO } from './orcamento';
 import { OrcamentoService } from './orcamento.service';
 import { ClientesService } from '../clientes/clientes.service';
 import { Cliente } from '../clientes/cliente';
@@ -12,9 +12,9 @@ import { Cliente } from '../clientes/cliente';
 })
 export class OrcamentosComponent implements OnInit {
 
-  orcamentos: Orcamento[] = [];
+  orcamentos: OrcamentoVO[] = [];
   clientes: Cliente[] = [];
-  orcamento: Orcamento = new Orcamento();
+  orcamento: OrcamentoVO = new OrcamentoVO();
   meuFormulario: FormGroup;
 
   constructor(
@@ -56,7 +56,7 @@ export class OrcamentosComponent implements OnInit {
         console.log(error);
       }
     );
-    this.converteOrcamentoEmForm(new Orcamento());
+    this.converteOrcamentoEmForm(new OrcamentoVO());
   }
 
   salvaOrcamento(){
@@ -79,19 +79,19 @@ export class OrcamentosComponent implements OnInit {
     // this.orcamento.tipoMedida = this.meuFormulario.controls['tipoMedida'].value;
   }
 
-  converteOrcamentoEmForm(orcamento: Orcamento){
+  converteOrcamentoEmForm(orcamento: OrcamentoVO){
     // this.meuFormulario.controls['nome'].setValue(orcamento.nome);
     // this.meuFormulario.controls['valor'].setValue(orcamento.valor);
     // this.meuFormulario.controls['tipoMedida'].setValue(this.converteEnumTipoMedida(produto.tipoMedida));
   }
 
 
-  editaOrcamento(orcamento: Orcamento){
+  editaOrcamento(orcamento: OrcamentoVO){
     this.orcamento = orcamento;
     this.converteOrcamentoEmForm(orcamento)
   }
 
-  confirmaEditaOrcamento(orcamento: Orcamento){
+  confirmaEditaOrcamento(orcamento: OrcamentoVO){
     this.service.salvar(orcamento).subscribe(
       response => {
         this.listarOrcamentos();
@@ -102,7 +102,7 @@ export class OrcamentosComponent implements OnInit {
     )
   }
 
-  excluiOrcamento(orcamento: Orcamento){
+  excluiOrcamento(orcamento: OrcamentoVO){
     this.orcamento = orcamento;
   }
 

@@ -8,6 +8,7 @@
         <thead class="thead-light text-center">
             <tr>
                 <th>Id</th>
+                <th>Emissão</th>
                 <th>Cliente</th>
                 <th>Menu</th>
             </tr>
@@ -15,7 +16,8 @@
         <tbody>
             <tr class="text-center" *ngFor="let o of orcamentos; let i = index">
                 <td>{{o.id}}</td>
-                <td>{{o.clienteId}}</td>
+                <td>{{o.dataEmissao}}</td>
+                <td>{{o.cliente.nome}}</td>
                 <td>
                     <button data-toggle="modal" data-target="#myModal" (click)="editaOrcamento(p)" title="Editar"
                         type="button" class="btn btn-sm btn-success">
@@ -51,7 +53,7 @@
 
                 <label>Cliente</label>
                 <select class="form-control" id="valor" formControlName="cliente" type="text">
-                    <option *ngFor="let c of clientes" value="c.id">{{c.nome}}</option>
+                    <option *ngFor="let c of clientes" value="{{c.id}}">{{c.nome}}</option>
                 </select>
             </div>
 

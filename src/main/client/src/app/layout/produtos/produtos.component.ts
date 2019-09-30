@@ -12,6 +12,7 @@ export class ProdutosComponent implements OnInit {
   produtos: Produto[] = [];
   produto: Produto = new Produto();
   meuFormulario: FormGroup;
+  loading: boolean;
 
   constructor(
     private service: ProdutosService,
@@ -33,9 +34,11 @@ export class ProdutosComponent implements OnInit {
   }
 
   listarProdutos(){
+    this.loading = true;
     this.service.listar().subscribe(
       response => {
         this.produtos = response;
+        this.loading = false;
       },
       error => {
         console.log(error);

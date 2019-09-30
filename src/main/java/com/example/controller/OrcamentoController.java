@@ -1,12 +1,14 @@
 package com.example.controller;
 
 import com.example.model.Orcamento;
+import com.example.service.ClienteService;
 import com.example.service.OrcamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -16,6 +18,9 @@ public class OrcamentoController {
 
     @Autowired
     private OrcamentoService service;
+
+    @Autowired
+    private ClienteService clienteService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ResponseEntity<List<Orcamento>> list(){
@@ -29,10 +34,13 @@ public class OrcamentoController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ResponseEntity<Void> save(@RequestBody Orcamento orcamento) {
+    public ResponseEntity<Void> save(@RequestBody OrcamentoVO orcamento) {
 
         try {
-            service.save(orcamento);
+            service.save(Orcamento.builder()
+                    .dataEmissao(LocalDate.now())
+                    .cliente(clienteService.findById(orcamento.getClienteId()))
+                    .build());
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             e.printStackTrace();
