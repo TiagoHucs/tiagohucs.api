@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-produtos',
   templateUrl: './produtos.component.html',
-  styleUrls: ['./produtos.component.css']
+  styles: ['']
 })
 export class ProdutosComponent implements OnInit {
   produtos: Produto[] = [];

@@ -6,6 +6,7 @@ import { AuthGuard } from '../security/auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { OrcamentosComponent } from './orcamentos/orcamentos.component';
 import { ClientesComponent } from './clientes/clientes.component';
+import { OrcamentoEditarComponent } from './orcamentos/orcamento-editar/orcamento-editar.component';
 
 const routes: Routes = [
     {
@@ -15,6 +16,7 @@ const routes: Routes = [
             { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' },
             { path: 'produtos', component: ProdutosComponent, canActivate: [AuthGuard]},
             { path: 'orcamentos', component: OrcamentosComponent, canActivate: [AuthGuard]},
+            { path: 'orcamento-editar', component: OrcamentoEditarComponent, canActivate: [AuthGuard]},
             { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
             { path: 'clientes', component: ClientesComponent, canActivate: [AuthGuard]},
             // { path: 'configuracoes', component: ConfiguracoesComponent,

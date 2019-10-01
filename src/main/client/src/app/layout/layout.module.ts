@@ -8,7 +8,8 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxCurrencyModule } from 'ngx-currency';
 import { OrcamentosComponent } from './orcamentos/orcamentos.component';
-import { ClientesComponent } from './clientes/clientes.component'
+import { ClientesComponent } from './clientes/clientes.component';
+import { OrcamentoEditarComponent } from './orcamentos/orcamento-editar/orcamento-editar.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ClientesComponent } from './clientes/clientes.component'
     HeaderComponent,
     DashboardComponent,
     OrcamentosComponent,
-    ClientesComponent],
+    ClientesComponent,
+    OrcamentoEditarComponent],
   imports: [
     CommonModule,
     LayoutRoutingModule,

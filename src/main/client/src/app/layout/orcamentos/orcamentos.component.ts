@@ -72,17 +72,10 @@ export class OrcamentosComponent implements OnInit {
   }
 
   converteFormEmOrcamento(){
-    console.log('converteFormEmOrcamento');
-    console.log(this.meuFormulario.controls['cliente'].value);
     this.orcamento.clienteId = this.meuFormulario.controls['cliente'].value;
-    // this.orcamento.valor = this.meuFormulario.controls['valor'].value;
-    // this.orcamento.tipoMedida = this.meuFormulario.controls['tipoMedida'].value;
   }
 
   converteOrcamentoEmForm(orcamento: OrcamentoVO){
-    // this.meuFormulario.controls['nome'].setValue(orcamento.nome);
-    // this.meuFormulario.controls['valor'].setValue(orcamento.valor);
-    // this.meuFormulario.controls['tipoMedida'].setValue(this.converteEnumTipoMedida(produto.tipoMedida));
   }
 
 

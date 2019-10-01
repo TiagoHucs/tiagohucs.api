@@ -5,5 +5,13 @@ export class OrcamentoVO{
     
     id: number;
     clienteId: number;
+    itens: Item[];
 
+}
+
+export class Item{
+
+    produtoId: number;
+    quantidade: number;
+    
 }
