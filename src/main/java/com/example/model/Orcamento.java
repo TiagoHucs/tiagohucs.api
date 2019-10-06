@@ -33,17 +33,12 @@ public class Orcamento {
     private List<Item> itens  = new ArrayList<>();
 
     public void addItem(Item item){
+        if(this.itens == null){
+            this.itens = new ArrayList<Item>();
+        }
+
         this.itens.add(item);
         item.setOrcamento(this);
     }
-
-/*    @ManyToOne
-    @JoinColumn(name = "ID", nullable = false)
-    private Cliente cliente;*/
-
-    //@ManyToOne
-    //@JoinColumn(name = "CLIENTE_ID", nullable = false)
-    //private Cliente cliente;
-
 
 }

@@ -1,4 +1,4 @@
-export class Produto{
+export class ProdutoVO{
 
     id: number;
     nome: string;

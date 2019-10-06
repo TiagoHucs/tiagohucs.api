@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Produto } from './produto';
+import { ProdutoVO } from './produto';
 import { ProdutosService } from './produtos.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -9,8 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styles: ['']
 })
 export class ProdutosComponent implements OnInit {
-  produtos: Produto[] = [];
-  produto: Produto = new Produto();
+  produtos: ProdutoVO[] = [];
+  produto: ProdutoVO = new ProdutoVO();
   meuFormulario: FormGroup;
   loading: boolean;
 
@@ -47,7 +47,7 @@ export class ProdutosComponent implements OnInit {
   }
 
   novoProduto(){
-    this.converteProdutoEmForm(new Produto());
+    this.converteProdutoEmForm(new ProdutoVO());
   }
 
   salvaProduto(){
@@ -68,7 +68,7 @@ export class ProdutosComponent implements OnInit {
     this.produto.tipoMedida = this.meuFormulario.controls['tipoMedida'].value;
   }
 
-  converteProdutoEmForm(produto: Produto){
+  converteProdutoEmForm(produto: ProdutoVO){
     this.meuFormulario.controls['nome'].setValue(produto.nome);
     this.meuFormulario.controls['valor'].setValue(produto.valor);
     this.meuFormulario.controls['tipoMedida'].setValue(this.converteEnumTipoMedida(produto.tipoMedida));
@@ -87,12 +87,12 @@ export class ProdutosComponent implements OnInit {
     }
   }
 
-  editaProduto(produto: Produto){
+  editaProduto(produto: ProdutoVO){
     this.produto = produto;
     this.converteProdutoEmForm(produto)
   }
 
-  confirmaEditaProduto(produto: Produto){
+  confirmaEditaProduto(produto: ProdutoVO){
     this.service.salvar(produto).subscribe(
       response => {
         this.listarProdutos();
@@ -103,7 +103,7 @@ export class ProdutosComponent implements OnInit {
     )
   }
 
-  excluiProduto(produto: Produto){
+  excluiProduto(produto: ProdutoVO){
     this.produto = produto;
   }
 

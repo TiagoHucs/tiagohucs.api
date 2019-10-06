@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Cliente } from './cliente'
+import { ClienteVO } from './cliente'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClientesService } from './clientes.service';
 
@@ -10,8 +10,8 @@ import { ClientesService } from './clientes.service';
 })
 export class ClientesComponent implements OnInit {
   loading: boolean;
-  clientes: Cliente[] = [];
-  cliente: Cliente = new Cliente();
+  clientes: ClienteVO[] = [];
+  cliente: ClienteVO = new ClienteVO();
   meuFormulario: FormGroup;
 
   constructor(
@@ -48,7 +48,7 @@ export class ClientesComponent implements OnInit {
   }
 
   novoCliente(){
-    this.converteClienteEmForm(new Cliente());
+    this.converteClienteEmForm(new ClienteVO());
   }
 
   salvaCliente(){
@@ -70,7 +70,7 @@ export class ClientesComponent implements OnInit {
     this.cliente.tipoCliente = this.meuFormulario.controls['tipoCliente'].value;
   }
 
-  converteClienteEmForm(cliente: Cliente){
+  converteClienteEmForm(cliente: ClienteVO){
     this.meuFormulario.controls['nome'].setValue(cliente.nome);
     this.meuFormulario.controls['cpfcnpj'].setValue(cliente.cpfcnpj);
     this.meuFormulario.controls['tipoCliente'].setValue(this.converteEnumTipoMedida(cliente.tipoCliente));
@@ -84,12 +84,12 @@ export class ClientesComponent implements OnInit {
     }
   }
 
-  editaCliente(cliente: Cliente){
+  editaCliente(cliente: ClienteVO){
     this.cliente = cliente;
     this.converteClienteEmForm(cliente)
   }
 
-  confirmaEditaCliente(cliente: Cliente){
+  confirmaEditaCliente(cliente: ClienteVO){
     this.service.salvar(cliente).subscribe(
       response => {
         this.listarClientes();
@@ -100,7 +100,7 @@ export class ClientesComponent implements OnInit {
     )
   }
 
-  excluiCliente(cliente: Cliente){
+  excluiCliente(cliente: ClienteVO){
     this.cliente = cliente;
   }
 

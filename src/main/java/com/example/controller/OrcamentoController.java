@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import com.example.controller.mapper.MeuMapper;
+import com.example.controller.model.OrcamentoVO;
 import com.example.model.Orcamento;
 import com.example.service.ClienteService;
 import com.example.service.OrcamentoService;
@@ -22,25 +24,25 @@ public class OrcamentoController {
     @Autowired
     private ClienteService clienteService;
 
+    @Autowired
+    private MeuMapper mapper;
+
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ResponseEntity<List<Orcamento>> list(){
         try {
+            //TODO: para VO
             List<Orcamento> result = service.list();
             return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
-
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ResponseEntity<Void> save(@RequestBody OrcamentoVO orcamento) {
+    public ResponseEntity<Void> save(@RequestBody OrcamentoVO vo) {
 
         try {
-            service.save(Orcamento.builder()
-                    .dataEmissao(LocalDate.now())
-                    .cliente(clienteService.findById(orcamento.getClienteId()))
-                    .build());
+            service.save(mapper.map(vo));
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             e.printStackTrace();

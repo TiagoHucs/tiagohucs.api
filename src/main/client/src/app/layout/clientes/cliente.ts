@@ -1,4 +1,4 @@
-export class Cliente{
+export class ClienteVO{
 
     id: number;
     nome: string;

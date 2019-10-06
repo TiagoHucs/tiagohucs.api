@@ -1,17 +1,19 @@
-import { Cliente } from './../clientes/cliente'
-import { Produto } from './../produtos/produto'
+import { ClienteVO } from './../clientes/cliente'
+import { ProdutoVO } from './../produtos/produto'
 
 export class OrcamentoVO{
     
     id: number;
-    clienteId: number;
-    itens: Item[];
+    cliente: ClienteVO;
+    itens: ItemVO[];
+    total: number;
 
 }
 
-export class Item{
-
-    produtoId: number;
+export class ItemVO{
+    produto: ProdutoVO;
     quantidade: number;
-    
+    valorUnitario: number;
+    valorTotal: number;
+   
 }

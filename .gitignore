@@ -1,6 +1,7 @@
 .idea/
 target/
 node_modules/
+node/
 dist/
 **.package-lock-json
 java-getting-started.iml

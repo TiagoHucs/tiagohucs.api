@@ -15,7 +15,7 @@
         <a class="nav-link" [routerLink]="['/produtos']">Produtos</a>
       </li>
       <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-        <a class="nav-link" [routerLink]="['/orcamentos']">Orçamentos</a>
+        <a class="nav-link" [routerLink]="['/orcamento-listar']">Orçamentos</a>
       </li>
       <li *ngIf="userService.getRole() == 'ROLE_ADMIN'" class="nav-item" data-toggle="collapse"
         data-target=".navbar-collapse.show">
