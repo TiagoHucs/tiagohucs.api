@@ -1,11 +1,13 @@
 package com.example.controller.model;
 
 import com.example.model.ETipoCliente;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ClienteVO {
 
     private Long id;

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OrcamentoVO } from '../orcamento';
 import { OrcamentoService } from '../orcamento.service';
 import { ClienteVO } from '../../clientes/cliente';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-orcamento-listar',
@@ -18,6 +19,7 @@ export class OrcamentoListarComponent implements OnInit {
 
   constructor(
     private service: OrcamentoService,
+    private toastService: ToastrService,
     private formBuilder: FormBuilder
     ) {
   }
@@ -25,7 +27,6 @@ export class OrcamentoListarComponent implements OnInit {
   ngOnInit() {
     this.criaFormulario();
     this.listarOrcamentos();
-    console.log(this.orcamentos);
   }
 
   criaFormulario(){
@@ -37,13 +38,28 @@ export class OrcamentoListarComponent implements OnInit {
   listarOrcamentos(){
     this.service.listar().subscribe(
       response => {
-        console.log(this.orcamentos)
-        //this.orcamentos = response;
+        this.orcamentos = response;
       },
       error => {
         console.log(error);
       }
     )
+  }
+
+  excluirOrcamento(orcamento: OrcamentoVO,confirmado: boolean){
+    if(confirmado){
+      this.service.excluir(orcamento.id).subscribe(
+        response => {
+          this.toastService.success('Orçamento excluidosalvo com sucesso');
+          this.listarOrcamentos();
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    } else {
+      this.orcamento = orcamento;
+    }
   }
 
 }

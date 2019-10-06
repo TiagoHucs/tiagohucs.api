@@ -53,7 +53,6 @@ export class ClientesComponent implements OnInit {
 
   salvaCliente(){
     this.converteFormEmCliente();
-    console.log(this.cliente);
     this.service.salvar(this.cliente).subscribe(
       response => {
         this.listarClientes();

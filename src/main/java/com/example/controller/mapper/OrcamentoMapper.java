@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MeuMapper {
+public class OrcamentoMapper {
 
     Orcamento orcamento;
 
@@ -33,28 +33,42 @@ public class MeuMapper {
     @Autowired
     private ProdutoRepository produtoRepository;
 
+    @Autowired
+    private ItemMapper itemMapper;
+
+    @Autowired
+    private ClienteMapper clienteMapper;
+
     public Orcamento map(OrcamentoVO vo){
         orcamento = Orcamento.builder()
                 .dataEmissao(LocalDate.now())
                 .cliente(clienteService.findById(vo.getCliente().getId()))
                 .build();
-        orcamento.setItens(mapItens(vo.getItens()));
+        mapItens(vo.getItens());
         return orcamento;
     }
 
-    private List<Item> mapItens(List<ItemVO> list){
-        List<Item> realList = new ArrayList<>();
-        for (ItemVO vo:list) {
-            Item i = Item.builder().build();
-            Long id = vo.getProduto().getId();
-            Produto p = produtoRepository.findById(id).get();
-            i.setProduto(p);
-            i.setQuantidade(vo.getQuantidade());
-            orcamento.addItem(i);
-            realList.add(i);
-        }
-        return realList;
+    public OrcamentoVO map(Orcamento obj){
+        return OrcamentoVO.builder()
+                .id(obj.getId())
+                .cliente(clienteMapper.map(obj.getCliente()))
+                .dataEmissao(obj.getDataEmissao())
+                .dataValidade(obj.getDataValidade())
+                .build();
     }
 
+    public List<OrcamentoVO> mapAsList(List<Orcamento> list){
+        List<OrcamentoVO> listVO = new ArrayList<>();
+        for (Orcamento obj: list) {
+            listVO.add(map(obj));
+        }
+        return listVO;
+    }
+
+    private void mapItens(List<ItemVO> list){
+        for (ItemVO i :list) {
+            orcamento.addItem(itemMapper.map(i));
+        }
+    }
 
 }

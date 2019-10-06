@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
   <a class="navbar-brand" data-toggle="collapse" data-target=".navbar-collapse.show">
-    <h4 [routerLink]="['/']" style="color: white">Novo Sistema</h4>
+    <h4 [routerLink]="['/']" style="color: white">Orcamento.com</h4>
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
@@ -19,7 +19,7 @@
       </li>
       <li *ngIf="userService.getRole() == 'ROLE_ADMIN'" class="nav-item" data-toggle="collapse"
         data-target=".navbar-collapse.show">
-        <a class="nav-link" [routerLink]="['/']">Relatórios</a>
+        <a class="nav-link">Relatórios</a>
       </li>
     </ul>
   </div>

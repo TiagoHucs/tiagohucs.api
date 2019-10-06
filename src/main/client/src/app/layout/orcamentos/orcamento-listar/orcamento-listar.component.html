@@ -18,12 +18,12 @@
                 <td>{{o.dataEmissao}}</td>
                 <td>{{o.cliente.nome}}</td>
                 <td>
-                    <button data-toggle="modal" data-target="#myModal" (click)="editaOrcamento(p)" title="Editar"
+                    <!-- <button (click)="editaOrcamento(o)" title="Editar"
                         type="button" class="btn btn-sm btn-success">
                         <i class="fa fa-pencil"></i>
-                    </button>
+                    </button> -->
                     <button title="Excluir" data-toggle="modal" data-target="#modalExclusao"
-                        (click)="excluiOrcamento(o)" type="button" class="btn btn-sm btn-danger"><i
+                        (click)="excluirOrcamento(o)" type="button" class="btn btn-sm btn-danger"><i
                             class="fa fa-trash"></i>
                     </button>
                 </td>
@@ -33,31 +33,21 @@
     <br>
 </div>
 
-<!-- The Modal -->
 <div class="modal" id="modalExclusao">
     <div class="modal-dialog">
         <div class="modal-content">
-
-            <!-- Modal Header -->
             <div class="modal-header">
                 <h4 class="modal-title">Excluir Orcamento</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-
-            <!-- Modal body FORM -->
             <div class="modal-body">
-
-                Deseja realmente excluir o orcamento "{{orcamento.nome}}"?
-
+                Deseja realmente excluir o orcamento {{orcamento.id}}?
             </div>
-
-            <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal"
-                    (click)="confirmaExcluiOrcamento()">Sim</button>
+                    (click)="excluirOrcamento(orcamento,true)">Sim</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
             </div>
-
         </div>
     </div>
 </div>

@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OrcamentoVO, ItemVO } from '../orcamento';
 import { OrcamentoService } from '../orcamento.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-orcamento-editar',
@@ -21,6 +22,7 @@ export class OrcamentoEditarComponent implements OnInit {
   formItem: FormGroup;
 
   constructor(
+    private router: Router,
     private clienteService: ClientesService,
     private orcamentoService: OrcamentoService,
     private produtoService: ProdutosService,
@@ -67,6 +69,7 @@ export class OrcamentoEditarComponent implements OnInit {
     this.orcamentoService.salvar(this.orcamento).subscribe(
       response => {
         this.toastService.success('Orçamento salvo com sucesso');
+        this.router.navigate(['orcamento-listar'])
       },
       error => {
         console.log(error);
@@ -77,12 +80,9 @@ export class OrcamentoEditarComponent implements OnInit {
   calculaTotal(){
     if(this.orcamento.itens.length > 0){
       this.orcamento.itens.forEach(item => {
-        console.log('adicionando '+ item.quantidade + item.produto.nome + 's:');
         this.orcamento.total = this.orcamento.total + (item.valorUnitario * item.quantidade);
       });
     } else {
-      console.log('Lista zerada! ');
-
       this.orcamento.total = 0;
     }
     console.log('calcula total: '+ this.orcamento.total);

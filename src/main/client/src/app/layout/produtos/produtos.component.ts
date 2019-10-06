@@ -72,7 +72,6 @@ export class ProdutosComponent implements OnInit {
     this.meuFormulario.controls['nome'].setValue(produto.nome);
     this.meuFormulario.controls['valor'].setValue(produto.valor);
     this.meuFormulario.controls['tipoMedida'].setValue(this.converteEnumTipoMedida(produto.tipoMedida));
-    console.log(produto.tipoMedida);
   }
 
   // TODO: criar um util da aplicacao

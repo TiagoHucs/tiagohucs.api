@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.controller.mapper.MeuMapper;
+import com.example.controller.mapper.OrcamentoMapper;
 import com.example.controller.model.OrcamentoVO;
 import com.example.model.Orcamento;
 import com.example.service.ClienteService;
@@ -25,13 +25,12 @@ public class OrcamentoController {
     private ClienteService clienteService;
 
     @Autowired
-    private MeuMapper mapper;
+    private OrcamentoMapper mapper;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ResponseEntity<List<Orcamento>> list(){
+    public ResponseEntity<List<OrcamentoVO>> list(){
         try {
-            //TODO: para VO
-            List<Orcamento> result = service.list();
+            List<OrcamentoVO> result = mapper.mapAsList(service.list());
             return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
