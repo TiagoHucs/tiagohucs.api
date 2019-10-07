@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -11,6 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     constructor(
         private cookieService: CookieService,
+        private toastService: ToastrService,
         private router: Router) { 
     }
 
@@ -28,16 +30,16 @@ export class AuthInterceptor implements HttpInterceptor {
             return next.handle(authRequest)
                 .pipe(tap(
                     (response: HttpEvent<any>) => {
-                    console.log('peguei o response');// not the same as "next?" parameter of .subscribe
-                    console.log(response); // this runs always 
-                    
+                        //resposta sem erro                     
                     },
                     (error: HttpErrorResponse) => {
                     console.log('peguei o erro: '+error.status);
+                    this.toastService.error(error.message,error.status.toString())
                         if(error.status == 401){
-                            console.log('vou manda-lo para o login')
+                            // se for erro de autenticação envia para o login
                             this.router.navigate(['login']);
                         }
+                        
                     },
                     () => {
                     console.log("completed successfully"); // this runs when you don't get error
