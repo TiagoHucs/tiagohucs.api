@@ -3,7 +3,7 @@
     <button class="btn btn-sm btn-primary pull-right" title="Novo produto" (click)="novoProduto()" data-toggle="modal"
         data-target="#myModal"><i class="fa fa-plus"></i> Novo
         produto</button>
-    <div *ngIf="produtos && produtos.length < 1">Nenhum produto cadastrado</div>
+    <div *ngIf="!loading && produtos && produtos.length < 1">Nenhum produto cadastrado</div>
     <div *ngIf="loading"><i class="fa fa-spinner fa-spin" style="font-size:24px"></i></div>
     <table *ngIf="produtos && produtos.length > 0" class="table table-sm table-bordered table-hover table-striped">
         <thead class="thead-light text-center">

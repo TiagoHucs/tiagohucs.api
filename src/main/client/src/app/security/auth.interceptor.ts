@@ -17,7 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>  {
-        console.log('interceptado: ('+ JSON.stringify(req.url) +')');
+        //console.log('interceptado: ('+ JSON.stringify(req.url) +')');
         let authRequest : any;
         let token = this.cookieService.get('token');
         if(token){
@@ -33,16 +33,14 @@ export class AuthInterceptor implements HttpInterceptor {
                         //resposta sem erro                     
                     },
                     (error: HttpErrorResponse) => {
-                    console.log('peguei o erro: '+error.status);
-                    this.toastService.error(error.message,error.status.toString())
+                        this.toastService.error(error.message,error.status.toString());
                         if(error.status == 401){
                             // se for erro de autenticação envia para o login
                             this.router.navigate(['login']);
                         }
-                        
                     },
                     () => {
-                    console.log("completed successfully"); // this runs when you don't get error
+                    //console.log("completed successfully"); // this runs when you don't get error
                                                             // same as "complete?" parameter of .subscribe
                     }
                 ));
