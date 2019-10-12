@@ -1,15 +1,16 @@
 <div class="container" style="margin-top: 10px">
+
     <div class="row">
         <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-primary o-hidden h-100">
                 <div class="card-body">
                     <div class="card-body-icon">
-                        <i class="fa fa-users" style="font-size:48px;"></i>
+                        <i class="fa fa-users"></i>
                     </div>
-                    <div class="mr-5">{{clientesQtd}} Clientes</div>
+                    <div class="mr-5">{{clientesQtd}} CLientes</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" [routerLink]="['/clientes']">
-                    <span class="float-left">Ver detalhes</span>
+                    <span class="float-left">View Details</span>
                     <span class="float-right">
                         <i class="fa fa-angle-right"></i>
                     </span>
@@ -20,14 +21,14 @@
             <div class="card text-white bg-warning o-hidden h-100">
                 <div class="card-body">
                     <div class="card-body-icon">
-                        <i class="fa fa-calculator" style="font-size:48px;"></i>
+                        <i class="fa fa-calculator"></i>
                     </div>
                     <div class="mr-5">{{orcamentosQtd}} Orçamentos</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" [routerLink]="['/orcamento-listar']">
-                    <span class="float-left">Ver detalhes</span>
+                <a class="card-footer text-white clearfix small z-1" [routerLink]="['/orcamentos-listar']">
+                    <span class="float-left">View Details</span>
                     <span class="float-right">
-                        <i class="fa fa-angle-right"></i> 
+                        <i class="fa fa-angle-right"></i>
                     </span>
                 </a>
             </div>
@@ -36,12 +37,12 @@
             <div class="card text-white bg-success o-hidden h-100">
                 <div class="card-body">
                     <div class="card-body-icon">
-                        <i class="fa fa-shopping-cart" style="font-size:48px"></i>
+                        <i class="fa fa-shopping-cart"></i>
                     </div>
                     <div class="mr-5">{{produtosQtd}} Produtos</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" [routerLink]="['/produtos']">
-                    <span class="float-left">Ver detalhes</span>
+                    <span class="float-left">View Details</span>
                     <span class="float-right">
                         <i class="fa fa-angle-right"></i>
                     </span>
@@ -52,9 +53,9 @@
             <div class="card text-white bg-danger o-hidden h-100">
                 <div class="card-body">
                     <div class="card-body-icon">
-                        <i class="fa fa-bar-chart" style="font-size:48px;"></i>
+                        <i class="fa fa-bar-chart"></i>
                     </div>
-                    <div class="mr-5"> Relatórios</div>
+                    <div class="mr-5">0 Relatórios</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="#">
                     <span class="float-left">Indisponível</span>
@@ -65,4 +66,6 @@
             </div>
         </div>
     </div>
+
+
 </div>

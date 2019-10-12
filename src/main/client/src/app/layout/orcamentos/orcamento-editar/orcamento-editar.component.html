@@ -7,7 +7,7 @@
     </select>
 
     <hr>
-    <button class="btn btn-sm btn-success pull-right" title="Salvar orçamento" (click)="salvarOrcamento()">
+    <button class="btn btn-sm btn-success pull-right" title="Salvar orçamento" (click)="salvarOrcamento()"[disabled]="!orcamentoPodeSalvar()">
         <i class="fa fa-plus"></i> Salvar orçamento
     </button>
     <button class="btn btn-sm btn-primary pull-right" title="Adicionar item" data-toggle="modal"
@@ -28,8 +28,8 @@
                 <td>1</td>
                 <td>{{i.produto.nome}}</td>
                 <td>{{i.quantidade}}</td>
-                <td>{{i.produto.valor}}</td>
-                <td>{{i.produto.valor * i.quantidade}}</td>
+                <td>{{i.produto.valor | currency:'BRL':true:'1.2-2'}}</td>
+                <td>{{i.produto.valor * i.quantidade | currency:'BRL':true:'1.2-2'}}</td>
                 <td><button class="btn btn-sm btn-danger" title="Delete"><i class="fa fa-trash"></i></button></td>
             </tr>
         </tbody>
@@ -40,7 +40,7 @@
             TOTAL:
         </div>
         <div class="col text-right">
-            {{orcamento.total}}
+            {{orcamento.total | currency:'BRL':true:'1.2-2'}}
         </div>
     </div>
 </div>
@@ -58,7 +58,7 @@
                 <label>Item</label>
                 <select class="form-control" id="produto" [(ngModel)]="novoItem.produto" #ctrl="ngModel" type="text">
                     <option value="">selecione um produto</option>
-                    <option *ngFor="let p of produtos" [ngValue]="p">{{p.nome}}: {{p.valor}}</option>
+                    <option *ngFor="let p of produtos" [ngValue]="p">{{p.nome}}: {{p.valor | currency:'BRL':true:'1.2-2'}} {{p.tipoMedida}} </option>
                 </select>
                 <label>Quantidade</label>
                 <input class="form-control" id="qtd" [(ngModel)]="novoItem.quantidade" #ctrl="ngModel" type="number" />

@@ -63,6 +63,7 @@ export class OrcamentoEditarComponent implements OnInit {
     this.orcamento.itens.push(this.novoItem);
     this.calculaTotal();
     this.novoItem = new ItemVO();
+    console.log(this.orcamento.cliente);
   }
 
   salvarOrcamento(){
@@ -77,15 +78,18 @@ export class OrcamentoEditarComponent implements OnInit {
     );
   }
 
+  orcamentoPodeSalvar(){
+     return this.orcamento.itens.length > 0 && this.orcamento.cliente.id != null && this.orcamento.cliente.id != undefined;
+  }
+
   calculaTotal(){
     if(this.orcamento.itens.length > 0){
       this.orcamento.itens.forEach(item => {
-        this.orcamento.total = this.orcamento.total + (item.valorUnitario * item.quantidade);
+        this.orcamento.total = this.orcamento.total + (item.produto.valor * item.quantidade)
       });
     } else {
       this.orcamento.total = 0;
     }
-    console.log('calcula total: '+ this.orcamento.total);
   }
 
 }

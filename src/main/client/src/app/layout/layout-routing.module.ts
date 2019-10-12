@@ -15,7 +15,7 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' },
             { path: 'produtos', component: ProdutosComponent, canActivate: [AuthGuard]},
-            { path: 'orcamento-listar', component: OrcamentoListarComponent, canActivate: [AuthGuard]},
+            { path: 'orcamentos-listar', component: OrcamentoListarComponent, canActivate: [AuthGuard]},
             { path: 'orcamento-editar', component: OrcamentoEditarComponent, canActivate: [AuthGuard]},
             { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
             { path: 'clientes', component: ClientesComponent, canActivate: [AuthGuard]},
