@@ -70,7 +70,7 @@ export class OrcamentoEditarComponent implements OnInit {
     this.orcamentoService.salvar(this.orcamento).subscribe(
       response => {
         this.toastService.success('Orçamento salvo com sucesso');
-        this.router.navigate(['orcamento-listar'])
+        this.router.navigate(['orcamentos-listar'])
       },
       error => {
         console.log(error);

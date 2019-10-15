@@ -32,6 +32,28 @@
         </tbody>
     </table>
     <br>
+    <div class="row">
+            <div *ngFor="let p of clientes" class="col-xl-3 col-sm-6 mb-3">
+                <div class="card ">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <b>{{p.nome}}</b><br>
+                                {{p.cpfcnpj}}<br>
+                                {{p.tipoCliente}}
+                            </div>
+                            <div class="col">
+                                    <button data-toggle="modal" data-target="#myModal" (click)="editaCliente(p)" title="Editar"
+                                    type="button" class="btn btn-sm btn-default pull-right">
+                                    <i class="fa fa-pencil"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 </div>
 
 
