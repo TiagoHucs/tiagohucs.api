@@ -2,21 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { ClienteVO } from './cliente'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClientesService } from './clientes.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
-  styleUrls: ['./clientes.component.css']
+  styles: ['']
 })
 export class ClientesComponent implements OnInit {
-  loading: boolean;
   clientes: ClienteVO[] = [];
   cliente: ClienteVO = new ClienteVO();
   meuFormulario: FormGroup;
+  loading: boolean;
 
   constructor(
     private service: ClientesService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastService: ToastrService,
     ) {
   }
 
@@ -28,8 +30,8 @@ export class ClientesComponent implements OnInit {
   criaFormulario(){
     this.meuFormulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.maxLength(150)]],
-      cpfcnpj: ['', [Validators.required]],
-      tipoCliente: ['', [Validators.required]]
+      cpfCnpj: ['', [Validators.required]],
+      tipoCliente: ['', [Validators.required]],
     });
   }
 
@@ -42,19 +44,20 @@ export class ClientesComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.loading = false;
       }
     )
   }
 
   novoCliente(){
-    this.converteClienteEmForm(new ClienteVO());
+    this.cliente = new ClienteVO();
+    this.converteClienteEmForm(this.cliente);
   }
 
   salvaCliente(){
     this.converteFormEmCliente();
     this.service.salvar(this.cliente).subscribe(
       response => {
+        this.toastService.success('Cliente salvo com sucesso');
         this.listarClientes();
       },
       error => {
@@ -65,17 +68,18 @@ export class ClientesComponent implements OnInit {
 
   converteFormEmCliente(){
     this.cliente.nome = this.meuFormulario.controls['nome'].value;
-    this.cliente.cpfcnpj = this.meuFormulario.controls['cpfcnpj'].value;
+    this.cliente.cpfcnpj = this.meuFormulario.controls['cpfCnpj'].value;
     this.cliente.tipoCliente = this.meuFormulario.controls['tipoCliente'].value;
   }
 
   converteClienteEmForm(cliente: ClienteVO){
     this.meuFormulario.controls['nome'].setValue(cliente.nome);
-    this.meuFormulario.controls['cpfcnpj'].setValue(cliente.cpfcnpj);
-    this.meuFormulario.controls['tipoCliente'].setValue(this.converteEnumTipoMedida(cliente.tipoCliente));
+    this.meuFormulario.controls['cpfCnpj'].setValue(cliente.cpfcnpj);
+    this.meuFormulario.controls['tipoCliente'].setValue(this.converteEnumTipoCliente(cliente.tipoCliente));
   }
 
-  converteEnumTipoMedida(enu: string){
+  // TODO: criar um util da aplicacao
+  converteEnumTipoCliente(enu: string){
     if(enu === "PF"){
       return 0;
     }else if(enu === "PJ"){
@@ -85,27 +89,13 @@ export class ClientesComponent implements OnInit {
 
   editaCliente(cliente: ClienteVO){
     this.cliente = cliente;
-    this.converteClienteEmForm(cliente)
+    this.converteClienteEmForm(this.cliente);
   }
 
-  confirmaEditaCliente(cliente: ClienteVO){
-    this.service.salvar(cliente).subscribe(
-      response => {
-        this.listarClientes();
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
-
-  excluiCliente(cliente: ClienteVO){
-    this.cliente = cliente;
-  }
-
-  confirmaExcluiCliente(){
+  excluiCliente(){
     this.service.excluir(this.cliente.id).subscribe(
       response => {
+        this.toastService.success('Cliente excluido com sucesso');
         this.listarClientes();
       },
       error => {

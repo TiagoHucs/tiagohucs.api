@@ -1,127 +1,76 @@
 <div class="container mt-5">
-    <h4>Clientes cadastrados</h4>
-    <button class="btn btn-sm btn-primary pull-right" title="Novo cliente" (click)="novoCliente()" data-toggle="modal"
-        data-target="#myModal"><i class="fa fa-plus"></i> Novo
-        cliente</button>
-    <div *ngIf="!loading && clientes && clientes.length < 1">Nenhum cliente cadastrado</div>
-    <div *ngIf="loading"><i class="fa fa-spinner fa-spin" style="font-size:24px"></i></div>
-    <table *ngIf="clientes && clientes.length > 0" class="table table-sm table-bordered table-hover table-striped">
-        <thead class="thead-light text-center">
-            <tr>
-                <th>Nome</th>
-                <th>CPF/CNPJ</th>
-                <th>Tipo cliente</th>
-                <th>Menu</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="text-center" *ngFor="let p of clientes; let i = index">
-                <td>{{p.nome}}</td>
-                <td>{{p.cpfcnpj}}</td>
-                <td>{{p.tipoCliente}}</td>
-                <td>
-                    <button  data-toggle="modal" data-target="#myModal" (click)="editaCliente(p)" title="Editar"
-                        type="button" class="btn btn-sm btn-success">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                    <button title="Excluir" data-toggle="modal" data-target="#modalExclusao" (click)="excluiCliente(p)"
-                    type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-    <div class="row">
-            <div *ngFor="let p of clientes" class="col-xl-3 col-sm-6 mb-3">
-                <div class="card ">
+        <div class="row">
+            <div class="col">
+                <h4>Clientes</h4>
+            </div>
+            <div class="col">
+                <button class="btn btn-sm btn-primary pull-right" title="Novo cliente" (click)="novoCliente()"
+                    data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Novo
+                    cliente</button>
+            </div>
+        </div>
+        <hr>
+    
+        <div *ngIf="!loading && clientes && clientes.length < 1">Nenhum cliente cadastrado</div>
+        <div *ngIf="loading"><i class="fa fa-spinner fa-spin" style="font-size:24px"></i></div>
+        <br>
+    
+        <div class="row">
+            <div *ngFor="let c of clientes" class="col-xl-3 col-sm-6 mb-3">
+                <div class="card sombra" data-toggle="modal" data-target="#myModal" (click)="editaCliente(c)">
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <b>{{p.nome}}</b><br>
-                                {{p.cpfcnpj}}<br>
-                                {{p.tipoCliente}}
-                            </div>
-                            <div class="col">
-                                    <button data-toggle="modal" data-target="#myModal" (click)="editaCliente(p)" title="Editar"
-                                    type="button" class="btn btn-sm btn-default pull-right">
-                                    <i class="fa fa-pencil"></i>
-                                </button>
+                                <b>{{c.nome}}</b><br>
+                                {{c.cpfcnpj}}<br>
+                                {{c.tipoCliente}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-</div>
-
-
-
-<!-- The Modal -->
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Cliente</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+    
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+    
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Cliente</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+    
+    
+                <!-- Modal body FORM -->
+                <div [formGroup]="meuFormulario" class="modal-body">
+    
+                    <label>Nome</label>
+                    <input class="form-control" id="nome" formControlName="nome" type="text" />
+    
+                    <label>Cpf/Cnpj</label>
+                    <input class="form-control" id="cpfcnpj" formControlName="cpfCnpj" type="text"/>
+    
+                    <label>Tipo Cliente</label>
+                    <select class="form-control" id="valor" formControlName="tipoCliente" type="text">
+                        <option value="0">Pessoa Física</option>
+                        <option value="1">Pessoa Jurídica</option>
+                    </select>
+    
+                </div>
+    
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" (click)="salvaCliente()"
+                        [disabled]="!meuFormulario.valid"><i class="fa fa-floppy-o"></i> Salvar</button>
+                    <button *ngIf="cliente.id" title="Excluir" data-dismiss="modal" (click)="excluiCliente()"
+                        type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Excluir
+                    </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i> Close</button>
+                </div>
+    
             </div>
-
-
-            <!-- Modal body FORM -->
-            <div [formGroup]="meuFormulario" class="modal-body">
-
-                <label>Nome</label>
-                <input class="form-control" id="nome" formControlName="nome"  type="text" />
-
-                <label>CPF/CNPJ</label>
-                <input class="form-control" id="nome" formControlName="cpfcnpj"  type="text" />
-
-                <label>Tipo Cliente</label>
-                <select class="form-control" id="valor"  formControlName="tipoCliente" type="text">
-                    <option value="0">Pessoa Física</option>
-                    <option value="1">Pessoa Jurídica</option>
-                </select>
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal"
-                    (click)="salvaCliente()" [disabled]="!meuFormulario.valid">Salvar</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-
         </div>
     </div>
-</div>
-
-<!-- The Modal -->
-<div class="modal" id="modalExclusao">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Excluir Cliente</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-             <!-- Modal body FORM -->
-            <div class="modal-body">
-
-                Deseja realmente excluir o cliente "{{cliente.nome}}"?
-
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="confirmaExcluiCliente()">Sim</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
-            </div>
-
-        </div>
-    </div>
-</div>
-

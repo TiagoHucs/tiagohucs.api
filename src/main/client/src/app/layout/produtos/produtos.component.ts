@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProdutoVO } from './produto';
 import { ProdutosService } from './produtos.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-produtos',
@@ -16,7 +17,8 @@ export class ProdutosComponent implements OnInit {
 
   constructor(
     private service: ProdutosService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastService: ToastrService,
     ) {
   }
 
@@ -47,13 +49,15 @@ export class ProdutosComponent implements OnInit {
   }
 
   novoProduto(){
-    this.converteProdutoEmForm(new ProdutoVO());
+    this.produto = new ProdutoVO();
+    this.converteProdutoEmForm(this.produto);
   }
 
   salvaProduto(){
     this.converteFormEmProduto();
     this.service.salvar(this.produto).subscribe(
       response => {
+        this.toastService.success('Produto salvo com sucesso');
         this.listarProdutos();
       },
       error => {
@@ -88,27 +92,13 @@ export class ProdutosComponent implements OnInit {
 
   editaProduto(produto: ProdutoVO){
     this.produto = produto;
-    this.converteProdutoEmForm(produto)
+    this.converteProdutoEmForm(this.produto);
   }
 
-  confirmaEditaProduto(produto: ProdutoVO){
-    this.service.salvar(produto).subscribe(
-      response => {
-        this.listarProdutos();
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
-
-  excluiProduto(produto: ProdutoVO){
-    this.produto = produto;
-  }
-
-  confirmaExcluiProduto(){
+  excluiProduto(){
     this.service.excluir(this.produto.id).subscribe(
       response => {
+        this.toastService.success('Produto excluido com sucesso');
         this.listarProdutos();
       },
       error => {
