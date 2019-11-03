@@ -23,7 +23,7 @@
                             <div class="col">
                                 <b>{{c.nome}}</b><br>
                                 {{c.cpfcnpj}}<br>
-                                {{c.tipoCliente}}
+                                {{c.tipoCliente.descricao}}
                             </div>
                         </div>
                     </div>
@@ -51,14 +51,12 @@
                     <input class="form-control" id="nome" formControlName="nome" type="text" />
     
                     <label>Cpf/Cnpj</label>
-                    <input class="form-control" id="cpfcnpj" formControlName="cpfCnpj" type="text"/>
+                    <input class="form-control" id="cpfcnpj" formControlName="cpfcnpj" type="text"/>
     
                     <label>Tipo Cliente</label>
-                    <select class="form-control" id="valor" formControlName="tipoCliente" type="text">
-                        <option value="0">Pessoa Física</option>
-                        <option value="1">Pessoa Jurídica</option>
+                    <select class="form-control" id="tipoCliente" formControlName="tipoCliente" [compareWith]="compare" type="text">
+                        <option *ngFor="let tipo of tipos" [ngValue]="tipo">{{tipo.descricao}}</option>
                     </select>
-    
                 </div>
     
                 <!-- Modal footer -->

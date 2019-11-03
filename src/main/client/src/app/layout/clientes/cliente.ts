@@ -6,3 +6,8 @@ export class ClienteVO{
     tipoCliente: string;
 
 }
+
+export class TipoCliente{
+    codigo:number;
+    descricao:string;
+}

@@ -16,8 +16,9 @@ export class ClientesService {
     return this.http.get<any[]>(`${API_URL}${this.CLI_URL}list`);
   }
 
-  public salvar(produto: any): Observable<any> {
-    return this.http.post(`${API_URL}${this.CLI_URL}save`, produto);
+  public salvar(cliente: any): Observable<any> {
+    console.log(cliente)
+    return this.http.post(`${API_URL}${this.CLI_URL}save`, cliente);
   }
 
   public excluir(id: any): Observable<any> {

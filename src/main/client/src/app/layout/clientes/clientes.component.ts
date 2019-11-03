@@ -14,6 +14,7 @@ export class ClientesComponent implements OnInit {
   cliente: ClienteVO = new ClienteVO();
   meuFormulario: FormGroup;
   loading: boolean;
+  tipos: Object[] = [{codigo:0,descricao:'Pessoa Física'},{codigo:1,descricao:'Pessoa Jurídica'}]
 
   constructor(
     private service: ClientesService,
@@ -30,7 +31,7 @@ export class ClientesComponent implements OnInit {
   criaFormulario(){
     this.meuFormulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.maxLength(150)]],
-      cpfCnpj: ['', [Validators.required]],
+      cpfcnpj: ['', [Validators.required]],
       tipoCliente: ['', [Validators.required]],
     });
   }
@@ -49,13 +50,11 @@ export class ClientesComponent implements OnInit {
   }
 
   novoCliente(){
-    this.cliente = new ClienteVO();
-    this.converteClienteEmForm(this.cliente);
+    this.criaFormulario();
   }
 
   salvaCliente(){
-    this.converteFormEmCliente();
-    this.service.salvar(this.cliente).subscribe(
+    this.service.salvar(this.meuFormulario.getRawValue()).subscribe(
       response => {
         this.toastService.success('Cliente salvo com sucesso');
         this.listarClientes();
@@ -66,30 +65,8 @@ export class ClientesComponent implements OnInit {
     );
   }
 
-  converteFormEmCliente(){
-    this.cliente.nome = this.meuFormulario.controls['nome'].value;
-    this.cliente.cpfcnpj = this.meuFormulario.controls['cpfCnpj'].value;
-    this.cliente.tipoCliente = this.meuFormulario.controls['tipoCliente'].value;
-  }
-
-  converteClienteEmForm(cliente: ClienteVO){
-    this.meuFormulario.controls['nome'].setValue(cliente.nome);
-    this.meuFormulario.controls['cpfCnpj'].setValue(cliente.cpfcnpj);
-    this.meuFormulario.controls['tipoCliente'].setValue(this.converteEnumTipoCliente(cliente.tipoCliente));
-  }
-
-  // TODO: criar um util da aplicacao
-  converteEnumTipoCliente(enu: string){
-    if(enu === "PF"){
-      return 0;
-    }else if(enu === "PJ"){
-      return 1;
-    }
-  }
-
   editaCliente(cliente: ClienteVO){
-    this.cliente = cliente;
-    this.converteClienteEmForm(this.cliente);
+    this.meuFormulario.patchValue(cliente);
   }
 
   excluiCliente(){
@@ -102,6 +79,10 @@ export class ClientesComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  compare(val1, val2) {
+    return val1.id === val2.id;
   }
 
 }

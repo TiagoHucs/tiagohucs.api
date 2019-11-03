@@ -1,14 +1,15 @@
 package com.example.controller.mapper;
 
+import com.example.cliente.ClienteMapper;
+import com.example.cliente.ClienteVO;
 import com.example.controller.model.ItemVO;
 import com.example.controller.model.OrcamentoVO;
-import com.example.model.Item;
 import com.example.model.Orcamento;
-import com.example.model.Produto;
 import com.example.repository.ProdutoRepository;
-import com.example.service.ClienteService;
+import com.example.cliente.ClienteService;
 import com.example.service.ItemService;
 import com.example.service.ProdutoService;
+import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +38,7 @@ public class OrcamentoMapper {
     private ItemMapper itemMapper;
 
     @Autowired
-    private ClienteMapper clienteMapper;
+    private MapperFacade mapper;
 
     public Orcamento map(OrcamentoVO vo){
         orcamento = Orcamento.builder()
@@ -51,7 +52,7 @@ public class OrcamentoMapper {
     public OrcamentoVO map(Orcamento obj){
         return OrcamentoVO.builder()
                 .id(obj.getId())
-                .cliente(clienteMapper.map(obj.getCliente()))
+               // .cliente(mapper(obj.getCliente(), ClienteVO.class))
                 .dataEmissao(obj.getDataEmissao())
                 .dataValidade(obj.getDataValidade())
                 .build();

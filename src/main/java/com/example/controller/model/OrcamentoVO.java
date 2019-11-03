@@ -1,5 +1,6 @@
 package com.example.controller.model;
 
+import com.example.cliente.ClienteVO;
 import lombok.*;
 
 import java.time.LocalDate;

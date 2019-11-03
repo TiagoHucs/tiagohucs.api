@@ -1,5 +1,9 @@
 package com.example;
 
+import ma.glasnost.orika.Mapper;
+import ma.glasnost.orika.MapperFacade;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,7 +36,6 @@ public class Main {
     return args -> {
       initUsers(userRepository, passwordEncoder);
     };
-
   }
 
   private void initUsers(UserRepository userRepository, PasswordEncoder passwordEncoder) {

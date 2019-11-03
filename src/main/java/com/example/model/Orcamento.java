@@ -1,5 +1,6 @@
 package com.example.model;
 
+import com.example.cliente.Cliente;
 import lombok.*;
 
 import javax.persistence.*;

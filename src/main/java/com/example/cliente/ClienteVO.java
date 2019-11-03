@@ -1,4 +1,4 @@
-package com.example.controller.model;
+package com.example.cliente;
 
 import com.example.model.ETipoCliente;
 import lombok.*;
@@ -13,5 +13,5 @@ public class ClienteVO {
     private Long id;
     private String nome;
     private String cpfcnpj;
-    private ETipoCliente tipoCliente;
+    private TipoCliente tipoCliente;
 }

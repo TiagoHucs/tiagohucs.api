@@ -1,7 +1,6 @@
-package com.example.controller;
+package com.example.cliente;
 
-import com.example.model.Cliente;
-import com.example.service.ClienteService;
+import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,15 +11,18 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/clientes")
-public class ClienteController {
+public class ClienteRestController {
 
     @Autowired
     private ClienteService service;
 
+    @Autowired
+    private MapperFacade mapper;
+
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ResponseEntity<List<Cliente>> list(){
+    public ResponseEntity<List<ClienteVO>> list(){
         try {
-            List<Cliente> result = service.list();
+            List<ClienteVO> result = mapper.mapAsList(service.list(),ClienteVO.class);
             return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -29,10 +31,9 @@ public class ClienteController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ResponseEntity<Void> save( @RequestBody Cliente cliente) {
-
+    public ResponseEntity<Void> save( @RequestBody ClienteVO clienteVo) {
         try {
-            service.save(cliente);
+            service.save(mapper.map(clienteVo,Cliente.class));
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             e.printStackTrace();

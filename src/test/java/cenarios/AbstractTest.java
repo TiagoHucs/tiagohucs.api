@@ -1,7 +1,7 @@
 package cenarios;
 
 import com.example.Main;
-import com.example.service.ClienteService;
+import com.example.cliente.ClienteService;
 import org.junit.FixMethodOrder;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;

@@ -1,5 +1,6 @@
-package com.example.model;
+package com.example.cliente;
 
+import com.example.model.ETipoCliente;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
