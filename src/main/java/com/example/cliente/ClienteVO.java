@@ -1,6 +1,5 @@
 package com.example.cliente;
 
-import com.example.model.ETipoCliente;
 import lombok.*;
 
 @Getter

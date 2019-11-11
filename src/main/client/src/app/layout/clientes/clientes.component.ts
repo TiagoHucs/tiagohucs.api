@@ -69,8 +69,8 @@ export class ClientesComponent implements OnInit {
     this.meuFormulario.patchValue(cliente);
   }
 
-  excluiCliente(){
-    this.service.excluir(this.cliente.id).subscribe(
+  excluirCliente(cliente: ClienteVO){
+    this.service.excluir(cliente.id).subscribe(
       response => {
         this.toastService.success('Cliente excluido com sucesso');
         this.listarClientes();

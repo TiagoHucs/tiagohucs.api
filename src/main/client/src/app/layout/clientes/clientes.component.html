@@ -15,7 +15,7 @@
     <div *ngIf="loading"><i class="fa fa-spinner fa-spin" style="font-size:24px"></i></div>
     <br>
 
-    <table>
+    <table class="table table-sm table-striped table-bordered table-hover">
         <thead>
             <tr>
                 <th>Nome</th>
@@ -31,7 +31,10 @@
                 <td>{{c.tipoCliente.descricao}}</td>
                 <td>
                     <button class="btn btn-sm btn-primary" (click)="editaCliente(c)">
-                        <i class="fa fa-pencil"></i> Editar
+                        <i class="fa fa-pencil" title="Editar"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger" (click)="excluirCliente(c)">
+                        <i class="fa fa-trash" title="Excluir"></i>
                     </button>
                 </td>
             </tr>

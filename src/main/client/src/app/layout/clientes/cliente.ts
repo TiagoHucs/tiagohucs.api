@@ -8,6 +8,6 @@ export class ClienteVO{
 }
 
 export class TipoCliente{
-    codigo:number;
+    codigo:string;
     descricao:string;
 }

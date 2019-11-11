@@ -8,6 +8,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TipoCliente {
-    private int codigo;
+    private String codigo;
     private String descricao;
 }

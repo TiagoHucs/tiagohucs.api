@@ -1,6 +1,7 @@
 package cenarios;
 
 import com.example.cliente.Cliente;
+import com.example.cliente.ETipoCliente;
 import com.example.model.*;
 import com.example.service.OrcamentoService;
 import com.example.service.ProdutoService;

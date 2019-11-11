@@ -1,11 +1,6 @@
 .btn{
-    margin-left: 5px;
+    margin: 5px 5px 0px 0px;
 }
-
-.btn-primary{
-    margin-bottom: 5px;
-}
-
 
 .sombra{
     box-shadow: 10px 10px 5px grey;
