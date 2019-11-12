@@ -1,6 +1,7 @@
 package com.example.cliente;
 
 import ma.glasnost.orika.CustomMapper;
+import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.MappingContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,38 +15,21 @@ public class ClienteMapper extends CustomMapper<Cliente, ClienteVO> {
     @Autowired
     private MapperFactory mapperFactory;
 
+    @Autowired
+    private MapperFacade mapper;
+
     @Override
     public void mapAtoB(Cliente a, ClienteVO b, MappingContext context) {
-/*        if(a.getId() != null){
-            b.setId(a.getId());
-        }
-        if(a.getNome() != null){
-            b.setNome(a.getNome());
-        }
-        if(a.getCpfcnpj() != null) {
-            b.setCpfcnpj(a.getCpfcnpj());
-        }*/
-        if (a.getTipoCliente() != null) {
-            b.setTipoCliente(TipoCliente.builder()
-                    .codigo(a.getTipoCliente().getCodigo())
-                    .descricao(a.getTipoCliente().getDescricao())
-                    .build());
+        if (a.getTipoCliente() != null){
+            b.setTipoCliente(mapper.map(a.getTipoCliente(), TipoCliente.class));
         }
     }
 
     @Override
     public void mapBtoA(ClienteVO b, Cliente a, MappingContext context) {
-/*        if(b.getId() != null){
-            a.setId(b.getId());
-        }
-        if(b.getNome() != null){
-            a.setNome(b.getNome());
-        }
-        if(b.getCpfcnpj() != null){
-            a.setCpfcnpj(b.getCpfcnpj());
-        }*/
+        System.out.println("map");
         if (b.getTipoCliente() != null){
-            a.setTipoCliente(ETipoCliente.valueOf(b.getTipoCliente().getDescricao()));
+            a.setTipoCliente(mapper.map(a.getTipoCliente(), ETipoCliente.class));
         }
     }
 

@@ -1,4 +1,8 @@
 package com.example.cliente;
 
-public class TipoClienteMapper {
+import ma.glasnost.orika.CustomMapper;
+import org.springframework.stereotype.Service;
+
+@Service
+public class TipoClienteMapper extends CustomMapper<ETipoCliente, TipoCliente> {
 }
