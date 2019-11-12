@@ -4,6 +4,7 @@ import ma.glasnost.orika.CustomMapper;
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.MappingContext;
+import ma.glasnost.orika.metadata.MappingDirection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,9 @@ public class ClienteMapper extends CustomMapper<Cliente, ClienteVO> {
 
     @Override
     public void mapAtoB(Cliente a, ClienteVO b, MappingContext context) {
+        System.out.println("map");
         if (a.getTipoCliente() != null){
-            b.setTipoCliente(mapper.map(a.getTipoCliente(), TipoCliente.class));
+            b.setTipoCliente(TipoCliente.builder().codigo(a.getTipoCliente().getCodigo()).descricao(a.getTipoCliente().getDescricao()).build());
         }
     }
 
@@ -29,7 +31,7 @@ public class ClienteMapper extends CustomMapper<Cliente, ClienteVO> {
     public void mapBtoA(ClienteVO b, Cliente a, MappingContext context) {
         System.out.println("map");
         if (b.getTipoCliente() != null){
-            a.setTipoCliente(mapper.map(a.getTipoCliente(), ETipoCliente.class));
+            a.setTipoCliente(ETipoCliente.obter(b.getTipoCliente().getCodigo()));
         }
     }
 
@@ -37,7 +39,7 @@ public class ClienteMapper extends CustomMapper<Cliente, ClienteVO> {
     public void configure() {
         mapperFactory.classMap(Cliente.class, ClienteVO.class)
                 .exclude("tipoCliente")
-                .byDefault()
+                .byDefault(MappingDirection.B_TO_A)
                 .register();
     }
 
