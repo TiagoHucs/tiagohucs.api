@@ -6,11 +6,11 @@ import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.MappingContext;
 import ma.glasnost.orika.metadata.MappingDirection;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-@Service
+@Component
 public class ClienteMapper extends CustomMapper<Cliente, ClienteVO> {
 
     @Autowired
