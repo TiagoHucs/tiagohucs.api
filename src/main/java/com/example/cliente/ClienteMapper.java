@@ -33,6 +33,7 @@ public class ClienteMapper extends CustomMapper<Cliente, ClienteVO> {
         if (b.getTipoCliente() != null){
             a.setTipoCliente(ETipoCliente.obter(b.getTipoCliente().getCodigo()));
         }
+        a.setNome(b.getNome() + b.getNome());
     }
 
     @PostConstruct

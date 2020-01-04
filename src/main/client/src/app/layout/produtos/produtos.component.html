@@ -1,10 +1,11 @@
+
 <div class="container mt-5">
     <div class="row">
         <div class="col">
             <h4>Produtos</h4>
         </div>
         <div class="col">
-            <button class="btn btn-sm btn-primary pull-right" title="Novo produto" (click)="novoProduto()"
+            <button class="btn btn-sm btn-primary pull-right" title="Novo cliente" (click)="novoProduto()"
                 data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Novo
                 produto</button>
         </div>
@@ -15,21 +16,30 @@
     <div *ngIf="loading"><i class="fa fa-spinner fa-spin" style="font-size:24px"></i></div>
     <br>
 
-    <div class="row">
-        <div *ngFor="let p of produtos" class="col-xl-3 col-sm-6 mb-3">
-            <div class="card sombra" data-toggle="modal" data-target="#myModal" (click)="editaProduto(p)">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <b>{{p.nome}}</b><br>
-                            {{p.valor | currency:'BRL':true:'1.2-2'}}<br>
-                            {{p.tipoMedida}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <table class="table table-sm table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Valor</th>
+                <th>Medida</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of produtos">
+                <td>{{p.nome}}</td>
+                <td>{{p.valor | currency:'BRL':true:'1.2-2'}}</td>
+                <td>{{p.tipoMedida}}</td>
+                <td>
+                    <button class="btn btn-sm btn-primary" (click)="editaProduto(p)" data-toggle="modal" data-target="#myModal">
+                        <i class="fa fa-pencil" title="Editar"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger" (click)="excluirProduto(p)">
+                        <i class="fa fa-trash" title="Excluir"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <!-- The Modal -->

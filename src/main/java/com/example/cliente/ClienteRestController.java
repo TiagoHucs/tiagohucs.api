@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -59,6 +61,23 @@ public class ClienteRestController {
         try {
             service.delete(id);
             return ResponseEntity.status(HttpStatus.OK).build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
+    }
+
+    @RequestMapping(value = "/tipos", method = RequestMethod.GET)
+    public ResponseEntity<ArrayList<TipoCliente>> tipos(){
+        ArrayList<TipoCliente> tipos = new ArrayList<>();
+        try {
+            for (ETipoCliente tipoEnum: ETipoCliente.values()) {
+                tipos.add(TipoCliente.builder()
+                        .codigo(tipoEnum.getCodigo())
+                        .descricao(tipoEnum.getDescricao())
+                        .build());
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(tipos);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }

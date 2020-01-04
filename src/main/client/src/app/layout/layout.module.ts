@@ -7,9 +7,9 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxCurrencyModule } from 'ngx-currency';
-import { ClientesComponent } from './clientes/clientes.component';
 import { OrcamentoEditarComponent } from './orcamentos/orcamento-editar/orcamento-editar.component';
 import { OrcamentoListarComponent } from './orcamentos/orcamento-listar/orcamento-listar.component';
+import { ClientesModule } from './clientes/clientes.module';
 
 @NgModule({
   declarations: [
@@ -17,15 +17,15 @@ import { OrcamentoListarComponent } from './orcamentos/orcamento-listar/orcament
     ProdutosComponent, 
     HeaderComponent,
     DashboardComponent,
-    ClientesComponent,
     OrcamentoEditarComponent,
-    OrcamentoListarComponent],
+    OrcamentoListarComponent,],
   imports: [
     CommonModule,
     LayoutRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     NgxCurrencyModule,
+    ClientesModule
   ]
 })
 export class LayoutModule { }

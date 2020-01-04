@@ -1,0 +1,22 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h4>Cadastro de cliente</h4>
+        </div>
+    </div>
+    <hr>
+    <div [formGroup]="formCliente">
+         <label>Nome</label>
+        <input class="form-control" id="nome" formControlName="nome" type="text" />
+        <br><label>Tipo Cliente</label>
+        <select class="form-control" id="tipoCliente" formControlName="tipoCliente" [compareWith]="compare"
+            type="text">
+            <option [ngValue]="null">Selecione um tipo</option>
+            <option *ngFor="let tipo of tipos" [ngValue]="tipo">{{tipo.descricao}}</option>
+        </select>
+        <br><label>Cpf/Cnpj</label>
+        <input class="form-control" id="cpfcnpj" formControlName="cpfcnpj" type="text" />
+         
+    </div>
+    <button class="btn btn-success" (click)="cadastrar()" [disabled]="formCliente.invalid">Salvar</button>
+</div>

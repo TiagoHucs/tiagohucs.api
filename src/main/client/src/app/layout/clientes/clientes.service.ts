@@ -25,6 +25,10 @@ export class ClientesService {
     return this.http.delete(`${API_URL}${this.CLI_URL}delete/${id}`);
   }
 
+  public tipos(): Observable<any> {
+    return this.http.get<any[]>(`${API_URL}${this.CLI_URL}tipos`);
+  }
+
   public baixarRelatorio(): Observable<any> {
     return this.http.get(`${API_URL}${this.CLI_URL}relatorio`, { responseType: 'blob' });
   }
