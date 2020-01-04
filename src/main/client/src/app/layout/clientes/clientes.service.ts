@@ -12,14 +12,19 @@ export class ClientesService {
 
   constructor(private http: HttpClient) { }
 
-  public listar(): Observable<any> {
-    return this.http.get<any[]>(`${API_URL}${this.CLI_URL}list`);
-  }
-
   public salvar(cliente: any): Observable<any> {
     console.log(cliente)
     return this.http.post(`${API_URL}${this.CLI_URL}save`, cliente);
   }
+
+  public obter(id: any): Observable<any> {
+    return this.http.get(`${API_URL}${this.CLI_URL}get/${id}`);
+  }
+
+  public listar(): Observable<any> {
+    return this.http.get<any[]>(`${API_URL}${this.CLI_URL}list`);
+  }
+
 
   public excluir(id: any): Observable<any> {
     return this.http.delete(`${API_URL}${this.CLI_URL}delete/${id}`);

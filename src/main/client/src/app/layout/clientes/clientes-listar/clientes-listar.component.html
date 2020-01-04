@@ -29,11 +29,11 @@
                 <td>{{c.cpfcnpj}}</td>
                 <td>{{c.tipoCliente.descricao}}</td>
                 <td>
-                    <button class="btn btn-sm btn-primary" >
-                        <i class="fa fa-pencil" title="Editar"></i>
+                    <button class="btn btn-sm btn-primary" (click)="editarCliente(c.id)">
+                        <i class="fa fa-pencil" title="Editar" ></i>
                     </button>
-                    <button class="btn btn-sm btn-danger">
-                        <i class="fa fa-trash" title="Excluir" (click)="excluirCliente(c.id)"></i>
+                    <button class="btn btn-sm btn-danger" (click)="excluirCliente(c.id)">
+                        <i class="fa fa-trash" title="Excluir" ></i>
                     </button>
                 </td>
             </tr>

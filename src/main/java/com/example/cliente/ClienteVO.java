@@ -13,4 +13,5 @@ public class ClienteVO {
     private String nome;
     private String cpfcnpj;
     private TipoCliente tipoCliente;
+    private String tipoClienteId;
 }

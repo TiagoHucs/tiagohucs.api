@@ -39,6 +39,10 @@ export class ClientesListarComponent implements OnInit {
     this.router.navigate(['clientes/cadastro']);
   }
 
+  editarCliente(id: number){
+    this.router.navigate([`clientes/cadastro/${id}`]);
+  }
+
   excluirCliente(id: number){
     this.service.excluir(id).subscribe(
       response => {

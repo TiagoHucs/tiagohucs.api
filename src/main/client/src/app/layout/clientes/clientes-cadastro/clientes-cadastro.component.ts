@@ -3,7 +3,7 @@ import { ClientesService } from '../clientes.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ClienteVO } from '../cliente';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-clientes-cadastro',
@@ -13,26 +13,33 @@ import { Router } from '@angular/router';
 export class ClientesCadastroComponent implements OnInit {
   formCliente: FormGroup;
   loading: boolean;
-  tipos: string[] = ['a','b','c'];
+  tipos: string[];
   
   constructor(
     private service: ClientesService,
     private formBuilder: FormBuilder,
     private toastService: ToastrService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     ) {
   }
 
   ngOnInit() {
     this.obterTipos();
     this.criaFormulario();
+    this.activatedRoute.params.subscribe(params => {
+      if(params.id){
+        this.preencherParaEdicao(params.id);
+      }
+    });
   }
 
   criaFormulario(){
     this.formCliente = this.formBuilder.group({
+      id: [''],
       nome: ['', [Validators.required, Validators.maxLength(150)]],
       cpfcnpj: ['', [Validators.required]],
-      tipoCliente: [null, [Validators.required]],
+      tipoClienteId: [null, [Validators.required]],
     });
   }
 
@@ -40,7 +47,6 @@ export class ClientesCadastroComponent implements OnInit {
     this.service.tipos().subscribe(
       response => {
         this.tipos = response;
-        console.log(this.tipos)
       }
     )
   }
@@ -53,5 +59,15 @@ export class ClientesCadastroComponent implements OnInit {
        }
      )
    }
+
+  preencherParaEdicao(id: number){
+    this.service.obter(id).subscribe(
+      res => {
+        this.formCliente.patchValue(res);
+      }
+    )
+  }
+
+
 
 }

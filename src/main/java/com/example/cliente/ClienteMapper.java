@@ -40,7 +40,7 @@ public class ClienteMapper extends CustomMapper<Cliente, ClienteVO> {
     public void configure() {
         mapperFactory.classMap(Cliente.class, ClienteVO.class)
                 .exclude("tipoCliente")
-                .byDefault(MappingDirection.B_TO_A)
+                .byDefault()
                 .register();
     }
 

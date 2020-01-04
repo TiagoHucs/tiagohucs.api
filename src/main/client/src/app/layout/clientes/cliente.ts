@@ -4,6 +4,7 @@ export class ClienteVO{
     nome: string;
     cpfcnpj: string;
     tipoCliente: TipoCliente;
+    tipoClienteId: string;
 
 }
 

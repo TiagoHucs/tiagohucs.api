@@ -24,7 +24,8 @@ public class ClienteRestController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ResponseEntity<List<ClienteVO>> list(){
         try {
-            List<ClienteVO> result = mapper.mapAsList(service.list(),ClienteVO.class);
+            //List<ClienteVO> result = mapper.mapAsList(service.list(),ClienteVO.class);
+            List<ClienteVO> result = ClienteMapperManual.mapAsVoList(service.list());
             return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -35,7 +36,8 @@ public class ClienteRestController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<Void> save( @RequestBody ClienteVO clienteVo) {
         try {
-            service.save(mapper.map(clienteVo,Cliente.class));
+            //service.save(mapper.map(clienteVo,Cliente.class));
+            service.save(ClienteMapperManual.mapToObject(clienteVo));
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,10 +46,10 @@ public class ClienteRestController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public ResponseEntity<Void> update( @RequestBody Cliente cliente) {
+    public ResponseEntity<Void> update( @RequestBody ClienteVO clienteVO) {
 
         try {
-            service.save(cliente);
+            service.save(ClienteMapperManual.mapToObject(clienteVO));
             return ResponseEntity.status(HttpStatus.OK).build();
         } catch(Exception e ) {
             e.printStackTrace();
@@ -61,6 +63,18 @@ public class ClienteRestController {
         try {
             service.delete(id);
             return ResponseEntity.status(HttpStatus.OK).build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
+    }
+
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    public ResponseEntity<ClienteVO>  get(@PathVariable("id") Long id) {
+
+        try {
+            ClienteVO vo = ClienteMapperManual.mapToVO(service.findById(id));
+            return ResponseEntity.status(HttpStatus.OK).body(vo);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }

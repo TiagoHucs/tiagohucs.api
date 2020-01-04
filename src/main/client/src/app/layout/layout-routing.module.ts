@@ -21,6 +21,7 @@ const routes: Routes = [
             { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
             { path: 'clientes', component: ClientesListarComponent, canActivate: [AuthGuard]},
             { path: 'clientes/cadastro', component: ClientesCadastroComponent, canActivate: [AuthGuard]},
+            { path: 'clientes/cadastro/:id', component: ClientesCadastroComponent, canActivate: [AuthGuard]},
             
             // { path: 'configuracoes', component: ConfiguracoesComponent,
             //     canActivate: [RoleGuard],data: { 
