@@ -9,13 +9,14 @@
          <label>Nome</label>
         <input class="form-control" id="nome" formControlName="nome" type="text" />
         <br><label>Tipo Cliente</label>
-        <select class="form-control" id="tipoCliente" formControlName="tipoClienteId" type="text">
+        <select (change)="formatarCpfCnpj()" class="form-control" id="tipoCliente" formControlName="tipoClienteId" type="text">
             <option [ngValue]="null">Selecione um tipo</option>
             <option *ngFor="let tipo of tipos" value="{{tipo.codigo}}">{{tipo.descricao}}</option>
         </select>
-        <br><label>Cpf/Cnpj</label>
-        <input class="form-control" id="cpfcnpj" formControlName="cpfcnpj" type="text" />
-         
+        <div *ngIf="getTipo() === '1' || getTipo() === '2'">
+            <br><label>{{getTipo() === '1' ? 'CPF' : getTipo() == '2' ? 'CNPJ' : 'CPF/CNPJ'}}</label>
+            <input (keyup)="formatarCpfCnpj()" maxlength="{{getMaxLength()}}" class="form-control" id="cpfcnpj" formControlName="cpfcnpj" type="text" />
+        </div>
     </div>
     <button class="btn btn-success" (click)="cadastrar()" [disabled]="formCliente.invalid">Salvar</button>
 </div>

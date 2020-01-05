@@ -68,6 +68,65 @@ export class ClientesCadastroComponent implements OnInit {
     )
   }
 
+  formatarCpfCnpj(){
+    let cod = this.formCliente.controls['cpfcnpj'].value;
+    let tipo = this.getTipo();
+    cod = cod.replace(/[^0-9]/g, '');
+
+    if(tipo !== null && tipo === '1'){
+      cod = this.formatarCpf(cod);
+    } else if (tipo !== null && tipo === '2'){
+      cod = this.formatarCnpj(cod);
+    }
+    this.formCliente.controls['cpfcnpj'].setValue(cod);
+  }
+
+  formatarCpf(txt: string){
+    txt = txt.substr(0,11)
+    if(txt.length > 3){
+      txt = txt.substr(0,3) + '.' + txt.substr(3);
+    }
+    if(txt.length > 7){
+      txt = txt.substr(0,7) + '.' + txt.substr(7);
+    }
+    if(txt.length > 11){
+      txt = txt.substr(0,11) + '-' + txt.substr(11);
+    }
+    return txt;
+  }
+
+  formatarCnpj(txt: string){
+    txt = txt.substr(0,14)
+    if(txt.length > 2){
+      txt = txt.substr(0,2) + '.' + txt.substr(2);
+    }
+    if(txt.length > 6){
+      txt = txt.substr(0,6) + '.' + txt.substr(6);
+    }
+    if(txt.length > 10){
+      txt = txt.substr(0,10) + '/' + txt.substr(10);
+    }
+    if(txt.length > 15){
+      txt = txt.substr(0,15) + '-' + txt.substr(15);
+    }
+    return txt;
+  }
+
+  getMaxLength(){
+    let tipo = this.getTipo();
+    if(tipo !== null && tipo === '1'){
+      return 14
+    } else if (tipo !== null && tipo === '2'){
+      return 18
+    } else {
+      return 50
+    }
+  }
+
+
+  getTipo(){
+    return this.formCliente.controls['tipoClienteId'].value;
+  }
 
 
 }
