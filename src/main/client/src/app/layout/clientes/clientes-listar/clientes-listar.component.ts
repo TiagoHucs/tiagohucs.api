@@ -11,8 +11,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./clientes-listar.component.css']
 })
 export class ClientesListarComponent implements OnInit {
-  private clientes: ClienteVO[];
-  private loading: boolean;
+  public clientes: ClienteVO[];
+  public loading: boolean;
 
   constructor(
     private service: ClientesService,
