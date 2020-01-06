@@ -45,7 +45,6 @@ public class ClienteRestController {
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public ResponseEntity<Void> update( @RequestBody ClienteVO clienteVO) {
-
         try {
             service.save(mapper.map(clienteVO,Cliente.class));
             return ResponseEntity.status(HttpStatus.OK).build();
@@ -57,7 +56,6 @@ public class ClienteRestController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
-
         try {
             service.delete(id);
             return ResponseEntity.status(HttpStatus.OK).build();

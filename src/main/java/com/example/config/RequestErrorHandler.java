@@ -25,4 +25,5 @@ public class RequestErrorHandler {
     public void handleClientError(HttpServerErrorException e, HttpServletResponse response) throws IOException {
         response.sendError(e.getRawStatusCode(), e.getStatusText());
     }
+
 }
