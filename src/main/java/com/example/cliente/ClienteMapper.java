@@ -39,6 +39,7 @@ public class ClienteMapper extends CustomMapper<Cliente, ClienteVO> {
     @PostConstruct
     public void configure() {
         mapperFactory.classMap(Cliente.class, ClienteVO.class)
+                .customize(this)
                 .exclude("tipoCliente")
                 .byDefault()
                 .register();
