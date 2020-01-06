@@ -9,9 +9,9 @@
          <label>Nome</label>
         <input class="form-control" id="nome" formControlName="nome" type="text" />
         <br><label>Tipo Cliente</label>
-        <select (change)="formatarCpfCnpj()" class="form-control" id="tipoCliente" formControlName="tipoClienteId" type="text">
+        <select (change)="formatarCpfCnpj()" class="form-control" id="tipoCliente" formControlName="tipoCliente" type="text" [compareWith]="compareTipo">
             <option [ngValue]="null">Selecione um tipo</option>
-            <option *ngFor="let tipo of tipos" value="{{tipo.codigo}}">{{tipo.descricao}}</option>
+            <option *ngFor="let tipo of tipos" [ngValue]="tipo">{{tipo.descricao}}</option>
         </select>
         <div *ngIf="getTipo() === '1' || getTipo() === '2'">
             <br><label>{{getTipo() === '1' ? 'CPF' : getTipo() == '2' ? 'CNPJ' : 'CPF/CNPJ'}}</label>

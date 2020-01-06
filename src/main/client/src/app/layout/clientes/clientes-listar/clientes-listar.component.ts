@@ -30,6 +30,7 @@ export class ClientesListarComponent implements OnInit {
     this.service.listar().subscribe(
       response => {
         this.clientes = response;
+        console.log(this.clientes)
         this.loading = false;
       }
     )

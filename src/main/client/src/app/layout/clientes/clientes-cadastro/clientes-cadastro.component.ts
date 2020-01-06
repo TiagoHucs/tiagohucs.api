@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientesService } from '../clientes.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { ClienteVO } from '../cliente';
+import { ClienteVO, TipoCliente } from '../cliente';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -32,6 +32,7 @@ export class ClientesCadastroComponent implements OnInit {
         this.preencherParaEdicao(params.id);
       }
     });
+    this.formatarCpfCnpj()
   }
 
   criaFormulario(){
@@ -39,7 +40,7 @@ export class ClientesCadastroComponent implements OnInit {
       id: [''],
       nome: ['', [Validators.required, Validators.maxLength(150)]],
       cpfcnpj: ['', [Validators.required]],
-      tipoClienteId: [null, [Validators.required]],
+      tipoCliente: [null, [Validators.required]],
     });
   }
 
@@ -52,6 +53,8 @@ export class ClientesCadastroComponent implements OnInit {
   }
 
   cadastrar(){
+    console.log('cadastrar:');
+    console.log(this.formCliente.getRawValue());
    this.service.salvar(this.formCliente.getRawValue()).subscribe(
         response => {
           this.toastService.success('Cliente cadastrado','Sucesso')
@@ -125,11 +128,14 @@ export class ClientesCadastroComponent implements OnInit {
 
 
   getTipo(){
-    return this.formCliente.controls['tipoClienteId'].value;
+    if(this.formCliente.controls['tipoCliente'].value !== null){
+      let tipo: TipoCliente = this.formCliente.controls['tipoCliente'].value
+      return tipo.codigo;
+    }
   }
   
-  compareTipo(p1: number, p2: number) {
-    return p1 && p2 ? p1.toString() === p2.toString() : false;
+  compareTipo(p1: any, p2: any) {
+    return p1 && p2 ? p1.codigo.toString() === p2.codigo.toString() : false;
   }
 
 

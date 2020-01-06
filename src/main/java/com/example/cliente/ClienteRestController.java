@@ -24,8 +24,7 @@ public class ClienteRestController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ResponseEntity<List<ClienteVO>> list(){
         try {
-            //List<ClienteVO> result = mapper.mapAsList(service.list(),ClienteVO.class);
-            List<ClienteVO> result = ClienteMapperManual.mapAsVoList(service.list());
+            List<ClienteVO> result = mapper.mapAsList(service.list(),ClienteVO.class);
             return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -34,10 +33,9 @@ public class ClienteRestController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ResponseEntity<Void> save( @RequestBody ClienteVO clienteVo) {
+    public ResponseEntity<Void> save( @RequestBody ClienteVO clienteVO) {
         try {
-            //service.save(mapper.map(clienteVo,Cliente.class));
-            service.save(ClienteMapperManual.mapToObject(clienteVo));
+            service.save(mapper.map(clienteVO,Cliente.class));
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,7 +47,7 @@ public class ClienteRestController {
     public ResponseEntity<Void> update( @RequestBody ClienteVO clienteVO) {
 
         try {
-            service.save(ClienteMapperManual.mapToObject(clienteVO));
+            service.save(mapper.map(clienteVO,Cliente.class));
             return ResponseEntity.status(HttpStatus.OK).build();
         } catch(Exception e ) {
             e.printStackTrace();
@@ -73,7 +71,7 @@ public class ClienteRestController {
     public ResponseEntity<ClienteVO>  get(@PathVariable("id") Long id) {
 
         try {
-            ClienteVO vo = ClienteMapperManual.mapToVO(service.findById(id));
+            ClienteVO vo = mapper.map(service.findById(id),ClienteVO.class);
             return ResponseEntity.status(HttpStatus.OK).body(vo);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
