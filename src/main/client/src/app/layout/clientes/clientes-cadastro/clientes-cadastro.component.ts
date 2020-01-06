@@ -127,6 +127,11 @@ export class ClientesCadastroComponent implements OnInit {
   getTipo(){
     return this.formCliente.controls['tipoClienteId'].value;
   }
+  
+  compareTipo(p1: number, p2: number) {
+    return p1 && p2 ? p1.toString() === p2.toString() : false;
+  }
+
 
 
 }
