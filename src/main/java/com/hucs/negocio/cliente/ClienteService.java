@@ -1,5 +1,6 @@
 package com.hucs.negocio.cliente;
 
+import com.hucs.negocio.email.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +12,16 @@ public class ClienteService {
     @Autowired
     private ClienteRepository repository;
 
+    @Autowired
+    private EmailService emailService;
+
     public List<Cliente> list(){
         return repository.findAll();
     }
 
     public void save(Cliente cliente){
         repository.save(cliente);
+        //emailService.sendEmail("Cadastro", "cliente cadastrado" + cliente.getNome());
     }
 
     public Cliente findById(Long id){
