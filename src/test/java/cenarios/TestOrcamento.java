@@ -1,10 +1,13 @@
 package cenarios;
 
-import com.example.cliente.Cliente;
-import com.example.cliente.ETipoCliente;
-import com.example.model.*;
-import com.example.service.OrcamentoService;
-import com.example.service.ProdutoService;
+import com.hucs.negocio.cliente.Cliente;
+import com.hucs.negocio.cliente.ETipoCliente;
+import com.hucs.negocio.orcamento.Item;
+import com.hucs.negocio.orcamento.Orcamento;
+import com.hucs.negocio.produto.ETipoMedida;
+import com.hucs.negocio.produto.Produto;
+import com.hucs.negocio.orcamento.OrcamentoService;
+import com.hucs.negocio.produto.ProdutoService;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
