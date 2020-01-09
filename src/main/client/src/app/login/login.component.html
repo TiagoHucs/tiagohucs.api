@@ -1,3 +1,6 @@
+<div class="teste">
+
+
 <div id="container" class="container">
   <div class="row boxlogin">
     <div class="col-sm-6 offset-sm-3 text-center">
@@ -5,7 +8,7 @@
       <h4>Login</h4>
       <h6>v 0.2.2</h6>
       <div class="info-form">
-        <form action="login()" class="form-inlin justify-content-center" #form="ngForm" (ngSubmit)="login()" novalidate>
+        <form class="form-inlin justify-content-center" #form="ngForm" novalidate>
           <div [ngClass]="getFormGroupClass(email.invalid,email.dirty)">
             Email
             <div class="col">
@@ -22,15 +25,20 @@
               <span class="help-block" *ngIf="password.invalid && password.dirty">Password is required</span>
             </div>
           </div>
-          <button type="submit" [disabled]="!form.valid" class="btn btn-primary">
+          <button [disabled]="!form.valid" class="btn btn-primary" (click)="login()">
             <i class="fa fa-user"></i> Login
           </button>
           <button [routerLink]="['/cadastro']" class="btn btn-primary">
             <i class="fa fa-user-plus"></i> Cadastrar
           </button> <br><br>
-
+          <h6>Usuarios para teste</h6>
+          <button class="btn btn-primary" (click)="setUsuario()">Usuario</button>
+          <button class="btn btn-primary" (click)="setAdmin()">Administrador
+          </button>
         </form>
       </div>
     </div>
   </div>
+</div>
+
 </div>

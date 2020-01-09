@@ -21,7 +21,6 @@ public class ClienteService {
 
     public void save(Cliente cliente){
         repository.save(cliente);
-        emailService.sendEmail("Cadastro", "cliente cadastrado" + cliente.getNome());
     }
 
     public Cliente findById(Long id){

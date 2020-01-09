@@ -13,51 +13,61 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
 
-  user = new User('','','','');
-  message : string;
+  user = new User('', '', '', '');
+  message: string;
 
   constructor(private userService: UserService,
-              private router: Router,
-              private toastService: ToastrService,
-              private cookieService: CookieService) { 
+    private router: Router,
+    private toastService: ToastrService,
+    private cookieService: CookieService) {
   }
 
   ngOnInit() {
     let token = this.cookieService.get('token');
-    if(token){
-      this.userService.refresh(this.user).subscribe((userAuthentication:CurrentUser) => {
-        this.cookieService.set('token',userAuthentication.token)
+    if (token) {
+      this.userService.refresh(this.user).subscribe((userAuthentication: CurrentUser) => {
+        this.cookieService.set('token', userAuthentication.token)
         this.router.navigate(['/']);
-    });
+      });
     }
-    //DEFAULT PARA TESTE
-    this.user.email = 'admin@system.com';
-    this.user.password = '123456';
+
   }
-  
-  login(){
+
+  login() {
     this.message = '';
-    this.userService.login(this.user).subscribe((userAuthentication:CurrentUser) => {
-        this.cookieService.set('token',userAuthentication.token)
-        this.router.navigate(['/']);
-    } , err => {
-      this.toastService.error(err.error.status + ' - ' + err.error.message,'Erro');
+    this.userService.login(this.user).subscribe((userAuthentication: CurrentUser) => {
+      this.cookieService.set('token', userAuthentication.token)
+      this.router.navigate(['/']);
+    }, err => {
+      this.toastService.error(err.error.status + ' - ' + err.error.message, 'Erro');
     });
   }
 
-  cancelLogin(){
+  cancelLogin() {
     this.cookieService.delete('token');
     this.message = '';
-    this.user = new User('', '','','');
+    this.user = new User('', '', '', '');
     window.location.href = '/login';
     window.location.reload();
   }
 
-  getFormGroupClass(isInvalid: boolean, isDirty:boolean): {} {
+  getFormGroupClass(isInvalid: boolean, isDirty: boolean): {} {
     return {
       'form-group': true,
-      'has-error' : isInvalid  && isDirty,
-      'has-success' : !isInvalid  && isDirty
+      'has-error': isInvalid && isDirty,
+      'has-success': !isInvalid && isDirty
     };
+  }
+
+  setUsuario() {
+    this.user.email = 'usuario@system.com';
+    this.user.password = '112233';
+    console.log(this.user)
+  }
+
+  setAdmin() {
+    this.user.email = 'admin@system.com';
+    this.user.password = '123456';
+    console.log(this.user)
   }
 }

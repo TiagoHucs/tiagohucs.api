@@ -1,5 +1,6 @@
 package com.hucs.user;
 
+import com.hucs.negocio.email.EmailService;
 import com.hucs.security.entity.User;
 import com.hucs.security.enums.ProfileEnum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private EmailService emailService;
+
 
     @RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
     public ResponseEntity<Void> cadastrar(@RequestBody User user) {
@@ -28,6 +32,7 @@ public class UserController {
 
         try {
             userService.createOrUpdate(user);
+            //emailService.sendEmail("App - Novo cadastro", "usuario cadastrado: " + user.getEmail());
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             e.printStackTrace();
