@@ -3,9 +3,11 @@ package com.hucs.user;
 import com.hucs.negocio.email.EmailService;
 import com.hucs.security.entity.User;
 import com.hucs.security.enums.ProfileEnum;
+import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +25,8 @@ public class UserController {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private MapperFacade mapper;
 
     @RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
     public ResponseEntity<Void> cadastrar(@RequestBody User user) {
@@ -38,6 +42,12 @@ public class UserController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+    }
+
+    @RequestMapping(value = "/perfil", method = RequestMethod.GET)
+    public ResponseEntity<PerfilVO> getPerfil() {
+        Object o = SecurityContextHolder.getContext().getAuthentication();
+        return ResponseEntity.ok().body(mapper.map(o,PerfilVO.class));
     }
 
 

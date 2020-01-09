@@ -29,7 +29,6 @@ public class UserServiceImpl implements UserService {
 		this.userRepository.deleteById(id);
 	}
 
-
 	public List<User> findAll() {
 		return this.userRepository.findAll();
 	}

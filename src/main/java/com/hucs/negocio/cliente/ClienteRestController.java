@@ -1,9 +1,11 @@
 package com.hucs.negocio.cliente;
 
+import com.hucs.user.PerfilVO;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -24,6 +26,8 @@ public class ClienteRestController {
     public ResponseEntity<List<ClienteVO>> list(){
         try {
             List<ClienteVO> result = mapper.mapAsList(service.list(),ClienteVO.class);
+            Object o = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            mapper.map(o,PerfilVO.class);
             return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
