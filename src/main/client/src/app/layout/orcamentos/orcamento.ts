@@ -7,6 +7,8 @@ export class OrcamentoVO{
     cliente: ClienteVO;
     itens: ItemVO[];
     total: number;
+    dataEmissao: number;
+    dataValidade: number;
 
 }
 

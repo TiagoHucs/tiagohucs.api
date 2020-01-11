@@ -26,8 +26,8 @@ public class ClienteRestController {
     public ResponseEntity<List<ClienteVO>> list(){
         try {
             List<ClienteVO> result = mapper.mapAsList(service.list(),ClienteVO.class);
-            Object o = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            mapper.map(o,PerfilVO.class);
+            //Object o = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            //mapper.map(o,PerfilVO.class);
             return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

@@ -1,44 +1,42 @@
-<div class="teste">
-
-
-<div id="container" class="container">
-  <div class="row boxlogin">
-    <div class="col-sm-6 offset-sm-3 text-center">
-        <span [routerLink]="['/']"><h1>Orcamento.com</h1></span>
-      <h4>Login</h4>
-      <h6>v 0.2.2</h6>
-      <div class="info-form">
-        <form class="form-inlin justify-content-center" #form="ngForm" novalidate>
-          <div [ngClass]="getFormGroupClass(email.invalid,email.dirty)">
-            Email
-            <div class="col">
-              <input type="email" [(ngModel)]="user.email" name="email" class="form-control" id="inputEmail"
-                #email="ngModel" placeholder="e-mail" email>
-              <span class="help-block" *ngIf="email.invalid  && email.dirty">Email is invalid </span>
+<div class="bglogin">
+  <div id="container" class="container">
+    <div class="row boxlogin">
+      <div class="col-sm-6 offset-sm-3 text-center">
+        <span [routerLink]="['/']">
+          <h1>Orcamento</h1>
+        </span>
+        <h4>Login</h4>
+        <div class="info-form">
+          <form class="form-inlin justify-content-center" #form="ngForm" novalidate>
+            <div [ngClass]="getFormGroupClass(email.invalid,email.dirty)">
+              Email
+              <div class="col">
+                <input type="email" [(ngModel)]="user.email" name="email" class="form-control" id="inputEmail"
+                  #email="ngModel" placeholder="e-mail" email>
+                <span class="help-block" *ngIf="email.invalid  && email.dirty">Email is invalid </span>
+              </div>
             </div>
-          </div>
-          <div [ngClass]="getFormGroupClass(password.invalid,password.dirty)">
-            Password
-            <div class="col">
-              <input type="password" [(ngModel)]="user.password" name="password" class="form-control" id="inputPassword"
-                placeholder="password" #password="ngModel" required>
-              <span class="help-block" *ngIf="password.invalid && password.dirty">Password is required</span>
+            <div [ngClass]="getFormGroupClass(password.invalid,password.dirty)">
+              Password
+              <div class="col">
+                <input type="password" [(ngModel)]="user.password" name="password" class="form-control"
+                  id="inputPassword" placeholder="password" #password="ngModel" required>
+                <span class="help-block" *ngIf="password.invalid && password.dirty">Password is required</span>
+              </div>
             </div>
-          </div>
-          <button [disabled]="!form.valid" class="btn btn-primary" (click)="login()">
-            <i class="fa fa-user"></i> Login
-          </button>
-          <button [routerLink]="['/cadastro']" class="btn btn-primary">
-            <i class="fa fa-user-plus"></i> Cadastrar
-          </button> <br><br>
-          <h6>Usuarios para teste</h6>
-          <button class="btn btn-primary" (click)="setUsuario()">Usuario</button>
-          <button class="btn btn-primary" (click)="setAdmin()">Administrador
-          </button>
-        </form>
+            <button [disabled]="!form.valid" class="btn btn-primary" (click)="login()">
+              <i class="fa fa-user"></i> Login
+            </button>
+            <button [routerLink]="['/cadastro']" class="btn btn-primary">
+              <i class="fa fa-user-plus"></i>Pagina de cadastro
+            </button> <br><br>
+            <h6>Usuarios para teste</h6>
+            <button class="btn btn-primary" (click)="setUsuario()">Usuario</button>
+            <button class="btn btn-primary" (click)="setAdmin()">Administrador
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 </div>

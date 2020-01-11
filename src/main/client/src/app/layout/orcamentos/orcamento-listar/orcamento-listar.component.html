@@ -8,6 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>Emissão</th>
+                <th>Validade</th>
                 <th>Cliente</th>
                 <th>Menu</th>
             </tr>
@@ -16,6 +17,7 @@
             <tr class="text-center" *ngFor="let o of orcamentos">
                 <td>{{o.id}}</td>
                 <td>{{o.dataEmissao}}</td>
+                <td>{{o.dataValidade}}</td>
                 <td>{{o.cliente.nome}}</td>
                 <td>
                     <!-- <button (click)="editaOrcamento(o)" title="Editar"
@@ -30,28 +32,6 @@
             </tr>
         </tbody>
     </table>
-    <br>
-    <div class="row">
-            <div *ngFor="let o of orcamentos" class="col-xl-3 col-sm-6 mb-3">
-                <div class="card ">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col">
-                                <b>{{o.id}}</b><br>
-                                {{o.dataEmissao}}<br>
-                                {{o.cliente.nome}}
-                            </div>
-                            <div class="col">
-                                    <button data-toggle="modal" data-target="#myModal" (click)="excluirOrcamento(o)" title="Editar"
-                                    type="button" class="btn btn-sm btn-default pull-right">
-                                    <i class="fa fa-pencil"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 </div>
 
 <div class="modal" id="modalExclusao">

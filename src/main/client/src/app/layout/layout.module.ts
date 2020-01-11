@@ -10,6 +10,7 @@ import { NgxCurrencyModule } from 'ngx-currency';
 import { OrcamentoEditarComponent } from './orcamentos/orcamento-editar/orcamento-editar.component';
 import { OrcamentoListarComponent } from './orcamentos/orcamento-listar/orcamento-listar.component';
 import { ClientesModule } from './clientes/clientes.module';
+import { SnotifyModule, SnotifyService, SnotifyToast, ToastDefaults } from 'ng-snotify';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,12 @@ import { ClientesModule } from './clientes/clientes.module';
     FormsModule,
     ReactiveFormsModule,
     NgxCurrencyModule,
-    ClientesModule
-  ]
+    ClientesModule,
+    SnotifyModule
+  ],
+  providers: [
+    { provide: 'SnotifyToastConfig', useValue: ToastDefaults},
+    SnotifyService
+  ],
 })
 export class LayoutModule { }

@@ -15,6 +15,7 @@ export class CadastroComponent implements OnInit {
 
   user = new User('','','','');
   message : string;
+  cadastrou : boolean;
   
   constructor(
     private userService: UserService,
@@ -30,8 +31,9 @@ export class CadastroComponent implements OnInit {
       this.message = '';
       this.user.profile = null;
       this.userService.createOrUpdate(this.user).subscribe((userAuthentication:CurrentUser) => {
-        this.toastService.success('Cadastrado com sucesso, faça o seu login!','Concluído');
-          this.router.navigate(['/login']);
+        //this.toastService.success('Cadastrado com sucesso, faça o seu login!','Concluído');
+        this.cadastrou = true  
+        //this.router.navigate(['/login']);
       } , err => {
         this.toastService.error(err.error.status + ' - ' + err.error.message,'Erro');
       });

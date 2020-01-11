@@ -1,5 +1,6 @@
 package com.hucs.negocio.orcamento;
 
+import com.hucs.negocio.cliente.ClienteVO;
 import com.hucs.negocio.produto.ProdutoRepository;
 import com.hucs.negocio.cliente.ClienteService;
 import com.hucs.negocio.produto.ProdutoService;
@@ -36,7 +37,6 @@ public class OrcamentoMapper {
 
     public Orcamento map(OrcamentoVO vo){
         orcamento = Orcamento.builder()
-                .dataEmissao(LocalDate.now())
                 .cliente(clienteService.findById(vo.getCliente().getId()))
                 .build();
         mapItens(vo.getItens());
@@ -46,7 +46,7 @@ public class OrcamentoMapper {
     public OrcamentoVO map(Orcamento obj){
         return OrcamentoVO.builder()
                 .id(obj.getId())
-               // .cliente(mapper(obj.getCliente(), ClienteVO.class))
+                .cliente(mapper.map(obj.getCliente(), ClienteVO.class))
                 .dataEmissao(obj.getDataEmissao())
                 .dataValidade(obj.getDataValidade())
                 .build();

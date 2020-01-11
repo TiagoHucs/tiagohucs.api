@@ -1,10 +1,22 @@
-<div id="container" class="container">
+<div class="bglogin">
+  <div id="container" class="container">
     <div class="row boxlogin">
       <div class="col-sm-6 offset-sm-3 text-center">
-        <span [routerLink]="['/']"><h1>Orcamento.com</h1></span>
-          <h4>Cadastro</h4>
-        <div class="info-form">
-          <form action="cadastrar()" class="form-inlin justify-content-center" #form="ngForm" (ngSubmit)="cadastrar()" novalidate>
+        <span [routerLink]="['/']">
+          <h1>Orcamento</h1>
+        </span>
+        <h4>Cadastro</h4>
+        <div *ngIf="cadastrou">
+          <div class="alert alert-success">
+            <strong>Successo!</strong> Seu cadastro foi efetuado com sucesso volte para a pagina de login para acessar a sua conta.
+          </div>    
+          <button [routerLink]="['/login']" class="btn btn-primary">
+            <i class="fa fa-mail-reply"></i> Voltar para o login
+          </button> <br><br>      
+        </div>
+        <div *ngIf="!cadastrou" class="info-form">
+          <form action="cadastrar()" class="form-inlin justify-content-center" #form="ngForm" (ngSubmit)="cadastrar()"
+            novalidate>
             <div [ngClass]="getFormGroupClass(email.invalid,email.dirty)">
               Email
               <div class="col">
@@ -16,8 +28,8 @@
             <div [ngClass]="getFormGroupClass(password.invalid,password.dirty)">
               Password
               <div class="col">
-                <input type="password" [(ngModel)]="user.password" name="password" class="form-control" id="inputPassword"
-                  placeholder="password" #password="ngModel" required>
+                <input type="password" [(ngModel)]="user.password" name="password" class="form-control"
+                  id="inputPassword" placeholder="password" #password="ngModel" required>
                 <span class="help-block" *ngIf="password.invalid && password.dirty">Password is required</span>
               </div>
             </div>
@@ -27,9 +39,9 @@
             <button [routerLink]="['/login']" class="btn btn-primary">
               <i class="fa fa-mail-reply"></i> Voltar para o login
             </button> <br><br>
-  
           </form>
         </div>
       </div>
     </div>
   </div>
+</div>
