@@ -10,11 +10,11 @@ import org.springframework.web.client.HttpServerErrorException;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component
-@ControllerAdvice
+//@Component
+//@ControllerAdvice
 public class RequestErrorHandler {
 
-    @ExceptionHandler(HttpClientErrorException.class)
+/*    @ExceptionHandler(HttpClientErrorException.class)
     @ResponseBody
     public void handleError(HttpClientErrorException e, HttpServletResponse response) throws IOException {
         response.sendError(e.getRawStatusCode(), e.getStatusText());
@@ -24,6 +24,6 @@ public class RequestErrorHandler {
     @ResponseBody
     public void handleClientError(HttpServerErrorException e, HttpServletResponse response) throws IOException {
         response.sendError(e.getRawStatusCode(), e.getStatusText());
-    }
+    }*/
 
 }

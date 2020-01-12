@@ -10,4 +10,6 @@ public interface OrcamentoRepository extends JpaRepository<Orcamento, Long> {
 
     long count();
 
+    long countGroupByClienteId(Long id);
+
 }

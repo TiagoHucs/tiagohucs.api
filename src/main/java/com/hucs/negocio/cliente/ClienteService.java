@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 
 import java.util.List;
 
@@ -21,29 +22,28 @@ public class ClienteService {
     @Autowired
     private EmailService emailService;
 
-    public List<Cliente> list(){
+    public List<Cliente> list() {
         return repository.findAll();
     }
 
-    public void save(Cliente cliente){
+    public void save(Cliente cliente) {
         repository.save(cliente);
     }
 
-    public Cliente findById(Long id){
+    public Cliente findById(Long id) {
         return repository.findById(id).get();
     }
 
-    public void delete(Long clienteId){
+    public void delete(Long clienteId) {
         //TODO: deve ir para um validator
-        Long quantidade = orcamentoService.contarOrcamentosDoCliente(clienteId);
-        if(quantidade > 0){
-            throw new HttpClientErrorException(HttpStatus.CONFLICT,"Cliente com orçamentos associados");
-        } else {
-            repository.deleteById(clienteId);
-        }
+        if (orcamentoService.contarOrcamentosDoCliente(clienteId) > 0)
+            throw new HttpServerErrorException(HttpStatus.FORBIDDEN, "Cliente com orçamentos associados");
+        repository.deleteById(clienteId);
     }
 
-    public long count(){
+    public long count() {
         return repository.count();
-    };
+    }
+
+    ;
 }

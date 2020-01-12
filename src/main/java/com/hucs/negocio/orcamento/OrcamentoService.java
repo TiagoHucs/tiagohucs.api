@@ -32,14 +32,6 @@ public class OrcamentoService {
     };
 
     public long contarOrcamentosDoCliente(Long clienteId) {
-        //TODO: melhorar muito isso aqui ... countByClientId ???
-        List<Orcamento> orcamentos = repository.findAll();
-        List<Orcamento> orcamentosDesteCliente = new ArrayList<>();
-        for (Orcamento o: orcamentos) {
-            if(o.getCliente().getId().equals(clienteId)){
-                orcamentosDesteCliente.add(o);
-            }
-        }
-        return orcamentosDesteCliente.size();
+        return repository.countGroupByClienteId(clienteId);
     }
 }
