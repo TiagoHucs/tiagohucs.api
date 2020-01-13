@@ -10,6 +10,7 @@ import java.util.Properties;
 //@Configuration
 public class ConfigMail {
 
+    //TODO: varificar s melhor aqui ou no properties
 /*    @Bean
     public JavaMailSender javaMailService() {
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();

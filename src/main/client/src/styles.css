@@ -5,3 +5,18 @@
 .sombra{
     box-shadow: 10px 10px 5px grey;
 }
+
+.bg-blue{
+    background-color: #3b5998 ;
+}
+
+.bg-gray{
+    background-color: #e5e5e5 ;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+table{
+    background-color: white ;
+}

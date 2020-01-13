@@ -1,7 +1,9 @@
-<app-header></app-header>
-<!-- <app-sidebar (collapsedEvent)="receiveCollapsed($event)"></app-sidebar> -->
-<!-- <section class="main-container" [ngClass]="{collapsed: collapedSideBar}"> -->
-<section class="main-container" >
-    <router-outlet></router-outlet>
-</section>
-<ng-snotify></ng-snotify>
+<div class="bg-gray">
+    <app-header></app-header>
+    <!-- <app-sidebar (collapsedEvent)="receiveCollapsed($event)"></app-sidebar> -->
+    <!-- <section class="main-container" [ngClass]="{collapsed: collapedSideBar}"> -->
+    <section class="main-container" >
+        <router-outlet></router-outlet>
+    </section>
+    <ng-snotify></ng-snotify>
+</div>
