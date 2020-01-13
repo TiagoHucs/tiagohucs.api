@@ -1,0 +1,35 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    Perfil
+                    <img src="assets/profile-default-image.png" />
+                    <p><b>{{userService.getUsername()}}</b></p>
+                    <i>Graphic Designer</i>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div [formGroup]="formPublicacao" class="card-body text-center">
+                    <i class="pull-left">O que estou pensando...</i>
+                    <input class="form-control" formControlName="texto" type="text-area"/>
+                    <div class="btn btn-sm btn-primary pull-right" (click)="publicar()">Publicar</div>
+                </div>
+            </div>
+            <div *ngFor="let p of publicacoes" class="card">
+                <div class="card-body text-left">
+                    {{p}}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    outros
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

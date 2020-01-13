@@ -1,4 +1,4 @@
-package com.hucs.user;
+package com.hucs.negocio.perfil;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../model/user';
-import { UserService } from '../service/user/user.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { CurrentUser } from '../model/currentUser';
 import { ToastrService } from 'ngx-toastr';
+
+import { User } from '../model/user';
+import { UserService } from '../service/user/user.service';
+import { CurrentUser } from '../model/currentUser';
+
+import { API_NOME } from './../app.constants'
 
 @Component({
   selector: 'app-cadastro',
@@ -13,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CadastroComponent implements OnInit {
 
+  nomeAplicacao: string = API_NOME;
   user = new User('','','','');
   message : string;
   cadastrou : boolean;

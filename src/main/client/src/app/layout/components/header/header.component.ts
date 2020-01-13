@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/security/auth.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { UserService } from 'src/app/service/user/user.service';
 import decode from 'jwt-decode';
+
+import { AuthService } from 'src/app/security/auth.service';
+import { UserService } from 'src/app/service/user/user.service';
+
+import { API_NOME } from './../../../app.constants'
 
 @Component({
   selector: 'app-header',
@@ -11,6 +14,8 @@ import decode from 'jwt-decode';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+  nomeAplicacao: string = API_NOME
   username: string;
 
   constructor(private authService: AuthService,

@@ -8,6 +8,7 @@ import { ClientesListarComponent } from './clientes/clientes-listar/clientes-lis
 import { OrcamentoEditarComponent } from './orcamentos/orcamento-editar/orcamento-editar.component';
 import { OrcamentoListarComponent } from './orcamentos/orcamento-listar/orcamento-listar.component';
 import { ClientesCadastroComponent } from './clientes/clientes-cadastro/clientes-cadastro.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
     {
@@ -19,6 +20,7 @@ const routes: Routes = [
             { path: 'orcamentos-listar', component: OrcamentoListarComponent, canActivate: [AuthGuard]},
             { path: 'orcamento-editar', component: OrcamentoEditarComponent, canActivate: [AuthGuard]},
             { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+            { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
             { path: 'clientes', component: ClientesListarComponent, canActivate: [AuthGuard]},
             { path: 'clientes/cadastro', component: ClientesCadastroComponent, canActivate: [AuthGuard]},
             { path: 'clientes/cadastro/:id', component: ClientesCadastroComponent, canActivate: [AuthGuard]},

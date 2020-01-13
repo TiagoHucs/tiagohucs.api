@@ -1,5 +1,6 @@
 package com.hucs.user;
 
+import com.hucs.config.NegocioException;
 import com.hucs.negocio.email.EmailService;
 import com.hucs.security.entity.User;
 import com.hucs.security.enums.ProfileEnum;
@@ -34,21 +35,17 @@ public class UserController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setProfile(ProfileEnum.ROLE_USUARIO);
 
-        try {
+        User usuario = userService.findByEmail(user.getEmail());
+        if(usuario != null)
+            throw new NegocioException("Usuario já existe");
+
             userService.createOrUpdate(user);
-            //emailService.sendEmail("App - Novo cadastro", "usuario cadastrado: " + user.getEmail());
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
+        //emailService.sendEmail("App - Novo cadastro", "usuario cadastrado: " + user.getEmail());
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+
     }
 
-    @RequestMapping(value = "/perfil", method = RequestMethod.GET)
-    public ResponseEntity<PerfilVO> getPerfil() {
-        Object o = SecurityContextHolder.getContext().getAuthentication();
-        return ResponseEntity.ok().body(mapper.map(o,PerfilVO.class));
-    }
 
 
 }

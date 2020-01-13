@@ -11,6 +11,7 @@ import { OrcamentoEditarComponent } from './orcamentos/orcamento-editar/orcament
 import { OrcamentoListarComponent } from './orcamentos/orcamento-listar/orcamento-listar.component';
 import { ClientesModule } from './clientes/clientes.module';
 import { SnotifyModule, SnotifyService, SnotifyToast, ToastDefaults } from 'ng-snotify';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SnotifyModule, SnotifyService, SnotifyToast, ToastDefaults } from 'ng-s
     HeaderComponent,
     DashboardComponent,
     OrcamentoEditarComponent,
-    OrcamentoListarComponent,],
+    OrcamentoListarComponent,
+    HomeComponent,],
   imports: [
     CommonModule,
     LayoutRoutingModule,

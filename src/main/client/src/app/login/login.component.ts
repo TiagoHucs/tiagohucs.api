@@ -1,10 +1,13 @@
-import { CurrentUser } from '../model/currentUser';
-import { UserService } from '../service/user/user.service';
-import { User } from '../model/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
+
+import { CurrentUser } from '../model/currentUser';
+import { UserService } from '../service/user/user.service';
+import { User } from '../model/user';
+
+import { API_NOME } from './../app.constants'
 
 @Component({
   selector: 'app-login',
@@ -13,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
 
+  nomeAplicacao: string = API_NOME
   user = new User('', '', '', '');
   message: string;
 
