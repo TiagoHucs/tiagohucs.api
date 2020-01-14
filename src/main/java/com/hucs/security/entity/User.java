@@ -1,5 +1,6 @@
 package com.hucs.security.entity;
 
+import com.hucs.negocio.perfil.Perfil;
 import com.hucs.security.enums.ProfileEnum;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -34,6 +35,9 @@ public class User {
 
 	@Column
 	private ProfileEnum profile;
+
+	@OneToOne
+	private Perfil perfil;
 
 
 }

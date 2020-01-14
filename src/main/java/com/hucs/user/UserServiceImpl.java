@@ -1,5 +1,7 @@
 package com.hucs.user;
 
+import com.hucs.negocio.perfil.Perfil;
+import com.hucs.negocio.perfil.PerfilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,11 +15,15 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private PerfilService perfilService;
+
 	public User findByEmail(String email) {
 		return this.userRepository.findByEmail(email);
 	}
 
 	public User createOrUpdate(User user) {
+		criaSeNaoExistPerfil(user);
 		return this.userRepository.save(user);
 	}
 
@@ -31,5 +37,15 @@ public class UserServiceImpl implements UserService {
 
 	public List<User> findAll() {
 		return this.userRepository.findAll();
+	}
+
+	private void criaSeNaoExistPerfil(User user){
+		if(user.getPerfil() == null){
+			Perfil perfil = new Perfil();
+			perfil.setNome(user.getEmail());
+			perfilService.save(perfil);
+			user.setPerfil(perfil);
+			userRepository.save(user);
+		}
 	}
 }
