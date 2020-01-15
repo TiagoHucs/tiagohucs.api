@@ -1,1 +1,1 @@
-export const API_NOME: string = 'Social Hucs';
+export const API_NOME: string = 'Application';

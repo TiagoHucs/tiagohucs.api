@@ -1,0 +1,7 @@
+<div class="card">
+    <div [formGroup]="formPublicacao" class="card-body text-center">
+        <i class="pull-left">O que estou pensando...</i>
+        <input class="form-control" formControlName="texto" type="text-area"/>
+        <div class="btn btn-sm btn-primary pull-right" (click)="publicar()">Publicar</div>
+    </div>
+</div>

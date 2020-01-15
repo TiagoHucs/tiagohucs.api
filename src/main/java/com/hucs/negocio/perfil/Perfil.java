@@ -1,6 +1,6 @@
 package com.hucs.negocio.perfil;
 
-import com.hucs.negocio.post.Post;
+import com.hucs.negocio.publicacao.Publicacao;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +19,6 @@ public class Perfil {
     @Column
     private String nome;
     @OneToMany
-    private List<Post> publicacoes;
+    private List<Publicacao> publicacoes;
 
 }

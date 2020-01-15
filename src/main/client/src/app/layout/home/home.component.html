@@ -10,21 +10,8 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <div class="card">
-                <div [formGroup]="formPublicacao" class="card-body text-center">
-                    <i class="pull-left">O que estou pensando...</i>
-                    <input class="form-control" formControlName="texto" type="text-area"/>
-                    <div class="btn btn-sm btn-primary pull-right" (click)="publicar()">Publicar</div>
-                </div>
-            </div>
-            <div *ngFor="let p of publicacoes" class="card p-3">
-                <img src="assets/profile-default-image.png" class="mr-3 mt-3 rounded-circle" style="width:60px; ">
-                <div class="media-body">
-                  
-                  <h5 style="margin-bottom: -5px;">John Doe</h5> <small><i>Posted on February 19, 2016</i></small><br>
-                  {{p}}
-                </div>
-              </div>
+        <app-publicacao-criar></app-publicacao-criar>
+        <app-publicacao-listar></app-publicacao-listar>
         </div>
         <div class="col-sm-3">
             <div class="card">
