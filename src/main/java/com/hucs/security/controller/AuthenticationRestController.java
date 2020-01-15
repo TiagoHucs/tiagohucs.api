@@ -2,6 +2,7 @@ package com.hucs.security.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.hucs.config.NegocioException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,11 +17,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hucs.security.entity.User;
+import com.hucs.security.user.User;
 import com.hucs.security.jwt.JwtAuthenticationRequest;
 import com.hucs.security.jwt.JwtTokenUtil;
 import com.hucs.security.model.CurrentUser;
-import com.hucs.user.UserService;
+import com.hucs.security.user.UserService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -40,18 +41,25 @@ public class AuthenticationRestController {
 
     @PostMapping(value="/api/auth")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest) throws AuthenticationException {
+        final Authentication authentication;
+        try{
+            authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            authenticationRequest.getEmail(),
+                            authenticationRequest.getPassword()
+                    )
+            );
+        } catch (AuthenticationException e){
+            throw new NegocioException("Usuario ou senha inválidos");
+        }
 
-        final Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        authenticationRequest.getEmail(),
-                        authenticationRequest.getPassword()
-                )
-        );
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
         final String token = jwtTokenUtil.generateToken(userDetails);
         final User user = userService.findByEmail(authenticationRequest.getEmail());
         user.setPassword(null);
+        //TODO: tirar no logout ?
+        userService.setCurrentUser(user);
         return ResponseEntity.ok(new CurrentUser(token, user));
     }
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { CookieService } from 'ngx-cookie-service';
-import { ToastrService } from 'ngx-toastr';
 
 import { CurrentUser } from '../model/currentUser';
 import { UserService } from '../service/user/user.service';
@@ -22,7 +21,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: UserService,
     private router: Router,
-    private toastService: ToastrService,
     private cookieService: CookieService) {
   }
 
@@ -43,7 +41,7 @@ export class LoginComponent implements OnInit {
       this.cookieService.set('token', userAuthentication.token)
       this.router.navigate(['/']);
     }, err => {
-      this.toastService.error(err.error.status + ' - ' + err.error.message, 'Erro');
+      this.message = err.error.message;
     });
   }
 

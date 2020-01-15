@@ -1,14 +1,12 @@
-package com.hucs.user;
+package com.hucs.security.user;
 
 import com.hucs.config.NegocioException;
 import com.hucs.negocio.email.EmailService;
-import com.hucs.security.entity.User;
 import com.hucs.security.enums.ProfileEnum;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +37,7 @@ public class UserController {
         if(usuario != null)
             throw new NegocioException("Usuario já existe");
 
-            userService.createOrUpdate(user);
+        userService.createOrUpdate(user);
         //emailService.sendEmail("App - Novo cadastro", "usuario cadastrado: " + user.getEmail());
 
         return ResponseEntity.status(HttpStatus.CREATED).build();

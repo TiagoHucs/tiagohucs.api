@@ -1,6 +1,6 @@
 package com.hucs.security.model;
 
-import com.hucs.security.entity.User;
+import com.hucs.security.user.User;
 
 public class CurrentUser {
 	

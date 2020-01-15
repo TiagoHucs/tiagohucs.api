@@ -6,6 +6,11 @@
           <h1>{{nomeAplicacao}}</h1>
         </span>
         <h4>Login</h4>
+        <div *ngIf="message">
+          <div class="alert alert-danger">
+            {{message}}
+          </div>       
+        </div>
         <div class="info-form">
           <form class="form-inlin justify-content-center" #form="ngForm" novalidate>
             <div [ngClass]="getFormGroupClass(email.invalid,email.dirty)">
@@ -30,10 +35,10 @@
             <button [routerLink]="['/cadastro']" class="btn btn-primary">
               <i class="fa fa-user-plus"></i>Pagina de cadastro
             </button> <br><br>
-            <h6>Usuarios para teste</h6>
+            <!-- <h6>Usuarios para teste</h6>
             <button class="btn btn-primary" (click)="setUsuario()">Usuario</button>
             <button class="btn btn-primary" (click)="setAdmin()">Administrador
-            </button>
+            </button> -->
           </form>
         </div>
       </div>

@@ -6,9 +6,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.hucs.security.entity.User;
+import com.hucs.security.user.User;
 import com.hucs.security.jwt.JwtUserFactory;
-import com.hucs.user.UserService;
+import com.hucs.security.user.UserService;
 
 @Service
 public class JwtUserDetailsServiceImpl  implements UserDetailsService {

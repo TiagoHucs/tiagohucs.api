@@ -1,11 +1,9 @@
-package com.hucs.user;
+package com.hucs.security.user;
 
 import com.hucs.negocio.perfil.Perfil;
 import com.hucs.negocio.perfil.PerfilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.hucs.security.entity.User;
 
 import java.util.List;
 
@@ -17,6 +15,17 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private PerfilService perfilService;
+
+	//TODO: verificar se pode ser o CurrentUser
+	User currentUser;
+
+	public User getCurrentUser(){
+		return this.currentUser;
+	}
+
+	public void setCurrentUser(User user){
+		this.currentUser = user;
+	}
 
 	public User findByEmail(String email) {
 		return this.userRepository.findByEmail(email);

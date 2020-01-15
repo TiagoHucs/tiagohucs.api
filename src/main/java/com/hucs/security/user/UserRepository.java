@@ -1,6 +1,5 @@
-package com.hucs.user;
+package com.hucs.security.user;
 
-import com.hucs.security.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

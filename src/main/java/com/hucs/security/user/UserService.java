@@ -1,8 +1,6 @@
-package com.hucs.user;
+package com.hucs.security.user;
 
 import org.springframework.stereotype.Component;
-
-import com.hucs.security.entity.User;
 
 import java.util.List;
 
@@ -18,4 +16,8 @@ public interface UserService {
 	void delete(Long id);
 	
 	List<User> findAll();
+
+	User getCurrentUser();
+
+	void setCurrentUser(User user);
 }

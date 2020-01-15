@@ -8,9 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.hucs.user.UserRepository;
-import com.hucs.security.entity.User;
-import com.hucs.security.enums.ProfileEnum;
+import com.hucs.security.user.UserRepository;
 
 @SpringBootApplication
 public class Main {
@@ -33,7 +31,7 @@ public class Main {
   }
 
   private void initUsers(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-    User admin = new User();
+/*    User admin = new User();
     admin.setEmail("admin@system.com");
     admin.setPassword(passwordEncoder.encode("123456"));
     admin.setProfile(ProfileEnum.ROLE_ADMIN);
@@ -51,7 +49,7 @@ public class Main {
     User find2 = userRepository.findByEmail("usuario@system.com");
     if (find2 == null) {
       userRepository.save(usuario);
-    }
+    }*/
   }
 
 

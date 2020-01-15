@@ -1,5 +1,6 @@
 package com.hucs.negocio.publicacao;
 
+import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,9 @@ public class PublicacaoController {
     @Autowired
     private PublicacaoService service;
 
+    @Autowired
+    private MapperFacade mapper;
+
     @RequestMapping(value = "/criar", method = RequestMethod.POST)
     public ResponseEntity<Void> criar(@RequestBody Publicacao publicacao) {
         service.criar(publicacao);
@@ -25,9 +29,8 @@ public class PublicacaoController {
     }
 
     @RequestMapping(value = "/listar", method = RequestMethod.GET)
-    public ResponseEntity<List<Publicacao>> listar() {
-        service.listar();
-        return ResponseEntity.ok(service.listar());
-
+    public ResponseEntity<List<PublicacaoVO>> listar() {
+        List<PublicacaoVO> list = mapper.mapAsList(service.listar(),PublicacaoVO.class);
+        return ResponseEntity.ok(list);
     }
 }
