@@ -23,7 +23,6 @@ export class CadastroComponent implements OnInit {
   
   constructor(
     private userService: UserService,
-    private toastService: ToastrService,
     private router: Router) { 
   }
 
@@ -39,7 +38,8 @@ export class CadastroComponent implements OnInit {
         this.cadastrou = true  
         //this.router.navigate(['/login']);
       } , err => {
-        this.toastService.error(err.error.status + ' - ' + err.error.message,'Erro');
+        this.message = err.error.message;
+        console.log(err.error.message)
       });
   }
 

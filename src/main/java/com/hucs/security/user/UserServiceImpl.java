@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
 	private void criaSeNaoExistPerfil(User user){
 		if(user.getPerfil() == null){
 			Perfil perfil = new Perfil();
-			perfil.setNome(user.getEmail());
+			perfil.setNome(user.getEmail().substring(0,user.getEmail().indexOf("@")));
 			perfilService.save(perfil);
 			user.setPerfil(perfil);
 			userRepository.save(user);

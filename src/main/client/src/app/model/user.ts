@@ -5,4 +5,9 @@ export class User {
                 public profile: string) {
     }
 }
+
+export class Perfil {
+    id: string;
+    nome: string;
+}
   

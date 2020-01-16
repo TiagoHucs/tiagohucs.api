@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user/user.service';
+import { Perfil } from 'src/app/model/user';
 
 @Component({
   selector: 'app-home',
@@ -8,28 +8,23 @@ import { UserService } from 'src/app/service/user/user.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  formPublicacao: FormGroup;
-  publicacoes: string[] = [];
+  perfil: Perfil;
 
   constructor(
-    public userService: UserService,
-    private formBuilder: FormBuilder) { }
+    private userService: UserService) { }
 
   ngOnInit() {
-    this.criaFormulario();
+    this.obterNome();
   }
 
-  criaFormulario(){
-    this.formPublicacao = this.formBuilder.group({
-      nome: ['', [Validators.required, Validators.maxLength(150)]],
-      texto: ['', [Validators.required, Validators.maxLength(150)]]
-    });
-  }
-
-  publicar(){
-    this.publicacoes.push(this.formPublicacao.controls['texto'].value);
-    this.formPublicacao.reset();
-    console.log(`publicou ${this.publicacoes.length}`)
+  obterNome(){
+    this.userService.getUsername2().subscribe(
+      response => {
+        this.perfil = response;
+      }, err => {
+        console.log('erro ao obter username')
+      }
+    )
   }
 
 }

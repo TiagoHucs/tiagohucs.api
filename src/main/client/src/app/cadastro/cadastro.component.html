@@ -14,6 +14,11 @@
             <i class="fa fa-mail-reply"></i> Voltar para o login
           </button> <br><br>      
         </div>
+        <div *ngIf="message">
+          <div class="alert alert-danger">
+            {{message}}
+          </div>        
+        </div>
         <div *ngIf="!cadastrou" class="info-form">
           <form action="cadastrar()" class="form-inlin justify-content-center" #form="ngForm" (ngSubmit)="cadastrar()"
             novalidate>

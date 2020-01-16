@@ -7,11 +7,10 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-//@Component
-//public class PublicacaoVOMapper extends CustomMapper<Publicacao, PublicacaoVO> {
-public class PublicacaoVOMapper {
+@Component
+public class PublicacaoVOMapper extends CustomMapper<Publicacao, PublicacaoVO> {
 
-    /*@Autowired
+    @Autowired
     private MapperFactory mapperFactory;
 
      @PostConstruct
@@ -20,6 +19,6 @@ public class PublicacaoVOMapper {
                 .customize(this)
                 .byDefault()
                 .register();
-    }*/
+    }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PublicacaoService } from '../publicacao.service';
+import { Publicacao } from '../publicacao';
 
 @Component({
   selector: 'app-publicacao-listar',
@@ -8,12 +8,12 @@ import { PublicacaoService } from '../publicacao.service';
   styleUrls: ['./publicacao-listar.component.css']
 })
 export class PublicacaoListarComponent implements OnInit {
-
-  publicacoes: string[] = [];
+  publicacoes: Publicacao[] = [];
 
   constructor(
-    private formBuilder: FormBuilder,
-    private service: PublicacaoService) { }
+    private service: PublicacaoService) {
+      
+    }
 
   ngOnInit() {
     this.listar();
@@ -23,9 +23,8 @@ export class PublicacaoListarComponent implements OnInit {
     this.service.listar().subscribe(
       response => {
         this.publicacoes = response;
-        console.log('listou')
+        console.log(this.publicacoes)
       }
     )
   }
-
 }

@@ -7,5 +7,6 @@ import lombok.Setter;
 @Setter
 public class PerfilVO {
 
-    String username;
+    Long id;
+    String nome;
 }

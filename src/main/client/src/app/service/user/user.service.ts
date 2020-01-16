@@ -4,6 +4,7 @@ import { HttpClient} from '@angular/common/http';
 import { API_URL } from '../../app.url.dev'
 import decode from 'jwt-decode';
 import { CookieService } from 'ngx-cookie-service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -23,6 +24,10 @@ export class UserService {
     const token = this.cookieService.get('token');
     const tokenPayload = decode(token);
     return tokenPayload.sub;
+  }
+
+  getUsername2(): Observable<any> {
+    return this.http.get(`${API_URL}perfil`);
   }
 
   login(user: User){
