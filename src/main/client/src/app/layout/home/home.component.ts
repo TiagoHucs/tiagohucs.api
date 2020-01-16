@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   publicacoes: string[] = [];
 
   constructor(
-    private userService: UserService,
+    public userService: UserService,
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
