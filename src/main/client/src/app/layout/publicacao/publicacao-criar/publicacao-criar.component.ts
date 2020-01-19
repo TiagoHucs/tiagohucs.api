@@ -31,6 +31,7 @@ export class PublicacaoCriarComponent implements OnInit {
       response => {
         this.formPublicacao.reset();
         this.toastService.success('Postado com sucesso');
+        this.service.sendMessage();
       }
     )
   }

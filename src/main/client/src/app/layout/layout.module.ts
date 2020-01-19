@@ -12,6 +12,7 @@ import { ClientesModule } from './clientes/clientes.module';
 import { SnotifyModule, SnotifyService, SnotifyToast, ToastDefaults } from 'ng-snotify';
 import { HomeComponent } from './home/home.component';
 import { PublicacaoModule } from './publicacao/publicacao.module';
+import { PerfilLateralComponent } from './perfil-lateral/perfil-lateral.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PublicacaoModule } from './publicacao/publicacao.module';
     DashboardComponent,
     OrcamentoEditarComponent,
     OrcamentoListarComponent,
-    HomeComponent,],
+    HomeComponent,
+    PerfilLateralComponent,],
   imports: [
     PublicacaoModule,
     CommonModule,

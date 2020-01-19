@@ -23,7 +23,7 @@ public class PublicacaoService {
     }
 
     public List<Publicacao> listar(){
-        return repository.findAll();
+        return repository.findAllByOrderByDataDesc();
     }
 
 }

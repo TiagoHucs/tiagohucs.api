@@ -9,5 +9,6 @@ export class User {
 export class Perfil {
     id: string;
     nome: string;
+    imagem: string;
 }
   

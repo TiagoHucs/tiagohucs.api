@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { UserService } from './service/user/user.service';
+import { PerfilService } from './service/perfil/perfil.service';
 import { AuthGuard } from './security/auth.guard';
 import { AuthInterceptor } from './security/auth.interceptor';
 import { LoginComponent } from './login/login.component';
@@ -45,6 +46,7 @@ export function tokenGetter() {
   ],
   providers: [
     UserService, 
+    PerfilService, 
     AuthGuard, 
     RoleGuardService,
     AuthService,

@@ -1,7 +1,7 @@
 <div *ngFor="let p of publicacoes" class="card p-3">
     <img src="assets/profile-default-image.png" class="mr-3 mt-3 rounded-circle" style="width:60px; ">
     <div class="media-body">
-        <h5 style="margin-bottom: -5px;">{{p.perfil.nome}}</h5> <small><i>{{p.data}}</i></small><br>
+        <h5 style="margin-bottom: -5px;">{{p.perfil.nome}}</h5> <small><i>{{p.data | date: 'dd/MM/yyyy hh:mm:ss'}}</i></small><br>
         {{p.texto}}
     </div>
 </div>

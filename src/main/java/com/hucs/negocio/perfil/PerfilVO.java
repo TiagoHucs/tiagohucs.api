@@ -9,4 +9,5 @@ public class PerfilVO {
 
     Long id;
     String nome;
+    String imagem;
 }

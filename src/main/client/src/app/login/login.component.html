@@ -11,13 +11,16 @@
             {{message}}
           </div>       
         </div>
+        <div *ngIf="loading">
+          <i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Logando...
+        </div>
         <div class="info-form">
           <form class="form-inlin justify-content-center" #form="ngForm" novalidate>
             <div [ngClass]="getFormGroupClass(email.invalid,email.dirty)">
               Email
               <div class="col">
                 <input type="email" [(ngModel)]="user.email" name="email" class="form-control" id="inputEmail"
-                  #email="ngModel" placeholder="e-mail" email>
+                  #email="ngModel" placeholder="e-mail" [disabled]="loading"  email>
                 <span class="help-block" *ngIf="email.invalid  && email.dirty">Email is invalid </span>
               </div>
             </div>
@@ -25,7 +28,7 @@
               Password
               <div class="col">
                 <input type="password" [(ngModel)]="user.password" name="password" class="form-control"
-                  id="inputPassword" placeholder="password" #password="ngModel" required>
+                  id="inputPassword" placeholder="password" #password="ngModel" [disabled]="loading" required>
                 <span class="help-block" *ngIf="password.invalid && password.dirty">Password is required</span>
               </div>
             </div>

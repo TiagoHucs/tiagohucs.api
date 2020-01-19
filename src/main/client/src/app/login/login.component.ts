@@ -14,7 +14,7 @@ import { API_NOME } from './../app.constants'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  loading: boolean;
   nomeAplicacao: string = API_NOME
   user = new User('', '', '', '');
   message: string;
@@ -37,11 +37,14 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.message = '';
+    this.loading = true;
     this.userService.login(this.user).subscribe((userAuthentication: CurrentUser) => {
       this.cookieService.set('token', userAuthentication.token)
       this.router.navigate(['/']);
+      this.loading = false;
     }, err => {
       this.message = err.error.message;
+      this.loading = false;
     });
   }
 

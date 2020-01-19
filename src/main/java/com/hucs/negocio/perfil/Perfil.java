@@ -23,8 +23,11 @@ public class Perfil {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "PER_ID")
     private Long id;
-    @Column(name = "PUB_DS_NOME")
+    @Column(name = "PER_DS_NOME")
     private String nome;
+    @Lob
+    @Column(name = "PER_DS_IMAGEM")
+    private String imagem;
 
 
 }

@@ -1,18 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/service/user/user.service';
 import { Perfil } from 'src/app/model/user';
+import { UserService } from 'src/app/service/user/user.service';
+import { PerfilService } from 'src/app/service/perfil/perfil.service';
+import { resolve } from 'url';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-perfil-lateral',
+  templateUrl: './perfil-lateral.component.html',
+  styleUrls: ['./perfil-lateral.component.css']
 })
-export class HomeComponent implements OnInit {
+export class PerfilLateralComponent implements OnInit {
   perfil: Perfil;
   image: any;
 
   constructor(
-    private userService: UserService) { }
+    private userService: UserService,
+    private perfilService: PerfilService) { }
 
   ngOnInit() {
     this.obterNome();
@@ -38,8 +41,15 @@ export class HomeComponent implements OnInit {
   
     myReader.onloadend = (e) => {
       this.image = myReader.result;
+      this.perfil.imagem = this.image;
+      this.perfilService.salvarImagem(this.image).subscribe(
+        resolve => {
+            console.log('salvo com sucesso');
+        }, err => {
+          console.log('deu erro');
+        }
+      );
     }
     myReader.readAsDataURL(file);
   }
-
 }
