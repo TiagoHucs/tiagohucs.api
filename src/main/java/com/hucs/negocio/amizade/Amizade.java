@@ -2,10 +2,10 @@ package com.hucs.negocio.amizade;
 
 
 import com.hucs.negocio.perfil.Perfil;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity

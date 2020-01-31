@@ -1,7 +1,6 @@
 package com.hucs.negocio.perfil;
 
 import com.hucs.negocio.amizade.Amizade;
-import com.hucs.negocio.publicacao.Publicacao;
 import lombok.*;
 
 import javax.persistence.*;
