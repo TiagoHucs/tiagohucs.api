@@ -31,7 +31,4 @@ public class Perfil {
     @Column(name = "PER_DS_IMAGEM")
     private String imagem;
 
-    @OneToMany(mappedBy = "perfil")
-    private List<Amizade> amizade = new ArrayList<>();
-
 }
