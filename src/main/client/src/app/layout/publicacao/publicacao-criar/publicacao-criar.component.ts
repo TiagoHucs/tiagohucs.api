@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PublicacaoService } from '../publicacao.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-publicacao-criar',
@@ -13,8 +12,7 @@ export class PublicacaoCriarComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private service: PublicacaoService,
-    private toastService: ToastrService) { }
+    private service: PublicacaoService) { }
 
   ngOnInit() {
     this.criaFormulario();
@@ -30,7 +28,6 @@ export class PublicacaoCriarComponent implements OnInit {
     this.service.salvar(this.formPublicacao.getRawValue()).subscribe(
       response => {
         this.formPublicacao.reset();
-        this.toastService.success('Postado com sucesso');
         this.service.sendMessage();
       }
     )

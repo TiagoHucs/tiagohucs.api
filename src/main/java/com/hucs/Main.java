@@ -1,5 +1,8 @@
 package com.hucs;
 
+import com.hucs.security.enums.ProfileEnum;
+import com.hucs.security.user.User;
+import com.hucs.security.user.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,33 +27,23 @@ public class Main {
   }
 
   @Bean
-  CommandLineRunner init(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+  CommandLineRunner init(UserRepository userRepository,UserService userService, PasswordEncoder passwordEncoder) {
     return args -> {
-      initUsers(userRepository, passwordEncoder);
+      initUsers(userRepository,userService, passwordEncoder);
     };
   }
 
-  private void initUsers(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-/*    User admin = new User();
-    admin.setEmail("admin@system.com");
-    admin.setPassword(passwordEncoder.encode("123456"));
+  private void initUsers(UserRepository userRepository, UserService userService, PasswordEncoder passwordEncoder) {
+    User admin = new User();
+    admin.setEmail("tiagohucs@gmail.com");
+    admin.setPassword(passwordEncoder.encode("123"));
     admin.setProfile(ProfileEnum.ROLE_ADMIN);
 
-    User find = userRepository.findByEmail("admin@system.com");
+    User find = userRepository.findByEmail("tiagohucs@gmail.com");
     if (find == null) {
-      userRepository.save(admin);
+      //userRepository.save(admin);
+      userService.createOrUpdate(admin);
     }
-
-    User usuario = new User();
-    usuario.setEmail("usuario@system.com");
-    usuario.setPassword(passwordEncoder.encode("112233"));
-    usuario.setProfile(ProfileEnum.ROLE_USUARIO);
-
-    User find2 = userRepository.findByEmail("usuario@system.com");
-    if (find2 == null) {
-      userRepository.save(usuario);
-    }*/
   }
-
 
 }

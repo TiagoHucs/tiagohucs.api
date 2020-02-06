@@ -8,7 +8,7 @@
         <label class="filebutton">
             <img *ngIf="!this.perfil.imagem" src="assets/profile-default-image.png" />
             <img *ngIf="this.perfil.imagem" src="{{this.perfil.imagem}}" alt=""/>
-            <span><input type="file" id="myfile" d (change)="changeListener($event)"></span>
+            <span><input type="file" id="myfile" #fileInput d (change)="changeListener($event)"></span>
         </label>
 
         <p><b>{{perfil.nome}}</b></p>

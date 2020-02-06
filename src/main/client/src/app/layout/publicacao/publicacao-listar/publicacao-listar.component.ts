@@ -14,7 +14,6 @@ export class PublicacaoListarComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(private service: PublicacaoService) {
-    // subscribe to home component messages
     this.subscription = this.service.getMessage().subscribe(resolve => {
       this.listar();
     });
@@ -25,7 +24,6 @@ export class PublicacaoListarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // unsubscribe to ensure no memory leaks
     this.subscription.unsubscribe();
   }
 

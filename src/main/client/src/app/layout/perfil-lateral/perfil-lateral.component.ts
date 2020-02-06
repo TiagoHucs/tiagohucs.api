@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild,ElementRef } from '@angular/core';
 import { Perfil } from 'src/app/model/user';
 import { UserService } from 'src/app/service/user/user.service';
 import { PerfilService } from 'src/app/service/perfil/perfil.service';
@@ -12,6 +12,7 @@ import { resolve } from 'url';
 export class PerfilLateralComponent implements OnInit {
   perfil: Perfil;
   image: any;
+  @ViewChild('fileInput',null) el:ElementRef;
 
   constructor(
     private userService: UserService,
@@ -32,7 +33,12 @@ export class PerfilLateralComponent implements OnInit {
   }
 
   changeListener($event) : void {
-    this.readThis($event.target);
+    let formData = new FormData();
+    //formData.append('upload', this.fileInput.nativeElement.files[0])
+    let file = this.el.nativeElement.files[0];
+    formData.append('file', file);
+    this.enviaFile(formData);
+    //this.readThis($event.target);
   }
   
   readThis(inputValue: any): void {
@@ -51,5 +57,15 @@ export class PerfilLateralComponent implements OnInit {
       );
     }
     myReader.readAsDataURL(file);
+  }
+
+  enviaFile(file: any){
+    this.perfilService.salvarImagem(file).subscribe(
+      resolve => {
+          console.log('salvo com sucesso');
+      }, err => {
+        console.log('deu erro');
+      }
+    );
   }
 }
