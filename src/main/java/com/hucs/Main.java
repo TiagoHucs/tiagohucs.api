@@ -29,7 +29,9 @@ public class Main {
   @Bean
   CommandLineRunner init(UserRepository userRepository,UserService userService, PasswordEncoder passwordEncoder) {
     return args -> {
-      initUsers(userRepository,userService, passwordEncoder);
+      if("dev".equals(System.getProperty("spring.profiles.active"))){
+        initUsers(userRepository,userService, passwordEncoder);
+      }
     };
   }
 

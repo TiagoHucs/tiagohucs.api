@@ -12,7 +12,8 @@ import { ClientesModule } from './clientes/clientes.module';
 import { SnotifyModule, SnotifyService, SnotifyToast, ToastDefaults } from 'ng-snotify';
 import { HomeComponent } from './home/home.component';
 import { PublicacaoModule } from './publicacao/publicacao.module';
-import { PerfilLateralComponent } from './perfil-lateral/perfil-lateral.component';
+import { GruposModule } from './grupos/grupos.module';
+import { PerfilModule } from './perfil/perfil.module';
 
 @NgModule({
   declarations: [
@@ -22,10 +23,12 @@ import { PerfilLateralComponent } from './perfil-lateral/perfil-lateral.componen
     DashboardComponent,
     OrcamentoEditarComponent,
     OrcamentoListarComponent,
-    HomeComponent,
-    PerfilLateralComponent,],
+    HomeComponent
+  ],
   imports: [
+    PerfilModule,
     PublicacaoModule,
+    GruposModule,
     CommonModule,
     LayoutRoutingModule,
     FormsModule,

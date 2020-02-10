@@ -1,0 +1,11 @@
+<div *ngIf="perfilList" class="card">
+    <div class="card-header text-center">
+        Amigos
+    </div>    
+    <div class="card-body text-center">
+        <div *ngFor="let p of perfilList">
+            <i class="fa fa-user"></i> {{p.nome}}
+            <hr>
+        </div>
+    </div>
+</div>

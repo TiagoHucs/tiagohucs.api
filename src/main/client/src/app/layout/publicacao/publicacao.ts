@@ -1,12 +1,12 @@
-import { Perfil } from 'src/app/model/user';
+import { PerfilVO } from 'src/app/model/user';
 
 export class Publicacao {
     id: string;
     data: Date;
     texto: string;
-    perfil: Perfil
+    perfil: PerfilVO
 
     constructor() {
-        this.perfil = new Perfil();
+        this.perfil = new PerfilVO();
     }
 }

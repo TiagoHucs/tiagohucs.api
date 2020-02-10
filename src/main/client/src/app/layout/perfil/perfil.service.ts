@@ -16,8 +16,11 @@ export class PerfilService {
     return this.http.get(`${API_URL}perfil`);
   }
 
+  listar(): Observable<any> {
+    return this.http.get(`${API_URL}perfil/listar`);
+  }
+
   salvarImagem(imagem: string): Observable<any> {
     return this.http.post(`${API_URL}salvaimagem`, imagem);
   }
-
 }

@@ -6,7 +6,7 @@ export class User {
     }
 }
 
-export class Perfil {
+export class PerfilVO {
     id: string;
     nome: string;
     imagem: string;

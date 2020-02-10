@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/service/user/user.service';
-import { Perfil } from 'src/app/model/user';
+import { PerfilVO } from 'src/app/model/user';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +8,7 @@ import { Perfil } from 'src/app/model/user';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  perfil: Perfil;
+  perfil: PerfilVO;
   image: any;
 
   constructor(
