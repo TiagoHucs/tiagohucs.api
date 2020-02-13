@@ -1,11 +1,8 @@
 package com.hucs.negocio.perfil;
 
-import com.hucs.negocio.amizade.Amizade;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter

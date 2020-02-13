@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@Table(name = "TB_AMIZADE")
 public class Amizade {
 
     @EmbeddedId
