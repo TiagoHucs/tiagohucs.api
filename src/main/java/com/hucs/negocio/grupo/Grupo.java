@@ -4,6 +4,7 @@ import com.hucs.negocio.perfil.Perfil;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,8 +25,14 @@ public class Grupo {
     @Column(name = "GRU_ID")
     private Long id;
 
+    @Column(name = "GRU_DH_CRIACAO", nullable=false)
+    private LocalDateTime dataHoraCriacao;
+
     @Column(name = "GRU_DS_NOME", nullable=false)
     private String nome;
+
+    @Column(name = "GRU_DS_DESCRICAO", nullable=false)
+    private String descricao;
 
     @ManyToOne
     @JoinColumn(name = "PER_ID", nullable=false)

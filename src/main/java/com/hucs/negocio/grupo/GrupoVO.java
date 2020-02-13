@@ -10,6 +10,7 @@ public class GrupoVO {
 
     private Long id;
     private String nome;
+    private String descricao;
     private Perfil perfil;
 
 }
